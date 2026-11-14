@@ -1,5 +1,5 @@
 ---
-'@cycanics/unicode-spoofing': patch
+'@cycanics/unspoof': patch
 ---
 
 Keep the typographic apostrophe in `normalized` when a lookalike word is folded.

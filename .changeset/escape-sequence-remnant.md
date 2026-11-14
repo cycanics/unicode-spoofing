@@ -1,5 +1,5 @@
 ---
-'@cycanics/unicode-spoofing': patch
+'@cycanics/unspoof': patch
 ---
 
 Strip whole ANSI control sequences (CSI) from `normalized`, not just the ESC.

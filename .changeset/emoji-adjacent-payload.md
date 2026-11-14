@@ -1,5 +1,5 @@
 ---
-'@cycanics/unicode-spoofing': minor
+'@cycanics/unspoof': minor
 ---
 
 Flag invisible payloads placed right after an emoji.

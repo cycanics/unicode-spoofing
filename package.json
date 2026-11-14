@@ -1,12 +1,12 @@
 {
-  "name": "@cycanics/unicode-spoofing",
+  "name": "@cycanics/unspoof",
   "version": "0.6.0",
   "description": "Unicode spoofing detection: mixed-script words, UTS #39 confusables, invisible characters, and combining-mark abuse. Zero runtime dependencies.",
   "author": "cycanics (https://cycanics.github.io)",
   "license": "MIT",
-  "repository": "github:cycanics/unicode-spoofing",
-  "homepage": "https://github.com/cycanics/unicode-spoofing#readme",
-  "bugs": "https://github.com/cycanics/unicode-spoofing/issues",
+  "repository": "github:cycanics/unspoof",
+  "homepage": "https://github.com/cycanics/unspoof#readme",
+  "bugs": "https://github.com/cycanics/unspoof/issues",
   "keywords": [
     "unicode",
     "spoofing",

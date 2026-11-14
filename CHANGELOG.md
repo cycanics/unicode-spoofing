@@ -1,8 +1,8 @@
-# @cycanics/unicode-spoofing
+# @cycanics/unspoof
 
 ## 0.6.0
 
-First release as `@cycanics/unicode-spoofing`. Everything since upstream 0.4.0:
+First release as `@cycanics/unspoof`. Everything since upstream 0.4.0:
 
 ### Minor Changes
 

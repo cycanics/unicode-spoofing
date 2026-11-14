@@ -1,4 +1,8 @@
-# @cycanics/unicode-spoofing
+# unspoof
+
+Words that read right to you, but fool your agents. `unspoof` (npm package
+`@cycanics/unspoof`) detects look-alike letters, mixed scripts, and invisible and
+bidi characters in text written in any script, not only English.
 
 Based on [`@moderation-api/unicode-spoofing`](https://github.com/moderation-api/unicode-spoofing), extended with
 alphabet-aware folding, a strict hidden-character mode with a report of what was hidden, and a
@@ -50,7 +54,7 @@ Of the 26 strict failures, 12 are HTML entities (not decoded, out of scope), 8 f
 
 ---
 
-Text that reads as English but isn't. `НОТ busіnеss рrоduсt` looks ordinary in
+Take `НОТ busіnеss рrоduсt`: it looks ordinary in
 any font — `НОТ` is pure Cyrillic, `busіnеss` mixes two scripts inside one word,
 and neither matches a keyword filter looking for `HOT` or `business`.
 
@@ -69,13 +73,13 @@ Ships as dual ESM/CommonJS with bundled type declarations. Node 20+.
 ## Install
 
 ```bash
-npm install @cycanics/unicode-spoofing
+npm install @cycanics/unspoof
 ```
 
 ## Usage
 
 ```ts
-import { analyze } from '@cycanics/unicode-spoofing';
+import { analyze } from '@cycanics/unspoof';
 
 const r = analyze('Ｇｅｔ 𝐅𝐑𝐄𝐄 ⓒⓡⓨⓟⓣⓞ now');
 
@@ -488,7 +492,7 @@ against `dominantScript` is checked against the real list — a typo like
 `'Cyrilic'` will not compile.
 
 ```ts
-import { analyze, SCRIPT_NAMES, type ScriptName } from '@cycanics/unicode-spoofing';
+import { analyze, SCRIPT_NAMES, type ScriptName } from '@cycanics/unspoof';
 
 SCRIPT_NAMES.includes('Cyrillic'); // true — offer the real list in a settings UI
 

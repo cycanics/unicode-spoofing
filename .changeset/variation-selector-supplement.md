@@ -1,5 +1,5 @@
 ---
-'@cycanics/unicode-spoofing': minor
+'@cycanics/unspoof': minor
 ---
 
 Recognise the variation selector supplement (VS17–VS256, U+E0100–U+E01EF).

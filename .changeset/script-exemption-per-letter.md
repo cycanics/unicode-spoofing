@@ -1,5 +1,5 @@
 ---
-'@cycanics/unicode-spoofing': minor
+'@cycanics/unspoof': minor
 ---
 
 Judge the `FORMAT_CHAR_SCRIPTS` exemption per letter instead of per word.
