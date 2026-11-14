@@ -1,0 +1,30 @@
+version: 2
+updates:
+  # This package has zero runtime dependencies, so routine updates are all
+  # dev-tooling. Batch them into a single monthly PR to keep the noise low —
+  # security fixes come through separately and immediately (Dependabot security
+  # updates), regardless of this schedule.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      dependencies:
+        patterns: ['*']
+    open-pull-requests-limit: 3
+    ignore:
+      # The build bundles .d.ts via tsup (rollup-plugin-dts), which needs the
+      # JS Compiler API that the native typescript@7 does not expose yet. Stay
+      # on the 6.x (JS-based) line until the dts toolchain supports the native
+      # compiler; the native @7 is used for type-checking via tsgo separately.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ['*']
+    open-pull-requests-limit: 3

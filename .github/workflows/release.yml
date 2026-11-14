@@ -1,0 +1,52 @@
+# Opens/updates a "Version Packages" PR from pending changesets, and publishes
+# to npm when that PR is merged. Publishing uses npm Trusted Publishing (OIDC) —
+# no NPM_TOKEN secret. See RELEASING.md for the one-time npmjs.com setup.
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Node 22 bundles npm 10.x, but Trusted Publishing (the OIDC token
+      # exchange that `changeset publish` -> `npm publish` performs) needs
+      # npm >= 11.5.1. Without it the registry rejects the publish with a
+      # misleading E404 ("not in this registry") instead of an auth error.
+      - name: Upgrade npm for Trusted Publishing (OIDC)
+        run: npm install --global npm@latest
+
+      - name: Create release PR or publish to npm
+        uses: changesets/action@v1
+        with:
+          version: pnpm run version
+          publish: pnpm run release
+          commit: 'chore: version packages'
+          title: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: 'true'

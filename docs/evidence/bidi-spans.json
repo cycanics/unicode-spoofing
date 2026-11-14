@@ -1,0 +1,452 @@
+[
+  {
+    "name": "rlo_latin",
+    "input": "\u202egnp.exe\u202c",
+    "dir": "ltr",
+    "shown": "exe.png",
+    "natural": "gnp.exe",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_unterminated",
+    "input": "invoice\u202egnp.exe",
+    "dir": "ltr",
+    "shown": "invoiceexe.png",
+    "natural": "invoicegnp.exe",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_digits",
+    "input": "$\u202e001\u202c",
+    "dir": "ltr",
+    "shown": "$100",
+    "natural": "$001",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_two_words",
+    "input": "\u202ea b\u202c",
+    "dir": "ltr",
+    "shown": "ba",
+    "natural": "ab",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_punct",
+    "input": "\u202e!?\u202c",
+    "dir": "ltr",
+    "shown": "?!",
+    "natural": "!?",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_emoji",
+    "input": "\u202e😀😈\u202c",
+    "dir": "ltr",
+    "shown": "😈😀",
+    "natural": "😀😈",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_he_latin",
+    "input": "\u202eשלום world\u202c",
+    "dir": "rtl",
+    "shown": "dlrowםולש",
+    "natural": "worldםולש",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_he_digits",
+    "input": "\u202eמחיר 100\u202c",
+    "dir": "rtl",
+    "shown": "001ריחמ",
+    "natural": "100ריחמ",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_ar_digits",
+    "input": "\u202eالسعر ١٠٠\u202c",
+    "dir": "rtl",
+    "shown": "٠٠١رعسلا",
+    "natural": "١٠٠رعسلا",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_ar_latin",
+    "input": "\u202eمرحبا world\u202c",
+    "dir": "rtl",
+    "shown": "dlrowابحرم",
+    "natural": "worldابحرم",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "lro_hebrew",
+    "input": "\u202dשלום עולם\u202c",
+    "dir": "rtl",
+    "shown": "שלוםעולם",
+    "natural": "םלועםולש",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "lro_arabic",
+    "input": "\u202dمرحبا بالعالم\u202c",
+    "dir": "rtl",
+    "shown": "مرحبابالعالم",
+    "natural": "ملاعلابابحرم",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "lro_he_in_latin",
+    "input": "abc \u202dשלום\u202c def",
+    "dir": "ltr",
+    "shown": "abcשלוםdef",
+    "natural": "abcםולשdef",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "trojan",
+    "input": "if (x != \"user\u202e \u2066// admin\u2069 \u2066\") {",
+    "dir": "ltr",
+    "shown": "if(x!=\"user\"){//admin",
+    "natural": "if(x!=\"user//admin\"){",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlo_hebrew",
+    "input": "\u202eשלום עולם\u202c",
+    "dir": "rtl",
+    "shown": "םלועםולש",
+    "natural": "םלועםולש",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_he_punct",
+    "input": "\u202eשלום, עולם!\u202c",
+    "dir": "rtl",
+    "shown": "!םלוע,םולש",
+    "natural": "!םלוע,םולש",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_arabic",
+    "input": "\u202eمرحبا بالعالم\u202c",
+    "dir": "rtl",
+    "shown": "ملاعلابابحرم",
+    "natural": "ملاعلابابحرم",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_ar_marks",
+    "input": "\u202eمَرْحَبًا\u202c",
+    "dir": "rtl",
+    "shown": "ابًحَرْمَ",
+    "natural": "ابًحَرْمَ",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_persian_zwnj",
+    "input": "\u202eمی\u200cخواهم\u202c",
+    "dir": "rtl",
+    "shown": "مهاوخیم",
+    "natural": "مهاوخیم",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_he_one_latin",
+    "input": "\u202eשלום a עולם\u202c",
+    "dir": "rtl",
+    "shown": "םלועaםולש",
+    "natural": "םלועaםולש",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_he_one_digit",
+    "input": "\u202eמחיר 5\u202c",
+    "dir": "rtl",
+    "shown": "5ריחמ",
+    "natural": "5ריחמ",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_one",
+    "input": "\u202ea\u202c",
+    "dir": "ltr",
+    "shown": "a",
+    "natural": "a",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_nested_lro",
+    "input": "\u202eالسعر \u202d100\u202c ريال\u202c",
+    "dir": "rtl",
+    "shown": "لاير100رعسلا",
+    "natural": "لاير100رعسلا",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlo_rle_reset",
+    "input": "\u202e\u202babc\u202c\u202c",
+    "dir": "ltr",
+    "shown": "abc",
+    "natural": "abc",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "lro_latin",
+    "input": "\u202dhello world\u202c",
+    "dir": "ltr",
+    "shown": "helloworld",
+    "natural": "helloworld",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "lro_number",
+    "input": "\u202d+972-50-1234567\u202c",
+    "dir": "ltr",
+    "shown": "+972-50-1234567",
+    "natural": "+972-50-1234567",
+    "sameInLtr": true,
+    "sameInRtl": false
+  },
+  {
+    "name": "lro_number_in_he",
+    "input": "טלפון \u202d+972-50-1234567\u202c היום",
+    "dir": "rtl",
+    "shown": "םויה+972-50-1234567ןופלט",
+    "natural": "םויה972-50-1234567+ןופלט",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "lro_date_in_ar",
+    "input": "التاريخ \u202d12/05/2024\u202c اليوم",
+    "dir": "rtl",
+    "shown": "مويلا12/05/2024خيراتلا",
+    "natural": "مويلا12/05/2024خيراتلا",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "lro_one_r",
+    "input": "\u202dabc א def\u202c",
+    "dir": "ltr",
+    "shown": "abcאdef",
+    "natural": "abcאdef",
+    "sameInLtr": true,
+    "sameInRtl": false
+  },
+  {
+    "name": "rle_latin",
+    "input": "\u202babc def\u202c",
+    "dir": "ltr",
+    "shown": "abcdef",
+    "natural": "abcdef",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rle_hebrew",
+    "input": "\u202bשלום עולם\u202c",
+    "dir": "rtl",
+    "shown": "םלועםולש",
+    "natural": "םלועםולש",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rle_arabic",
+    "input": "\u202bمرحبا بالعالم\u202c",
+    "dir": "rtl",
+    "shown": "ملاعلابابحرم",
+    "natural": "ملاعلابابحرم",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rle_he_mixed",
+    "input": "\u202bשלום world עולם\u202c",
+    "dir": "rtl",
+    "shown": "םלועworldםולש",
+    "natural": "םלועworldםולש",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "rle_ar_mixed",
+    "input": "\u202bنص English نص\u202c",
+    "dir": "rtl",
+    "shown": "صنEnglishصن",
+    "natural": "صنEnglishصن",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rle_he_digits",
+    "input": "\u202bמחיר 100\u202c",
+    "dir": "rtl",
+    "shown": "100ריחמ",
+    "natural": "100ריחמ",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rle_latin_punct",
+    "input": "\u202bhello!\u202c",
+    "dir": "ltr",
+    "shown": "!hello",
+    "natural": "hello!",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "lre_hebrew",
+    "input": "\u202aשלום עולם\u202c",
+    "dir": "rtl",
+    "shown": "םלועםולש",
+    "natural": "םלועםולש",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "lre_mixed",
+    "input": "\u202aabc שלום def\u202c",
+    "dir": "ltr",
+    "shown": "abcםולשdef",
+    "natural": "abcםולשdef",
+    "sameInLtr": true,
+    "sameInRtl": false
+  },
+  {
+    "name": "lre_number_in_ar",
+    "input": "السعر \u202a100\u202c ريال",
+    "dir": "rtl",
+    "shown": "لاير100رعسلا",
+    "natural": "لاير100رعسلا",
+    "sameInLtr": false,
+    "sameInRtl": true
+  },
+  {
+    "name": "rle_rlm",
+    "input": "\u202babc\u200f def\u202c",
+    "dir": "ltr",
+    "shown": "defabc",
+    "natural": "abcdef",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rle_alm",
+    "input": "\u202babc\u061c def\u202c",
+    "dir": "ltr",
+    "shown": "defabc",
+    "natural": "abcdef",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rle_rlm_three",
+    "input": "\u202bone\u200f two\u200f three\u202c",
+    "dir": "ltr",
+    "shown": "threetwoone",
+    "natural": "onetwothree",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rli_rlm",
+    "input": "\u2067abc\u200f def\u2069",
+    "dir": "ltr",
+    "shown": "defabc",
+    "natural": "abcdef",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "fsi_rlm_first",
+    "input": "\u2068\u200fabc\u200f def\u2069",
+    "dir": "ltr",
+    "shown": "defabc",
+    "natural": "abcdef",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "fsi_latin_first",
+    "input": "\u2068abc\u200f def\u2069",
+    "dir": "ltr",
+    "shown": "abcdef",
+    "natural": "abcdef",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rli_latin",
+    "input": "\u2067abc def\u2069",
+    "dir": "ltr",
+    "shown": "abcdef",
+    "natural": "abcdef",
+    "sameInLtr": true,
+    "sameInRtl": true
+  },
+  {
+    "name": "rlm_only",
+    "input": "abc\u200f def",
+    "dir": "ltr",
+    "shown": "abcdef",
+    "natural": "abcdef",
+    "sameInLtr": true,
+    "sameInRtl": false
+  },
+  {
+    "name": "rli_hebrew",
+    "input": "abc \u2067שלום\u2069 def",
+    "dir": "ltr",
+    "shown": "abcםולשdef",
+    "natural": "abcםולשdef",
+    "sameInLtr": true,
+    "sameInRtl": false
+  },
+  {
+    "name": "rli_he_mixed",
+    "input": "hello \u2067שלום world\u2069 end",
+    "dir": "ltr",
+    "shown": "helloworldםולשend",
+    "natural": "helloםולשworldend",
+    "sameInLtr": false,
+    "sameInRtl": false
+  },
+  {
+    "name": "rlm_in_hebrew",
+    "input": "שלום\u200f עולם",
+    "dir": "rtl",
+    "shown": "םלועםולש",
+    "natural": "םלועםולש",
+    "sameInLtr": true,
+    "sameInRtl": true
+  }
+]

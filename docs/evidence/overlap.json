@@ -1,0 +1,2617 @@
+{
+  "fonts": ["DejaVu Sans", "Noto Sans", "Liberation Serif", "DejaVu Sans Mono"],
+  "browser": [
+    {
+      "name": "backspace ×6",
+      "codePoints": "U+0008 U+0076 U+0069 U+0073 U+0062 U+006C",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRETvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRETvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRETvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "CR",
+      "codePoints": "U+000D U+0076 U+0069 U+0073 U+0062 U+006C",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET\rvisibl"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET\rvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET\rvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "VT, FF",
+      "codePoints": "U+000B U+000C U+0076 U+0069 U+0073 U+0062 U+006C",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRETvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRETvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET  visibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC[2K left over",
+      "codePoints": "U+001B U+005B U+0032 U+004B U+0076 U+0069 U+0073 U+0062 U+006C",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[2Kvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[2Kvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRETvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+20DD circle, each letter",
+      "codePoints": "U+20DD",
+      "filledMax": 0.058,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.047021943573667714,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.034653465346534656,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.04591836734693878,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05772811918063315,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S⃝E⃝C⃝R⃝E⃝T⃝"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S⃝E⃝C⃝R⃝E⃝T⃝"
+        },
+        "cleanHidden": {
+          "cleaned": "S⃝E⃝C⃝R⃝E⃝T⃝",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+20E0 prohibition, each letter",
+      "codePoints": "U+20E0",
+      "filledMax": 0.058,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.047021943573667714,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.034653465346534656,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.04591836734693878,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05772811918063315,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S⃠E⃠C⃠R⃠E⃠T⃠"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S⃠E⃠C⃠R⃠E⃠T⃠"
+        },
+        "cleanHidden": {
+          "cleaned": "S⃠E⃠C⃠R⃠E⃠T⃠",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+20E3 keycap, each letter",
+      "codePoints": "U+20E3",
+      "filledMax": 0.058,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.047021943573667714,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.034653465346534656,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.04591836734693878,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05772811918063315,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S⃣E⃣C⃣R⃣E⃣T⃣"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S⃣E⃣C⃣R⃣E⃣T⃣"
+        },
+        "cleanHidden": {
+          "cleaned": "S⃣E⃣C⃣R⃣E⃣T⃣",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0488 hundred thousands, each letter",
+      "codePoints": "U+0488",
+      "filledMax": 0.188,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.18600682593856654,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.18760469011725292,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.11564625850340136,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.12849162011173185,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S҈E҈C҈R҈E҈T҈"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S҈E҈C҈R҈E҈T҈"
+        },
+        "cleanHidden": {
+          "cleaned": "S҈E҈C҈R҈E҈T҈",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0489 millions, each letter",
+      "codePoints": "U+0489",
+      "filledMax": 0.191,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0.08,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.15789473684210525,
+          "aboveLost": 0,
+          "reachAbove": 0.07894736842105263,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.19099099099099098,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.15157116451016636,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.18063314711359404,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S҉E҉C҉R҉E҉T҉"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S҉E҉C҉R҉E҉T҉"
+        },
+        "cleanHidden": {
+          "cleaned": "S҉E҉C҉R҉E҉T҉",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0489 ×1 on the word",
+      "codePoints": "U+0489",
+      "filledMax": 0.084,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0.08,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.08376068376068375,
+          "aboveLost": 0,
+          "reachAbove": 0.07894736842105263,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.07202680067001675,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.05366726296958855,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.04591836734693878,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET҉"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET҉"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET҉",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+20DD ×2, each letter",
+      "codePoints": "U+20DD",
+      "filledMax": 0.069,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.033625730994152045,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.012612612612612612,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.04293381037567084,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.06890130353817504,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S⃝⃝E⃝⃝C⃝⃝R⃝⃝E⃝⃝T⃝⃝"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S⃝⃝E⃝⃝C⃝⃝R⃝⃝E⃝⃝T⃝⃝"
+        },
+        "cleanHidden": {
+          "cleaned": "S⃝⃝E⃝⃝C⃝⃝R⃝⃝E⃝⃝T⃝⃝",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0489 ×2, each letter",
+      "codePoints": "U+0489",
+      "filledMax": 0.218,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0.08,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.2115987460815047,
+          "aboveLost": 0,
+          "reachAbove": 0.07894736842105263,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.218018018018018,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.17190388170055454,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.20297951582867785,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S҉҉E҉҉C҉҉R҉҉E҉҉T҉҉"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S҉҉E҉҉C҉҉R҉҉E҉҉T҉҉"
+        },
+        "cleanHidden": {
+          "cleaned": "S҉҉E҉҉C҉҉R҉҉E҉҉T҉҉",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0336 stroke, each letter",
+      "codePoints": "U+0336",
+      "filledMax": 0.087,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.08703071672354949,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.07035175879396985,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.05366726296958855,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.061452513966480445,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S̶E̶C̶R̶E̶T̶"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S̶E̶C̶R̶E̶T̶"
+        },
+        "cleanHidden": {
+          "cleaned": "S̶E̶C̶R̶E̶T̶",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0338 solidus, each letter",
+      "codePoints": "U+0338",
+      "filledMax": 0.114,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.10135135135135136,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.11390284757118928,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.06440071556350627,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05772811918063315,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S̸E̸C̸R̸E̸T̸"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S̸E̸C̸R̸E̸T̸"
+        },
+        "cleanHidden": {
+          "cleaned": "S̸E̸C̸R̸E̸T̸",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+20D2 long bar, each letter",
+      "codePoints": "U+20D2",
+      "filledMax": 0.058,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.047021943573667714,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.034653465346534656,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.04591836734693878,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05772811918063315,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S⃒E⃒C⃒R⃒E⃒T⃒"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S⃒E⃒C⃒R⃒E⃒T⃒"
+        },
+        "cleanHidden": {
+          "cleaned": "S⃒E⃒C⃒R⃒E⃒T⃒",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0336 ×2, each letter",
+      "codePoints": "U+0336",
+      "filledMax": 0.092,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.08703071672354949,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.09212730318257957,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.05366726296958855,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.07262569832402235,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S̶̶E̶̶C̶̶R̶̶E̶̶T̶̶"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S̶̶E̶̶C̶̶R̶̶E̶̶T̶̶"
+        },
+        "cleanHidden": {
+          "cleaned": "S̶̶E̶̶C̶̶R̶̶E̶̶T̶̶",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0336+U+0338+U+20D2+U+20E5, each letter",
+      "codePoints": "U+0336 U+0338 U+20D2 U+20E5",
+      "filledMax": 0.177,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.17690058479532164,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.10720268006700168,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.09838998211091235,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.0391156462585034,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["zalgo"],
+          "normalized": "SECRET"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "SECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "S̶̸E̶̸C̶̸R̶̸E̶̸T̶̸",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "U+0336 ×20, each letter",
+      "codePoints": "U+0336",
+      "filledMax": 0.092,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.08703071672354949,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.09212730318257957,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.05366726296958855,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.08648648648648649,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["zalgo"],
+          "normalized": "SECRET"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "SECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "S̶̶E̶̶C̶̶R̶̶E̶̶T̶̶",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "U+0301 ×2, each letter",
+      "codePoints": "U+0301",
+      "filledMax": 0.063,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0.12,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.032423208191126277,
+          "aboveLost": 0,
+          "reachAbove": 0.05263157894736842,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.04130808950086059,
+          "aboveLost": 0,
+          "reachAbove": 0.11627906976744186,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.06297709923664122,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.04684684684684685,
+          "aboveLost": 0,
+          "reachAbove": 0.05263157894736842,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "Ś́É́Ć́Ŕ́É́T́́"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "Ś́É́Ć́Ŕ́É́T́́"
+        },
+        "cleanHidden": {
+          "cleaned": "Ś́É́Ć́Ŕ́É́T́́",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0301 ×40, each letter",
+      "codePoints": "U+0301",
+      "filledMax": 0.076,
+      "aboveLostMax": 0.049,
+      "reachAboveMax": 7.39,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.050156739811912224,
+          "aboveLost": 0.032639738882088945,
+          "reachAbove": 7.394736842105263,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.04130808950086059,
+          "aboveLost": 0.04902405810258738,
+          "reachAbove": 6.604651162790698,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.07633587786259542,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05782312925170068,
+          "aboveLost": 0,
+          "reachAbove": 0.05263157894736842,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["zalgo"],
+          "normalized": "SECRET"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "SECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "Ś́É́Ć́Ŕ́É́T́́",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "Hebrew point U+05B0 ×40",
+      "codePoints": "U+05B0",
+      "filledMax": 0.158,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.096,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.12794612794612795,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.15767634854771784,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.14785992217898833,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "שְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְלְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְוְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְםְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְְ"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "שְְְְְלְְְְְוְְְְְםְְְְְ"
+        },
+        "cleanHidden": {
+          "cleaned": "שְְְְְלְְְְְוְְְְְםְְְְְ",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "Hebrew accent U+0591 ×40",
+      "codePoints": "U+0591",
+      "filledMax": 0.212,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.212,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.1447811447811448,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.17842323651452283,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.16731517509727625,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "ש֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑ל֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑ו֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑ם֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑֑"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "ש֑֑֑֑֑ל֑֑֑֑֑ו֑֑֑֑֑ם֑֑֑֑֑"
+        },
+        "cleanHidden": {
+          "cleaned": "ש֑֑֑֑֑ל֑֑֑֑֑ו֑֑֑֑֑ם֑֑֑֑֑",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "Arabic fatha U+064E ×40",
+      "codePoints": "U+064E",
+      "filledMax": 0.108,
+      "aboveLostMax": 0.053,
+      "reachAboveMax": 3.07,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.10775862068965517,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.09705882352941177,
+          "aboveLost": 0.05265546981389015,
+          "reachAbove": 3.073529411764706,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "Liberation Serif": {
+          "filled": 0.08352668213457076,
+          "aboveLost": 0.0461361014994233,
+          "reachAbove": 3.073529411764706,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.08727272727272728,
+          "aboveLost": 0,
+          "reachAbove": 0.02631578947368421,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "سََََََََََََََََََََََََََََََََََََََََلََََََََََََََََََََََََََََََََََََََََاََََََََََََََََََََََََََََََََََََََََمََََََََََََََََََََََََََََََََََََََََ"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "سَََََلَََََاَََََمَََََ"
+        },
+        "cleanHidden": {
+          "cleaned": "سَََََلَََََاَََََمَََََ",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "Thai tone U+0E49 ×40",
+      "codePoints": "U+0E49",
+      "filledMax": 0.102,
+      "aboveLostMax": 0.039,
+      "reachAboveMax": 8.04,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.08494208494208494,
+          "aboveLost": 0.0208078335373317,
+          "reachAbove": 8.041666666666666,
+          "reachBelow": 0,
+          "lineH": 48
+        },
+        "Noto Sans": {
+          "filled": 0.10197368421052631,
+          "aboveLost": 0.03858374943259192,
+          "reachAbove": 8.041666666666666,
+          "reachBelow": 0,
+          "lineH": 48
+        },
+        "Liberation Serif": {
+          "filled": 0.07468879668049792,
+          "aboveLost": 0.02710495963091119,
+          "reachAbove": 8.041666666666666,
+          "reachBelow": 0,
+          "lineH": 48
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.08494208494208494,
+          "aboveLost": 0.021132713440405747,
+          "reachAbove": 8.041666666666666,
+          "reachBelow": 0,
+          "lineH": 48
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "ส้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้ว้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้ั้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้ส้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้้"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "ส้้้ว้้้ส้้้"
+        },
+        "cleanHidden": {
+          "cleaned": "ส้้้ว้้้ส้้้",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "Devanagari U+0951 ×40",
+      "codePoints": "U+0951",
+      "filledMax": 0.069,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.064453125,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Noto Sans": {
+          "filled": 0.05527638190954774,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 47
+        },
+        "Liberation Serif": {
+          "filled": 0.06903765690376569,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 42
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.064453125,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "न॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑म॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑स॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑॑"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "न॑॑॑॑॑म॑॑॑॑॑स॑॑॑॑॑"
+        },
+        "cleanHidden": {
+          "cleaned": "न॑॑॑॑॑म॑॑॑॑॑स॑॑॑॑॑",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "Tibetan subjoined U+0FB2 ×20",
+      "codePoints": "U+0FB2",
+      "filledMax": 0.124,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 1.67,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.12412587412587413,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 1.6666666666666667,
+          "lineH": 90
+        },
+        "Noto Sans": {
+          "filled": 0.11503067484662577,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 1.6666666666666667,
+          "lineH": 90
+        },
+        "Liberation Serif": {
+          "filled": 0.12226277372262774,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 1.6666666666666667,
+          "lineH": 90
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.12412587412587413,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 1.6666666666666667,
+          "lineH": 90
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "བྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲོྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲདྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲྲ"
+        },
+        "strict": {
+          "signals": ["zalgo"],
+          "normalized": "བྲྲྲྲྲྲྲྲྲྲདྲྲྲྲྲྲྲྲྲྲ"
+        },
+        "cleanHidden": {
+          "cleaned": "བྲྲྲྲྲྲྲྲྲྲདྲྲྲྲྲྲྲྲྲྲ",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "U+0301 ×2 + CGJ, ×10 per letter",
+      "codePoints": "U+0301 U+034F",
+      "filledMax": 0.074,
+      "aboveLostMax": 0.049,
+      "reachAboveMax": 3.34,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.050156739811912224,
+          "aboveLost": 0.032639738882088945,
+          "reachAbove": 3.3421052631578947,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.04130808950086059,
+          "aboveLost": 0.04902405810258738,
+          "reachAbove": 3.186046511627907,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.07442748091603053,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05762081784386617,
+          "aboveLost": 0,
+          "reachAbove": 0.05263157894736842,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible", "zalgo"],
+          "normalized": "SECRET"
+        },
+        "strict": {
+          "signals": ["invisible", "zalgo"],
+          "normalized": "SECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "Ś́É́Ć́Ŕ́É́T́́",
+          "content": [
+            "mark-stack",
+            "mark-stack",
+            "mark-stack",
+            "mark-stack",
+            "mark-stack",
+            "mark-stack"
+          ]
+        }
+      }
+    },
+    {
+      "name": "U+0301 ×40, a Hebrew letter in the word",
+      "codePoints": "U+0301",
+      "filledMax": 0.074,
+      "aboveLostMax": 0.027,
+      "reachAboveMax": 7.39,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.05161290322580645,
+          "aboveLost": 0.018767849857201143,
+          "reachAbove": 7.394736842105263,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.03986135181975736,
+          "aboveLost": 0.026781661370857923,
+          "reachAbove": 6.604651162790698,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.07393715341959335,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05893909626719057,
+          "aboveLost": 0,
+          "reachAbove": 0.05263157894736842,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["mixed_script"],
+          "normalized": "שŚ́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́É́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́Ć́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́Ŕ́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́É́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́T́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́́"
+        },
+        "strict": {
+          "signals": ["mixed_script", "zalgo"],
+          "normalized": "שSECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "שŚ́É́Ć́Ŕ́É́T́́",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "Best try: every wide mark ×20, a Hebrew letter in the word",
+      "codePoints": "U+0489 U+0488 U+20DD U+20E3 U+0336 U+0338 U+20D2 U+20E5 U+0333 U+0332",
+      "filledMax": 0.366,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0.08,
+      "reachBelowMax": 0.05,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.3430034129692833,
+          "aboveLost": 0,
+          "reachAbove": 0.07894736842105263,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.36628849270664504,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0.046511627906976744,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.1989051094890511,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.14734774066797643,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["mixed_script"],
+          "normalized": "שS҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲E҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲C҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲R҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲E҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲T҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲҉҈⃝⃣̵̸⃒⃥̳̲"
+        },
+        "strict": {
+          "signals": ["mixed_script", "zalgo"],
+          "normalized": "שSECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "שS҉҈E҉҈C҉҈R҉҈E҉҈T҉҈",
+          "content": ["mark-stack"]
+        }
+      }
+    },
+    {
+      "name": "CSS control: letter-spacing -0.62em, U+2588 after each letter",
+      "codePoints": "U+2588",
+      "filledMax": 1,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0.03,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 1,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.8601398601398601,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 1,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0.02702702702702703,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 1,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S█E█C█R█E█T█"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S█E█C█R█E█T█"
+        },
+        "cleanHidden": {
+          "cleaned": "S█E█C█R█E█T█",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+FDFD bismillah",
+      "codePoints": "U+0020 U+FDFD",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET ﷽"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET ﷽"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET ﷽",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+12031 cuneiform",
+      "codePoints": "U+0020 U+12031",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 73
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 73
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 73
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 73
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET 𒀱"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET 𒀱"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET 𒀱",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+2E3B three-em dash",
+      "codePoints": "U+0020 U+2E3B",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET ⸻"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET ⸻"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET ⸻",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+2588 full block ×6 after",
+      "codePoints": "U+2588",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0.03,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0.02702702702702703,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET██████"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET██████"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET██████",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+2588 before each letter",
+      "codePoints": "U+2588",
+      "filledMax": 0.127,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0.03,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.10409556313993173,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.01818181818181818,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.04251386321626617,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0.02702702702702703,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.1266294227188082,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S█E█C█R█E█T█"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S█E█C█R█E█T█"
+        },
+        "cleanHidden": {
+          "cleaned": "S█E█C█R█E█T█",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+2591 shade ×6 after",
+      "codePoints": "U+2591",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET░░░░░░"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET░░░░░░"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET░░░░░░",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+2588 + U+20DD after each letter",
+      "codePoints": "U+2588 U+20DD",
+      "filledMax": 0.069,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0.03,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.033625730994152045,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.012612612612612612,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.05442176870748299,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0.02702702702702703,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.06890130353817504,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "S█⃝E█⃝C█⃝R█⃝E█⃝T█⃝"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "S█⃝E█⃝C█⃝R█⃝E█⃝T█⃝"
+        },
+        "cleanHidden": {
+          "cleaned": "S█⃝E█⃝C█⃝R█⃝E█⃝T█⃝",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "RLO over the word",
+      "codePoints": "U+202E",
+      "filledMax": 0.058,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.04093567251461988,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.043243243243243246,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.03571428571428571,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.05772811918063315,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible"],
+          "normalized": "SECRET"
+        },
+        "strict": {
+          "signals": ["invisible"],
+          "normalized": "SECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET",
+          "content": ["bidi-override"]
+        }
+      }
+    },
+    {
+      "name": "RLO + line break + word",
+      "codePoints": "U+0061 U+202E U+0020 U+0062 U+000A",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 76
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 86
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 74
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 76
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible"],
+          "normalized": "aaaa bbbb\nSECRET"
+        },
+        "strict": {
+          "signals": ["invisible"],
+          "normalized": "aaaa bbbb\nSECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "aaaa bbbb\nSECRET",
+          "content": ["bidi-override"]
+        }
+      }
+    },
+    {
+      "name": "U+2028 + RLO",
+      "codePoints": "U+0061 U+2028 U+202E",
+      "filledMax": 0.043,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.02821316614420063,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        },
+        "Noto Sans": {
+          "filled": 0.043243243243243246,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.03571428571428571,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 37
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.04144144144144144,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 38
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible"],
+          "normalized": "aaaa SECRET"
+        },
+        "strict": {
+          "signals": ["invisible"],
+          "normalized": "aaaa SECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "aaaa SECRET",
+          "content": ["bidi-override"]
+        }
+      }
+    },
+    {
+      "name": "U+1BCA0 shorthand overlap, each letter",
+      "codePoints": "U+1BCA0",
+      "filledMax": 0.043,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.034129692832764506,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Noto Sans": {
+          "filled": 0.043243243243243246,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "Liberation Serif": {
+          "filled": 0.038817005545286505,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.0391156462585034,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 43
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible"],
+          "normalized": "SECRET"
+        },
+        "strict": {
+          "signals": ["invisible"],
+          "normalized": "SECRET"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+13434 hieroglyph overlay",
+      "codePoints": "U+13434 U+13050",
+      "filledMax": 0,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 52
+        },
+        "Noto Sans": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 52
+        },
+        "Liberation Serif": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 52
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 52
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible"],
+          "normalized": "𓀀𓁐"
+        },
+        "strict": {
+          "signals": ["invisible"],
+          "normalized": "𓀀𓁐"
+        },
+        "cleanHidden": {
+          "cleaned": "𓀀𓁐",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+0600 number sign over digits",
+      "codePoints": "U+0600",
+      "filledMax": 0.04,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.03115264797507788,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "Noto Sans": {
+          "filled": 0.03225806451612903,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "Liberation Serif": {
+          "filled": 0.04008016032064128,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.03471074380165289,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible"],
+          "normalized": "123"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "؀123"
+        },
+        "cleanHidden": {
+          "cleaned": "؀123",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "U+06DD end of ayah over digits",
+      "codePoints": "U+06DD",
+      "filledMax": 0.042,
+      "aboveLostMax": 0,
+      "reachAboveMax": 0,
+      "reachBelowMax": 0,
+      "fonts": {
+        "DejaVu Sans": {
+          "filled": 0.03115264797507788,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "Noto Sans": {
+          "filled": 0.041935483870967745,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "Liberation Serif": {
+          "filled": 0.03807615230460922,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        },
+        "DejaVu Sans Mono": {
+          "filled": 0.02975206611570248,
+          "aboveLost": 0,
+          "reachAbove": 0,
+          "reachBelow": 0,
+          "lineH": 68
+        }
+      },
+      "rules": {
+        "lenient": {
+          "signals": ["invisible"],
+          "normalized": "123"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "۝123"
+        },
+        "cleanHidden": {
+          "cleaned": "۝123",
+          "content": []
+        }
+      }
+    }
+  ],
+  "terminal": [
+    {
+      "name": "backspace ×6",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRETvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRETvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRETvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "CR",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": [],
+          "normalized": "SECRET\rvisibl"
+        },
+        "strict": {
+          "signals": [],
+          "normalized": "SECRET\rvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET\rvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC[6D cursor left",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[6Dvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[6Dvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRETvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC[2K erase line + CR",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[2K\rvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[2K\rvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET\rvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC[1A cursor up (over the line above)",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRET\n[1A[6Dvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRET\n[1A[6Dvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET\nvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC[2J erase screen",
+      "screen": "visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": false,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[2J[Hvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRET[2J[Hvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRETvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC[8m conceal",
+      "screen": "line above<a>SECRET visibl<a>line below",
+      "wordOnScreen": true,
+      "hiddenStyle": true,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "[8mSECRET[0m visibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "[8mSECRET[0m visibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET visibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC[30;40m black on black",
+      "screen": "line above<a>SECRET visibl<a>line below",
+      "wordOnScreen": true,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "[30;40mSECRET[0m visibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "[30;40mSECRET[0m visibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRET visibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "CSI as U+009B",
+      "screen": "line above<a>SECRET<9b>6Dvisibl<a>line below",
+      "wordOnScreen": true,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRET6Dvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRET6Dvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRETvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC 7 / ESC 8 save and restore",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "7SECRET8visibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "7SECRET8visibl"
+        },
+        "cleanHidden": {
+          "cleaned": "7SECRET8visibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "ESC c reset",
+      "screen": "visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": false,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "SECRETcvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "SECRETcvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "SECRETcvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "OSC title",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "]0;SECRETvisibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "]0;SECRETvisibl"
+        },
+        "cleanHidden": {
+          "cleaned": "]0;SECRETvisibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "OSC 8 hyperlink target",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "]8;;http://x/SECRET\\visibl]8;;\\"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "]8;;http://x/SECRET\\visibl]8;;\\"
+        },
+        "cleanHidden": {
+          "cleaned": "]8;;http://x/SECRET\\visibl]8;;\\",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "DCS string",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "PSECRET\\visibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "PSECRET\\visibl"
+        },
+        "cleanHidden": {
+          "cleaned": "PSECRET\\visibl",
+          "content": []
+        }
+      }
+    },
+    {
+      "name": "APC string",
+      "screen": "line above<a>visibl<a>line below",
+      "wordOnScreen": false,
+      "hiddenStyle": false,
+      "lineAboveIntact": true,
+      "rules": {
+        "lenient": {
+          "signals": ["illegal"],
+          "normalized": "_SECRET\\visibl"
+        },
+        "strict": {
+          "signals": ["illegal"],
+          "normalized": "_SECRET\\visibl"
+        },
+        "cleanHidden": {
+          "cleaned": "_SECRET\\visibl",
+          "content": []
+        }
+      }
+    }
+  ]
+}

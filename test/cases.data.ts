@@ -1,0 +1,166 @@
+import type { AnalyzeOptions, SpoofSignal } from '../src/index';
+
+/**
+ * Community case registry — the front door for "this string should (not) be
+ * flagged, but isn't handled the way I expect".
+ *
+ * The contribution flow is test-first:
+ *
+ *   1. Add a case below describing the behaviour you want, with
+ *      `status: 'unsupported'`. CI stays green: an unsupported case is allowed
+ *      to not-yet-behave as described, and it documents the gap.
+ *   2. (Optional) Implement the fix in `src/`. When the library starts
+ *      satisfying your case, the runner will FAIL that test on purpose with a
+ *      message telling you to flip `status` to `'supported'`. Do that in the
+ *      same PR as the fix.
+ *
+ * So: a bug report becomes a case; a fix becomes `status: 'supported'`. Either
+ * half is a welcome PR on its own.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * TEMPLATE — copy this, fill it in, drop it in the array:
+ *
+ *   {
+ *     category: 'confusable',              // free-form grouping label
+ *     name: 'flags fullwidth "admin"',     // shown as the test name
+ *     input: 'ａｄｍｉｎ',                      // paste RAW — do not "clean" it
+ *     status: 'unsupported',               // 'unsupported' until the fix lands
+ *     expect: { spoofed: true, signals: { confusable_word: true } },
+ *     ref: 'https://github.com/moderation-api/unicode-spoofing/issues/123',
+ *   },
+ *
+ * `expect` fields are all optional — assert only what your case is about:
+ *   - spoofed:    analyze().spoofed must equal this
+ *   - signals:    each listed signal must equal the given boolean (others free)
+ *   - normalized: analyze().normalized must equal this exact string
+ *   - word:       some affected word's `.word` must equal this
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+export interface SpoofCase {
+  /** Free-form grouping label (becomes a describe block). */
+  category: string;
+  /** Human description; shown as the test name. */
+  name: string;
+  /** Exact input passed to analyze(). Paste raw — do not normalize it yourself. */
+  input: string;
+  /**
+   * 'supported'   → the library must behave as `expect` says (a normal test).
+   * 'unsupported' → a known gap: allowed to not-yet-match; flip to 'supported'
+   *                 once a fix makes it pass.
+   */
+  status: 'supported' | 'unsupported';
+  /** Assert only what this case is about; every field is optional. */
+  expect: {
+    spoofed?: boolean;
+    signals?: Partial<Record<SpoofSignal, boolean>>;
+    normalized?: string;
+    word?: string;
+  };
+  /** Optional options passed to analyze(). */
+  options?: AnalyzeOptions;
+  /** Optional link to the originating issue or PR. */
+  ref?: string;
+}
+
+export const CASES: SpoofCase[] = [
+  {
+    category: 'confusable',
+    name: 'keeps the curly apostrophe of a folded word (Ivа’s → Iva’s)',
+    input: 'Ivа’s',
+    status: 'supported',
+    expect: { spoofed: true, signals: { mixed_script: true }, normalized: 'Iva’s' },
+  },
+  {
+    category: 'confusable',
+    name: 'flags a Cyrillic whole-word lookalike and normalizes it (НОТ → HOT)',
+    input: 'НОТ busіnеss рrоduсt',
+    status: 'supported',
+    expect: {
+      spoofed: true,
+      signals: { confusable_word: true, mixed_script: true },
+      normalized: 'HOT business product',
+    },
+    ref: 'https://github.com/moderation-api/unicode-spoofing#readme',
+  },
+  {
+    category: 'invisible',
+    name: 'flags tag characters smuggled right after an emoji',
+    input:
+      'Looks helpful! 🎉\u{E0049}\u{E0067}\u{E006E}\u{E006F}\u{E0072}\u{E0065}\u{E0020}\u{E0061}\u{E006C}\u{E006C}',
+    status: 'supported',
+    expect: { spoofed: true, signals: { invisible: true }, normalized: 'Looks helpful! 🎉' },
+  },
+  {
+    category: 'emoji (must NOT flag)',
+    name: 'leaves emoji sequences built from invisibles alone',
+    input:
+      'Ship it 🎉 👨\u200D👩\u200D👧 ❤\uFE0E 1\uFE0F\u20E3 🏴\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}',
+    status: 'supported',
+    expect: { spoofed: false },
+  },
+  {
+    category: 'multilingual (must NOT flag)',
+    name: 'leaves genuine Russian text alone',
+    input: 'привет как дела',
+    status: 'supported',
+    expect: { spoofed: false },
+  },
+  {
+    category: 'illegal',
+    name: 'strips a whole ANSI colour sequence, not just the ESC',
+    input: 'ok \x1b[31mred\x1b[0m done',
+    status: 'supported',
+    expect: { spoofed: true, signals: { illegal: true }, normalized: 'ok red done' },
+  },
+  {
+    category: 'illegal (must NOT flag)',
+    name: 'leaves bracketed text that looks like a sequence body alone ([31m)',
+    input: 'see note [31m] and [0m',
+    status: 'supported',
+    expect: { spoofed: false, normalized: 'see note [31m] and [0m' },
+  },
+  {
+    category: 'digit systems',
+    name: 'flags fullwidth digits masquerading as ASCII (１２３)',
+    input: 'order １２３ now',
+    status: 'unsupported',
+    expect: { spoofed: true },
+    ref: 'https://github.com/moderation-api/unicode-spoofing/issues/1',
+  },
+  {
+    category: 'invisible',
+    name: 'flags a byte hidden after every letter in supplement variation selectors',
+    input: 'h\u{E0151}e\u{E0152}l\u{E0153}lo',
+    status: 'supported',
+    expect: { spoofed: true, signals: { invisible: true }, normalized: 'hello' },
+  },
+  {
+    category: 'multilingual (must NOT flag)',
+    name: 'leaves a Japanese name with an ideographic variation sequence alone',
+    input: '辻\u{E0100}さん',
+    status: 'supported',
+    expect: { spoofed: false, normalized: '辻\u{E0100}さん' },
+  },
+  {
+    category: 'invisible',
+    name: 'flags a bidi override inside a Hebrew word',
+    input: 'של\u202Eום',
+    status: 'supported',
+    expect: { spoofed: true, signals: { invisible: true }, normalized: 'שלום' },
+  },
+  {
+    category: 'invisible',
+    name: 'flags a zero-width run inside a Persian word',
+    input: 'می\u200B\u200B\u200B\u200B\u200Bخواهم',
+    status: 'supported',
+    expect: { spoofed: true, signals: { invisible: true }, normalized: 'میخواهم' },
+  },
+  {
+    category: 'multilingual (must NOT flag)',
+    name: 'leaves Persian and Hindi joiners and Thai word breaks alone',
+    input: 'می\u200Cخواهم ۲۰\u200Cساله، क्\u200Cष ราคา\u200B100\u200Bบาท',
+    status: 'supported',
+    expect: { spoofed: false },
+  },
+];

@@ -1,0 +1,50 @@
+{
+  "$comment": "Curated overrides on top of the UTS #39 derivation (docs/confusion-model.md §3.2-§3.4). Read by scripts/generate-confusion.mjs. Every entry must change the raw derivation (test/confusion-table.test.ts).",
+  "remove": [],
+  "add": [["ω", "w", "alike in running text (owner); no UTS #39 entry"]],
+  "notAdded": [
+    ["к", "k", "distinct: Latin k's ascender stands out (owner)"],
+    ["κ", "k", "distinct: Latin k's ascender stands out (owner)"],
+    ["п", "n", "italic-only lookalike (owner); conditional twin п~n"]
+  ],
+  "smallCapitals": {
+    "$comment": "Latin small capitals read as the lowercase letter at x-height (§3.4); UTS #39 maps most of them to themselves.",
+    "pairs": "ᴀaʙbᴄcᴅdᴇeꜰfɢgʜhɪiᴊjᴋkʟlᴍmɴnᴏoᴘpʀrꜱsᴛtᴜuᴠvᴡwʏyᴢz"
+  },
+  "conditionalTwins": {
+    "χ~x": { "kind": "descender", "pairs": [["χ", "x"]] },
+    "χ~х": { "kind": "descender", "pairs": [["χ", "х"]] },
+    "ҳ~x": {
+      "kind": "descender",
+      "pairs": [
+        ["ҳ", "x"],
+        ["Ҳ", "X"]
+      ]
+    },
+    "ҳ~χ": { "kind": "descender", "pairs": [["ҳ", "χ"]] },
+    "η~n": { "kind": "descender", "pairs": [["η", "n"]] },
+    "ŋ~n": {
+      "kind": "descender",
+      "pairs": [],
+      "intraLatin": [
+        ["ŋ", "n"],
+        ["Ŋ", "N"]
+      ]
+    },
+    "ɳ~n": { "kind": "descender", "pairs": [], "intraLatin": [["ɳ", "n"]] },
+    "и~u": { "kind": "italic", "pairs": [["и", "u"]] },
+    "т~m": { "kind": "italic", "pairs": [["т", "m"]] },
+    "п~n": { "kind": "italic", "pairs": [["п", "n"]] },
+    "ı~i": { "kind": "shape", "pairs": [], "intraLatin": [["ı", "i"]] },
+    "ҫ~c": {
+      "kind": "descender",
+      "pairs": [
+        ["ҫ", "c"],
+        ["Ҫ", "C"]
+      ]
+    },
+    "ɽ~r": { "kind": "descender", "pairs": [], "intraLatin": [["ɽ", "r"]] },
+    "ʐ~z": { "kind": "descender", "pairs": [], "intraLatin": [["ʐ", "z"]] }
+  },
+  "defaultConditionalTwins": ["χ~x", "χ~х", "ҳ~x", "ҳ~χ"]
+}

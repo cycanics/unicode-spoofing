@@ -1,0 +1,586 @@
+{
+  "fonts": ["DejaVu Sans", "Noto Sans", "Liberation Serif"],
+  "results": {
+    "Thai": {
+      "limit": 3,
+      "real": {
+        "up": 0,
+        "down": 0,
+        "above": 0,
+        "below": 0
+      },
+      "realTight": {
+        "up": 0.06,
+        "down": 0.01,
+        "above": 0.11,
+        "below": 0.11
+      },
+      "depths": {
+        "1": {
+          "up": 0.13,
+          "down": 0,
+          "above": 0.07,
+          "below": 0
+        },
+        "2": {
+          "up": 0.48,
+          "down": 0,
+          "above": 0.07,
+          "below": 0
+        },
+        "3": {
+          "up": 0.85,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "4": {
+          "up": 1.21,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "5": {
+          "up": 1.58,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "6": {
+          "up": 1.94,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "8": {
+          "up": 2.67,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "10": {
+          "up": 3.4,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "15": {
+          "up": 5.23,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "20": {
+          "up": 7.02,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "40": {
+          "up": 8.04,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        }
+      }
+    },
+    "Lao": {
+      "limit": 3,
+      "real": {
+        "up": 0,
+        "down": 0.03,
+        "above": 0,
+        "below": 0.04
+      },
+      "realTight": {
+        "up": 0.01,
+        "down": 0.01,
+        "above": 0,
+        "below": 0.07
+      },
+      "depths": {
+        "1": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "2": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "3": {
+          "up": 0.11,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "4": {
+          "up": 0.26,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "5": {
+          "up": 0.42,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "6": {
+          "up": 0.58,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "8": {
+          "up": 0.89,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "10": {
+          "up": 1.21,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "15": {
+          "up": 2,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "20": {
+          "up": 2.79,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "40": {
+          "up": 5.96,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        }
+      }
+    },
+    "Arabic": {
+      "limit": 5,
+      "real": {
+        "up": 0,
+        "down": 0,
+        "above": 0,
+        "below": 0
+      },
+      "realTight": {
+        "up": 0.35,
+        "down": 0.08,
+        "above": 0.19,
+        "below": 0.37
+      },
+      "depths": {
+        "1": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "2": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "3": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "4": {
+          "up": 0.06,
+          "down": 0,
+          "above": 0.07,
+          "below": 0
+        },
+        "5": {
+          "up": 0.15,
+          "down": 0,
+          "above": 0.07,
+          "below": 0
+        },
+        "6": {
+          "up": 0.24,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "8": {
+          "up": 0.4,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "10": {
+          "up": 0.56,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "15": {
+          "up": 0.99,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "20": {
+          "up": 1.4,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        },
+        "40": {
+          "up": 3.07,
+          "down": 0,
+          "above": 0.19,
+          "below": 0
+        }
+      }
+    },
+    "Hebrew": {
+      "limit": 5,
+      "real": {
+        "up": 0,
+        "down": 0,
+        "above": 0,
+        "below": 0
+      },
+      "realTight": {
+        "up": 0,
+        "down": 0,
+        "above": 0,
+        "below": 0.26
+      },
+      "depths": {
+        "1": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "2": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "3": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "4": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "5": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "6": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "8": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "10": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "15": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "20": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "40": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        }
+      }
+    },
+    "Devanagari": {
+      "limit": 5,
+      "real": {
+        "up": 0,
+        "down": 0,
+        "above": 0,
+        "below": 0
+      },
+      "realTight": {
+        "up": 0,
+        "down": 0.01,
+        "above": 0,
+        "below": 0.07
+      },
+      "depths": {
+        "1": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "2": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "3": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "4": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "5": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "6": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "8": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "10": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "15": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "20": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "40": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        }
+      }
+    },
+    "Tibetan": {
+      "limit": 10,
+      "real": {
+        "up": 0,
+        "down": 0.34,
+        "above": 0,
+        "below": 0.11
+      },
+      "realTight": {
+        "up": 0.17,
+        "down": 1.72,
+        "above": 0.11,
+        "below": 0.22
+      },
+      "depths": {
+        "1": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "2": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "3": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "4": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0.04
+        },
+        "5": {
+          "up": 0,
+          "down": 0.06,
+          "above": 0,
+          "below": 0.11
+        },
+        "6": {
+          "up": 0,
+          "down": 0.12,
+          "above": 0,
+          "below": 0.15
+        },
+        "8": {
+          "up": 0,
+          "down": 0.34,
+          "above": 0,
+          "below": 0.19
+        },
+        "10": {
+          "up": 0,
+          "down": 0.57,
+          "above": 0,
+          "below": 0.19
+        },
+        "15": {
+          "up": 0,
+          "down": 1.11,
+          "above": 0,
+          "below": 0.19
+        },
+        "20": {
+          "up": 0,
+          "down": 1.67,
+          "above": 0,
+          "below": 0.19
+        },
+        "40": {
+          "up": 0,
+          "down": 3.88,
+          "above": 0,
+          "below": 0.19
+        }
+      }
+    },
+    "Latin": {
+      "limit": 2,
+      "real": {
+        "up": 0,
+        "down": 0,
+        "above": 0,
+        "below": 0
+      },
+      "realTight": {
+        "up": 0,
+        "down": 0,
+        "above": 0,
+        "below": 0.15
+      },
+      "depths": {
+        "1": {
+          "up": 0,
+          "down": 0,
+          "above": 0,
+          "below": 0
+        },
+        "2": {
+          "up": 0.12,
+          "down": 0,
+          "above": 0.11,
+          "below": 0
+        },
+        "3": {
+          "up": 0.28,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "4": {
+          "up": 0.47,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "5": {
+          "up": 0.63,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "6": {
+          "up": 0.79,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "8": {
+          "up": 1.14,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "10": {
+          "up": 1.53,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "15": {
+          "up": 2.53,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "20": {
+          "up": 3.55,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        },
+        "40": {
+          "up": 7.61,
+          "down": 0,
+          "above": 0.15,
+          "below": 0
+        }
+      }
+    }
+  }
+}

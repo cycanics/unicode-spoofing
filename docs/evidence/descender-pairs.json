@@ -1,0 +1,2594 @@
+[
+ {
+  "pair": "χ~x",
+  "group": "x-like",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.746,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.695,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.715,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.832,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.758,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.708,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.732,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.795,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.812,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.765,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.778,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.873,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.815,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.774,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.804,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.847,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ҳ~x",
+  "group": "x-like",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.048,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.087,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.023,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.006,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.017,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.04,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.012,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.003,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.176,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.184,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.174,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.139,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.13,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.149,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.191,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.187,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ҳ~х",
+  "group": "x-like",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.048,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.087,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.023,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.006,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.017,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.04,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.012,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.003,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.176,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.184,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.174,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.139,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.13,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.149,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.191,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.187,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "χ~х",
+  "group": "x-like",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.746,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.695,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.715,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.832,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.758,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.708,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.732,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.795,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.812,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.765,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.778,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.873,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.815,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.774,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.804,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.847,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "χ~ҳ",
+  "group": "x-like",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.754,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.688,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.718,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.834,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.759,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.715,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.734,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.795,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.822,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.767,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.75,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.884,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.829,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.786,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.787,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.843,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "Ҳ~X",
+  "group": "x-like",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.045,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.069,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.026,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Noto Serif": {
+    "ratio": 0.015,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.072,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.013,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.145,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.155,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.136,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.094,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.113,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.162,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.106,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.098,
+    "verdict": "near"
+   }
+  }
+ },
+ {
+  "pair": "Ҳ~Х",
+  "group": "x-like",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.045,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.069,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.026,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Noto Serif": {
+    "ratio": 0.015,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.072,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.013,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.145,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.155,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.136,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.094,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.113,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.162,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.106,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.098,
+    "verdict": "near"
+   }
+  }
+ },
+ {
+  "pair": "η~n",
+  "group": "maybe",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Sans": {
+    "ratio": 0.021,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.449,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.583,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.012,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.337,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.26,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.174,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.125,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.169,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.54,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.64,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.143,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.439,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.395,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ŋ~n",
+  "group": "maybe",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Sans": {
+    "ratio": 0.006,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.349,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.04,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.108,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.14,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.194,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.194,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.164,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.464,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.184,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.203,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.265,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.313,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ɳ~n",
+  "group": "maybe",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif": {
+    "ratio": 0.144,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.04,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.643,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.11,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.14,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.187,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.167,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.182,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.309,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.213,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.683,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.274,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.311,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "μ~u",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.312,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.184,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.325,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.468,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.432,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.179,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.296,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.429,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.421,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.309,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.415,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.562,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.52,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.298,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.413,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.531,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ς~c",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.188,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.259,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.454,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.443,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.278,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.086,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.148,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.468,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.34,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.38,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.531,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.53,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.399,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.25,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.301,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.551,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ц~u",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.376,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.466,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.363,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.549,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.511,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.61,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.016,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.462,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.513,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.45,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.598,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.555,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.639,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.152,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.151,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "щ~w",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.816,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.818,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.789,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.826,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.759,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.736,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.689,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.845,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.826,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.825,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.803,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.839,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.771,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.748,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.715,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.858,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ҫ~c",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.022,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.038,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.029,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.035,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.044,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.02,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.021,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.31,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.214,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.203,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.216,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.269,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.22,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.184,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.212,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.467,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ç~c",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.038,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif": {
+    "ratio": 0.164,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.02,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.189,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.233,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.203,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.177,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.362,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.229,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.184,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.235,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.389,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "Ц~U",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.467,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.422,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.43,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.562,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.517,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.582,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.517,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.55,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.515,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.461,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.485,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.601,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.557,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.612,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.556,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.587,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "Щ~W",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.843,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.827,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.798,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.837,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.778,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.717,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.784,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.855,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.849,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.833,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.807,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.844,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.786,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.729,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.793,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.861,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "Ҫ~C",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.011,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.139,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.012,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.055,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.002,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.194,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.017,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.156,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.249,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.146,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.208,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.142,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.31,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.143,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.162,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "Ç~C",
+  "group": "candidate",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.139,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Noto Serif": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.194,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.169,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.249,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.124,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.162,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.174,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.31,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.175,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.167,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ң~н",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.054,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.33,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.032,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.011,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.004,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.671,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.016,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.005,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.178,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.394,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.163,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.127,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.097,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.697,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.155,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.158,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "қ~к",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.049,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.102,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.02,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.003,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.018,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.034,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.021,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.177,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.189,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.167,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.121,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.115,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.132,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.173,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.165,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ҷ~ч",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.066,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.259,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.351,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.009,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.002,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.883,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.017,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.193,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.344,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.416,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.156,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.116,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.893,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.17,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.173,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ҙ~з",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.164,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.146,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.152,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.334,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.221,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.257,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.239,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.05,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.297,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.289,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.311,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.488,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.351,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.373,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.371,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.258,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ҫ~с",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.022,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.038,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.029,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.035,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.044,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.02,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.021,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.31,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.214,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.203,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.216,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.269,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.22,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.184,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.212,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.467,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ɖ~d",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.018,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.009,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif": {
+    "ratio": 0.153,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.043,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.528,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.085,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.182,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.165,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.137,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.135,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.29,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.186,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.577,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.231,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.316,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ɭ~l",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.017,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.017,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif": {
+    "ratio": 0.141,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.503,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.251,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.185,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.089,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.314,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.272,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.281,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.362,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.615,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.432,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.387,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.325,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ʈ~t",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.201,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.298,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.153,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.316,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.149,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.297,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.198,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.351,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.416,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.455,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.364,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.513,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.381,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.447,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.415,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.537,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ɽ~r",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.041,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif": {
+    "ratio": 0.115,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.159,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.102,
+    "verdict": "near"
+   },
+   "Noto Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.028,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.298,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.309,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.284,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.371,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.369,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.352,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.272,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.307,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ʂ~s",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.014,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.15,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.061,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.013,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.034,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.26,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.045,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.224,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.221,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.342,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.223,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.252,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.197,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.413,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.202,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.411,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ʐ~z",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.299,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.193,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.03,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.576,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.007,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.217,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.416,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.343,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.251,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.159,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.638,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.162,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.254,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "ц~и",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.58,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.48,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.48,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.193,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.285,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.679,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.016,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.624,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.509,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.534,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.28,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.343,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.696,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.152,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.151,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "щ~ш",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.032,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.035,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.106,
+    "verdict": "near"
+   },
+   "Liberation Serif": {
+    "ratio": 0.102,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.003,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.488,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.01,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0,
+    "verdict": "identical"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.114,
+    "verdict": "near"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.093,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.187,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.186,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.072,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.515,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.106,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.102,
+    "verdict": "near"
+   }
+  }
+ },
+ {
+  "pair": "Ц~И",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.633,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.483,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.512,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.206,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.399,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.669,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.403,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.198,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.657,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.506,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.549,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.267,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.438,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.685,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.441,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.253,
+    "verdict": "distinguishable"
+   }
+  }
+ },
+ {
+  "pair": "Щ~Ш",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.243,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.029,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.291,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.002,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.009,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.563,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.007,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.002,
+    "verdict": "near"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.289,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.076,
+    "verdict": "near"
+   },
+   "Liberation Sans": {
+    "ratio": 0.335,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.058,
+    "verdict": "near"
+   },
+   "Noto Serif": {
+    "ratio": 0.059,
+    "verdict": "near"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.583,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.06,
+    "verdict": "near"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.056,
+    "verdict": "near"
+   }
+  }
+ },
+ {
+  "pair": "д~л",
+  "group": "other",
+  "clipped": {
+   "Noto Sans": {
+    "ratio": 0.449,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.514,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.475,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.454,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.693,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.441,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.85,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.901,
+    "verdict": "distinguishable"
+   }
+  },
+  "whole": {
+   "Noto Sans": {
+    "ratio": 0.552,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans": {
+    "ratio": 0.569,
+    "verdict": "distinguishable"
+   },
+   "Liberation Sans": {
+    "ratio": 0.579,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif": {
+    "ratio": 0.566,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif": {
+    "ratio": 0.743,
+    "verdict": "distinguishable"
+   },
+   "DejaVu Sans Mono": {
+    "ratio": 0.514,
+    "verdict": "distinguishable"
+   },
+   "Noto Serif italic": {
+    "ratio": 0.852,
+    "verdict": "distinguishable"
+   },
+   "Liberation Serif italic": {
+    "ratio": 0.902,
+    "verdict": "distinguishable"
+   }
+  }
+ }
+]

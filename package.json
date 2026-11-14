@@ -1,0 +1,95 @@
+{
+  "name": "@cycanics/unicode-spoofing",
+  "version": "0.6.0",
+  "description": "Unicode spoofing detection: mixed-script words, UTS #39 confusables, invisible characters, and combining-mark abuse. Zero runtime dependencies.",
+  "author": "cycanics (https://cycanics.com)",
+  "license": "MIT",
+  "repository": "github:cycanics/unicode-spoofing",
+  "homepage": "https://github.com/cycanics/unicode-spoofing#readme",
+  "bugs": "https://github.com/cycanics/unicode-spoofing/issues",
+  "keywords": [
+    "unicode",
+    "spoofing",
+    "homoglyph",
+    "confusables",
+    "uts39",
+    "mixed-script",
+    "moderation",
+    "security",
+    "prompt-injection",
+    "invisible-characters",
+    "trojan-source",
+    "bidi"
+  ],
+  "type": "module",
+  "packageManager": "pnpm@10.30.3",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepack": "pnpm build",
+    "check-types": "tsgo --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:gaps": "vitest run -c vitest.gaps.config.ts",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "publint": "publint",
+    "attw": "attw --pack .",
+    "generate:data": "node scripts/generate-confusables.mjs && node scripts/generate-identifier-status.mjs && node scripts/generate-confusion.mjs",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.29.7",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.1.1",
+    "@typescript/native-preview": "7.0.0-dev.20260707.2",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
+    "prettier": "^3.6.2",
+    "publint": "^0.3.14",
+    "tsup": "^8.5.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.64.0",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "contributors": [
+    "Moderation API <support@moderationapi.com> (original author)"
+  ]
+}
