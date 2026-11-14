@@ -2,7 +2,15 @@
 
 Based on [`@moderation-api/unicode-spoofing`](https://github.com/moderation-api/unicode-spoofing), extended with
 alphabet-aware folding, a strict hidden-character mode with a report of what was hidden, and a
-faster scanner. Defaults follow upstream's rules, plus five fixes also offered upstream; see [Opt-in](#opt-in-alphabet-aware-folding-and-strict-hidden-characters).
+faster scanner ([Opt-in](#opt-in-alphabet-aware-folding-and-strict-hidden-characters)). Defaults follow upstream's rules,
+plus five fixes offered upstream as pull requests:
+
+- [#22](https://github.com/moderation-api/unicode-spoofing/pull/22): keep the curly apostrophe when folding a lookalike word
+- [#23](https://github.com/moderation-api/unicode-spoofing/pull/23): strip whole CSI control sequences, not just the ESC
+- [#24](https://github.com/moderation-api/unicode-spoofing/pull/24): report invisible payloads placed right after an emoji
+- [#25](https://github.com/moderation-api/unicode-spoofing/pull/25): recognise the variation selector supplement (VS17–VS256)
+- [#26](https://github.com/moderation-api/unicode-spoofing/pull/26): judge the format-character script exemption per letter
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 | Input (invisibles as escapes)                      | `normalized`                 | Signals                           | upstream v0.4.0           |
