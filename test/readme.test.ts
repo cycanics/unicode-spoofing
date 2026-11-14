@@ -41,6 +41,12 @@ describe('README — the table at the top', () => {
       ['mixed_script'],
       { confusionModel: 'alphabet', hiddenChars: 'strict' },
     ],
+    [
+      'Kαλημέρα σε όλους',
+      'Καλημέρα σε όλους',
+      ['mixed_script'],
+      { confusionModel: 'alphabet', hiddenChars: 'strict' },
+    ],
     ['Ægir’s I’ll', 'Ægir’s I’ll', []],
     ['می\u200Cخواهم', 'می\u200Cخواهم', []],
     ['Hi Jos\uFFFD Luis', 'Hi Jos\uFFFD Luis', ['encoding_damage']],

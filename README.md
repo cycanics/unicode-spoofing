@@ -26,6 +26,7 @@ plus five fixes offered upstream as pull requests:
 | `ok \x1b[31mred\x1b[0m done`                       | `ok red done`                | `illegal`                         | `ok [31mred[0m done`      |
 | `h\u{E0151}e\u{E0152}l\u{E0153}lo`                 | `hello`                      | `invisible`                       | not flagged               |
 | `Встреча в Москвa завтра` ¹                        | `Встреча в Москва завтра`    | `mixed_script`                    | `Встреча в Mockba завтра` |
+| `Kαλημέρα σε όλους` ¹                              | `Καλημέρα σε όλους`          | `mixed_script`                    | `Kaλhmέpa σε όλους`       |
 | `Ægir’s I’ll` · `می\u200Cخواهم`                    | unchanged                    | none                              | same                      |
 | `Hi Jos\uFFFD Luis`                                | unchanged                    | `encoding_damage` (not spoofed)   | same                      |
 
@@ -277,14 +278,16 @@ every result is the one described above.
 
 ### `confusionModel: 'alphabet'`
 
-The default folds every lookalike toward Latin, so a Russian word with one Latin
-letter comes out as neither. The alphabet model works out which alphabet a
+The default folds every lookalike toward Latin, so a word in another alphabet with
+one Latin letter mixed in comes out as neither. The alphabet model works out which alphabet a
 scrambled word is written in and folds toward that one:
 
 ```ts
 analyze('Пpивет мир').normalized; // 'Πpᴎbet мир' (default: toward Latin)
 analyze('Пpивет мир', { confusionModel: 'alphabet' }).normalized; // 'Привет мир'
 ```
+
+Default targets (`DEFAULT_TARGET_LANGUAGES`): English, Russian, Ukrainian, Greek. Also available via `targetLanguages`: Belarusian, Bulgarian, Serbian, Macedonian, Kazakh, Tajik, Uzbek, plus two letter sets: `European` (Latin with ß, æ, œ, ø, þ, ð, ı, ł, đ) and `Caucasian` (the Russian alphabet plus palochka `ӏ`, for Chechen, Ingush, Avar and other Caucasian languages).
 
 It uses a per-letter twin table derived from UTS #39 (case-specific: `В`↔`B`,
 while `в` has no Latin twin), the alphabets of the target languages, and the
