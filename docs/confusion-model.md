@@ -165,12 +165,12 @@ A separate twin class for pairs that look alike only under some rendering: **des
 | `и~u` | Cyrillic `и` ↔ Latin `u`      | italic                      | off     |
 | `т~m` | Cyrillic `т` ↔ Latin `m`      | italic                      | off     |
 | `п~n` | Cyrillic `п` ↔ Latin `n`      | italic                      | off     |
-| `ı~i` | Latin `ı` → `i`               | shape, intra-Latin fold     | off     |
+| `ı~i` | Latin `ı` → `i`               | shape, intra-Latin fold     | on      |
 | `ҫ~c` | Cyrillic `ҫ` ↔ `c`, `Ҫ` ↔ `C` | descender                   | off     |
 | `ɽ~r` | Latin `ɽ` → `r`               | descender, intra-Latin fold | off     |
 | `ʐ~z` | Latin `ʐ` → `z`               | descender, intra-Latin fold | off     |
 
-**Default set (owner, final): `χ~x` `χ~х` `ҳ~x` `ҳ~χ` on; `η~n` `ŋ~n` `ɳ~n` `и~u` `т~m` `п~n` `ı~i` `ҫ~c` `ɽ~r` `ʐ~z` off** (`DEFAULT_CONDITIONAL_TWINS`). `ҳ Ҳ` (Tajik, Uzbek) join the Cyrillic model letters for this, so Tajik and Uzbek are added as languages (§4.4) — otherwise every Tajik word with `ҳ` would carry foreign-letter evidence. Intra-Latin folds (`ŋame` → `name`) apply to Latin words like the case anomaly (§4.5), counted as confusable.
+**Default set (owner, final): `χ~x` `χ~х` `ҳ~x` `ҳ~χ` `ı~i` on; `η~n` `ŋ~n` `ɳ~n` `и~u` `т~m` `п~n` `ҫ~c` `ɽ~r` `ʐ~z` off** (`DEFAULT_CONDITIONAL_TWINS`). `ҳ Ҳ` (Tajik, Uzbek) join the Cyrillic model letters for this, so Tajik and Uzbek are added as languages (§4.4) — otherwise every Tajik word with `ҳ` would carry foreign-letter evidence. Intra-Latin folds (`ŋame` → `name`, `lınk` → `link`) apply to Latin words like the case anomaly (§4.5), counted as confusable, and only if every letter of the folded word, accents included, is in a Latin target language: Turkish `ışık` → `işik` keeps `ş`, so `ışık`, `kışın`, `ığdır` stay as written.
 
 **Measurement** (`scripts/measure-descender-pairs.mjs` → `docs/evidence/descender-pairs.json`, `descender-pairs.png`): each pair rendered at 64 px in the 8 corpus fonts with all ink below the alphabetic baseline erased, then pixel-compared as in §9 (identical = 0 differing pixels, near = < 12 %).
 
@@ -232,7 +232,7 @@ The twin table is pairwise across every letter of **N + M alphabets**; folding h
 
 **Latin extras** (`LatinExtra`, new donor alphabet in `scripts/derive-confusion-table.mjs`): Latin-script letters of Latin-1/Extended-A/B (U+00C0–024F, non-decomposing), IPA (U+0250–02AF) and phonetic small capitals (U+1D00–1D2B, `ꜰ ꜱ`), kept when UTS #39 gives them a twin in another alphabet, plus a curated small-capital set (`ᴀ`→`a`, `ʙ`→`b`, … `ᴢ`→`z`: they read as the lowercase letter at x-height; UTS #39 maps most of them to themselves). In a configuration, a Latin extra is a donor only if it has a twin among the target Latin letters and is not a letter of a modelled European language (`ı þ ð ß æ œ ø ł đ` stay ordinary Latin). Default donors: `ſ ƍ ƒ Ɩ Ʀ ƽ ƿ ǀ ɑ ɡ ɢ ɣ ɩ ɪ ɯ ɴ ʀ ʋ ʏ ʙ ʜ ʟ ᴀ ᴄ ᴅ ᴇ ᴊ ᴋ ᴍ ᴏ ᴑ ᴘ ᴛ ᴜ ᴠ ᴡ ᴢ ꜰ ꜱ`.
 
-- Measured: with `ı` and `þ` as donors, `legit_latin-003` `İstanbul'da ışık` → `işik` and `legit_latin-007` `þorn` → `porn` (both must_not_flag) fail; hence the European-language exclusion. Owner, final: `ı` is not a donor but a conditional twin `ı~i` (§3.3, default off; on: `Lınkedin` → `Linkedin`, and `legit_latin-003` fails, 223/29); `þ` stays out entirely.
+- Measured: with `ı` and `þ` as donors, `legit_latin-003` `İstanbul'da ışık` → `işik` and `legit_latin-007` `þorn` → `porn` (both must_not_flag) fail; hence the European-language exclusion. Owner, final: `ı` is not a donor but a conditional twin `ı~i` (§3.3, default on: `Lınkedin` → `Linkedin`; `legit_latin-003` passes because the fold needs a target-language result); `þ` stays out entirely.
 - A word made only of donor letters of no language (`ᴀᴅᴍɪɴ`, upside-down text) carries donor evidence and folds through the ladder: `ᴀᴅᴍɪɴ` → `admin`. Whole words of a donor _language_ (Armenian, Greek by default) follow the whole-script rule (§4.3): folded only with context.
 
 **Table sizes** (UTS #39 17.0.0 + curated + default conditional twins):
@@ -989,7 +989,7 @@ A case passes when `spoofed` matches `expected.spoofed`, `normalized` equals `ex
 | prompt_injection     | 8/0                | 7/1            | 0/1 · 0/1                           |
 | **total**            | 206/46             | 224/28         | 12/42 · 14/42                       |
 
-Defaults (`wholeScriptFold: 'all'`, targets `English`, `Russian`, `Ukrainian`, `Greek`, default donors and conditional twins, no outnumber gate). By mode (`--modes`): `wholeScriptFold` `'off'` 220/32, `'foreign-letters'` 223/29, `'all'` 224/28. Conditional twins none / default / + `η ŋ ɳ` / + `и~u` / + `ҫ~c ɽ~r ʐ~z`: 224/28 each; + `ı~i` 223/29 (`legit_latin-003` Turkish); + `и~u т~m п~n` 222/30 (§3.3). Donors none 221/31, without LatinExtra 222/30, default 224/28 (§3.4). Targets N = 2 to 4 (English + Russian, + Ukrainian, + Greek, both): 224/28 each. `--step5-own-scripts`: no case changes.
+Defaults (`wholeScriptFold: 'all'`, targets `English`, `Russian`, `Ukrainian`, `Greek`, default donors and conditional twins, no outnumber gate). By mode (`--modes`): `wholeScriptFold` `'off'` 220/32, `'foreign-letters'` 223/29, `'all'` 224/28. Conditional twins none / x-likes only / default (x-likes, `ı~i`) / + `η ŋ ɳ` / + `и~u` / + `ҫ~c ɽ~r ʐ~z`: 224/28 each; + `и~u т~m п~n` 222/30 (§3.3). Donors none 221/31, without LatinExtra 222/30, default 224/28 (§3.4). Targets N = 2 to 4 (English + Russian, + Ukrainian, + Greek, both): 224/28 each. `--step5-own-scripts`: no case changes.
 
 History: 91d86e4 219/33 → e7f575d 216/36 → 10cfbea 220/32 → 70ec422 220/32 → fd04378 221/31 → 44f6a5f 224/28 → now **224/28** (round 7: gate removed, targets + Ukrainian + Greek, `ı~i`/`ҫ~c`/`ɽ~r`/`ʐ~z` as off-by-default conditional twins; no corpus case changed) (upstream 205/47 → 206/46 after the corpus change below).
 
@@ -1075,7 +1075,7 @@ Owner decision (round 6): no rule for a capital `I` inside a lowercase word (`go
 11. **Tajik and Uzbek are modelled only by letter set** (needed once `ҳ` became a model letter); no positional rules, no dictionary measurement (no Tajik/Uzbek Cyrillic hunspell list on this host).
 12. **No partial folds.** `Пpивеt` stays `Пpивеt`; `quіск` stays `quіск` (`к` is a proof letter; the existing fixture `test/analyze.test.ts:7` expects `quick` — default mode only, see §13).
 13. **Silent soft hyphens** lose three corpus must_flag cases (§8).
-14. **Latin extras as donors fold IPA.** An IPA transcription made of donor letters (`ɡɪ` → `gi`) is folded; dotless `ı` and `þ` are kept out of the donors so Turkish and Icelandic stay intact, which leaves `ı`-spoofs (`Lınkedin`) unfolded (§3.4).
+14. **Latin extras as donors fold IPA.** An IPA transcription made of donor letters (`ɡɪ` → `gi`) is folded; dotless `ı` and `þ` are kept out of the donors so Turkish and Icelandic stay intact; `ı`-spoofs (`Lınkedin`) are folded by the conditional twin `ı~i` instead (§3.3, §3.4).
 15. **Italic twins break Russian words in Latin context** when enabled (`Wi-Fi-роутер` → `Wi-Fi-poymep`, `по e-mail` → `no e-mail`, §3.3); off by default.
 16. **Opt-in default** (Q7) means none of this changes upstream behaviour unless the caller asks for it — callers who forget the flag keep `Πpᴎbet`.
 
@@ -1184,7 +1184,7 @@ The design is closed (owner, round 7). Every decision below is reflected in the 
 | area               | decision                                                                                                                                                                                                       | section          |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | twin table         | UTS #39 derivation + `ω`~~`w`; not `к`~~`k`, `κ`~~`k`, `п`~~`n`; `ш`↔`w`, `σ`↔`o` kept                                                                                                                         | §3.2             |
-| conditional twins  | per-pair set; on: `χ~x` `χ~х` `ҳ~x` `ҳ~χ`; off: `η~n` `ŋ~n` `ɳ~n` `и~u` `т~m` `п~n` `ı~i` `ҫ~c` `ɽ~r` `ʐ~z`                                                                                                    | §3.3             |
+| conditional twins  | per-pair set; on: `χ~x` `χ~х` `ҳ~x` `ҳ~χ` `ı~i`; off: `η~n` `ŋ~n` `ɳ~n` `и~u` `т~m` `п~n` `ҫ~c` `ɽ~r` `ʐ~z`                                                                                                    | §3.3             |
 | targets × donors   | targets `English`, `Russian`, `Ukrainian`, `Greek`; donors = every other alphabet of the table (Armenian, Cherokee, Coptic, Latin extras) and non-target letters of target scripts; `ı` and `þ` are not donors | §3.4             |
 | context            | the judged word and confusable/flagged words never vote; hyphen partners, then both neighbours, then ±10-token window in the paragraph                                                                         | §4.1, §4.2       |
 | ladder             | hyphen/neighbours → window → word majority → any valid alphabet; **no outnumber gate**                                                                                                                         | §4.2             |
@@ -1211,7 +1211,7 @@ Design gaps (no corpus case, or accepted by decision):
 - One target-language fit is enough: `кey` → `кеу`, `тap` → `тар`; `мiр` → Ukrainian `мір` (§4.4b).
 - `иser`, `тail`, `admiп` stay mixed unless the italic/`и~u` twins are enabled; enabling `т~m` `п~n` breaks Russian words in Latin context (`роутер` → `poymep`) (§3.3).
 - Mid-word I-for-l (`goIang`, `appIe`) — no rule without a dictionary (§9.5); case anomaly only at the last letter (§4.5).
-- Dotless-`ı` spoofs (`Lınkedin`) are caught only with `ı~i` on, which breaks Turkish (§3.4).
+- A dotless-`ı` spoof that also carries a non-target letter (`lınkş`) stays unfolded: the `ı~i` fold needs a target-language result, which keeps Turkish words intact (§3.3).
 - Digit spoofs (`g00gle`, `paypa1`) — dropped (§9.4).
 - `χ`~`x` is on although it fails the baseline-clip test (font-dependent, §3.3).
 - IPA transcriptions made of donor letters fold (`ɡɪ` → `gi`) (§3.4).

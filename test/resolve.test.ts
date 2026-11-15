@@ -75,6 +75,8 @@ const ROWS: [string, string, string[]][] = [
   ['ɡoogle', 'google', ['word-majority/confusable']],
   ['pɑypal', 'paypal', ['word-majority/confusable']],
   ["İstanbul'da ışık þorn", "İstanbul'da ışık þorn", []],
+  ['lınk pıng Lınkedin', 'link ping Linkedin', Array(3).fill('conditional-twin/confusable')],
+  ['kışın ığdır Iğdır', 'kışın ığdır Iğdır', []],
   ["GitHub'а iPhone’ов", "GitHub'а iPhone’ов", []],
   ["форк на GіtHub'а", "форк на GitHub'а", ['word-majority/confusable']],
   ['I bought сок today', 'I bought сок today', []],
@@ -138,6 +140,7 @@ describe('§4.7 rows (defaults)', () => {
       resolve('ŋame ɳo ηame', 'all', { conditionalTwins: [...n.conditionalTwins] }).normalized,
     ).toBe('name no name');
     expect(resolve('иser', 'all', { conditionalTwins: ['и~u'] }).normalized).toBe('user');
+    expect(resolve('lınk', 'all', { conditionalTwins: ['χ~x'] }).normalized).toBe('lınk');
   });
 });
 

@@ -293,6 +293,16 @@ export function makeResolver({
     return out;
   }
 
+  const latinTargetSets = (LANG_SETS.Latin ?? [])
+    .filter(([name]) => targetNames.Latin?.includes(name))
+    .map(([, set]) => set);
+  function fitsLatinTarget(folded) {
+    const cs = [...folded.toLowerCase()];
+    if (cs.some((c) => MARK.test(c))) return false;
+    const ls = cs.filter((c) => LETTER.test(c));
+    return latinTargetSets.some((set) => ls.every((c) => set.has(c)));
+  }
+
   /** Folds every letter not native to T into its twin in T (lowercase twin inside lowercase words). */
   function fold(cl, letters, T, anomaly) {
     const lowerWord =
@@ -405,7 +415,10 @@ export function makeResolver({
     if (letters.length && whole) {
       const [S] = scripts;
       const lang = languageViolation(letters, S, /['’]$/.test(seg));
-      const intra = S === 'Latin' ? letters.filter((c) => intraLatin[c.base]) : [];
+      let intra = S === 'Latin' ? letters.filter((c) => intraLatin[c.base]) : [];
+      // §3.3: an intra-Latin fold applies only if every letter of the folded
+      // word, accents included, is in one Latin target language (ışık stays).
+      if (intra.length && !fitsLatinTarget(fold(cl, letters, 'Latin', null))) intra = [];
       if (anomaly)
         [info.evidence, info.anomaly] = [{ kind: 'case', letters: anomaly.base }, anomaly];
       // A word made only of Latin extras (ᴀᴅᴍɪɴ) is no language: donor evidence.

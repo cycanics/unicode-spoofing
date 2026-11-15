@@ -30,7 +30,9 @@ describe('defaults', () => {
   it('targets English, Russian, Ukrainian, Greek; donors are the other alphabets', () => {
     expect(DEFAULT_TARGET_LANGUAGES).toEqual(['English', 'Russian', 'Ukrainian', 'Greek']);
     expect(model.donorAlphabets).toEqual(['Armenian', 'Cherokee', 'Coptic', 'LatinExtra']);
-    expect([...DEFAULT_CONDITIONAL_TWINS].sort()).toEqual(['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'].sort());
+    expect([...DEFAULT_CONDITIONAL_TWINS].sort()).toEqual(
+      ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ', 'ı~i'].sort(),
+    );
     expect(Object.keys(CONDITIONAL_TWINS)).toHaveLength(14);
     expect(Object.keys(TARGET_LANGUAGES)).toContain('Kazakh');
     expect(RU_CASE_ENDINGS.has('ами')).toBe(true);
@@ -104,6 +106,15 @@ describe('conditional twins (§3.3)', () => {
     expect(evidence('ŋame')).toEqual({ kind: 'foreign', letters: 'ŋ' }); // Greek η lookalike
     const m = createConfusionModel({ conditionalTwins: ['ŋ~n'] });
     expect(m.inspect('ŋame').evidence).toEqual({ kind: 'conditional', letters: 'ŋ' });
+  });
+  it('ı~i is on by default; an intra-Latin fold needs a target-language result', () => {
+    expect(evidence('lınk')).toEqual({ kind: 'conditional', letters: 'ı' });
+    expect(evidence('Lınkedin')).toEqual({ kind: 'conditional', letters: 'ı' });
+    for (const w of ['ışık', 'kışın', 'ığdır', 'Iğdır']) expect(evidence(w)).toBeNull(); // ş ğ: not English
+    const off = createConfusionModel({ conditionalTwins: ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'] });
+    expect(off.inspect('lınk').evidence).toBeNull();
+    const n = createConfusionModel({ conditionalTwins: ['ŋ~n'] });
+    expect(n.inspect('ŋamé').evidence).toEqual({ kind: 'foreign', letters: 'ŋ' }); // é: not English
   });
   it('rejects unknown ids', () => {
     expect(() => createConfusionModel({ conditionalTwins: ['x~y' as never] })).toThrow();

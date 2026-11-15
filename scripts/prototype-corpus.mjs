@@ -5,7 +5,7 @@
  *
  *   pnpm build && node scripts/prototype-corpus.mjs path/to/cases.json [--fails]
  *     [--whole-script-fold=off|foreign-letters|all] [--step5-own-scripts]
- *     [--twins=id,id|none]       # §3.3 conditional twin set (default: x-likes)
+ *     [--twins=id,id|none]       # §3.3 conditional twin set (default: x-likes, ı)
  *     [--targets=English,Russian,…]   # §4.4b target languages
  *     [--donors=LatinExtra,Armenian,…]          # §3.4 donor alphabets (default: all non-target)
  *     [--modes]   # totals for every whole-script-fold mode
@@ -163,14 +163,15 @@ if (process.argv.includes('--modes')) {
   }
   console.log('\n| conditional twins | fork pass/fail | ambiguous flagged |');
   console.log('|---|---|---|');
-  const X = ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'];
+  const X0 = ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'];
+  const X = [...X0, 'ı~i'];
   for (const [name, set] of [
     ['none', []],
-    ['default (x-likes)', X],
+    ['x-likes only', X0],
+    ['default (x-likes, ı)', X],
     ['+ η ŋ ɳ', [...X, 'η~n', 'ŋ~n', 'ɳ~n']],
     ['+ и~u', [...X, 'и~u']],
     ['+ и~u т~m п~n', [...X, 'и~u', 'т~m', 'п~n']],
-    ['+ ı~i', [...X, 'ı~i']],
     ['+ ҫ~c ɽ~r ʐ~z', [...X, 'ҫ~c', 'ɽ~r', 'ʐ~z']],
   ]) {
     const t = tot(

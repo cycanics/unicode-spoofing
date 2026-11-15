@@ -105,6 +105,21 @@ describe("confusionModel: 'alphabet'", () => {
     );
   });
 
+  it('folds dotless ı in English words by default, keeps Turkish words', () => {
+    const r = analyze('Click the lınk to pıng me', ALPHA);
+    expect(r.normalized).toBe('Click the link to ping me');
+    expect(r.spoofed).toBe(true);
+    expect(r.counts.confusableWords).toBe(2);
+    const t = 'In winter (kışın) we flew to Iğdır and ığdır';
+    expect(analyze(t, ALPHA)).toMatchObject({ normalized: t, spoofed: false });
+    expect(analyze("İstanbul'da ışık, ğağ", ALPHA).spoofed).toBe(false);
+    const off = analyze('Click the lınk', {
+      ...ALPHA,
+      conditionalTwins: ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'],
+    });
+    expect(off).toMatchObject({ normalized: 'Click the lınk', spoofed: false });
+  });
+
   it('still lets upstream judge zalgo and styling on a resolved word', () => {
     const r = analyze('Пṕ̂̃ивет', ALPHA);
     expect(r.signals.zalgo).toBe(true);

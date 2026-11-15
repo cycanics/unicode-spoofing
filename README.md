@@ -315,7 +315,7 @@ analyze('a quіск reply', opts).counts; // { …, confusableWords: 0, mixedWor
 | ------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `targetLanguages`  | `['English', 'Russian', 'Ukrainian', 'Greek']` | Alphabets a word may be folded into (`TARGET_LANGUAGES` lists all, incl. Belarusian, Bulgarian, Serbian, Kazakh, …)            |
 | `donorAlphabets`   | every alphabet no target uses                  | Alphabets whose letters count as lookalikes but are never fold targets (Armenian, Cherokee, Coptic, Latin extras)              |
-| `conditionalTwins` | `χ~x`, `χ~х`, `ҳ~x`, `ҳ~χ`                     | Pairs alike only under some rendering (`CONDITIONAL_TWINS`: descender twins like `η~n`, italic twins like `и~u`)               |
+| `conditionalTwins` | `χ~x`, `χ~х`, `ҳ~x`, `ҳ~χ`, `ı~i`              | Pairs alike only under some rendering (`CONDITIONAL_TWINS`: descender twins like `η~n`, italic twins like `и~u`)               |
 | `wholeScriptFold`  | `'all'`                                        | Whole words in one alphabet (`НОТ`): `'all'` folds on context or evidence, `'foreign-letters'` on evidence only, `'off'` never |
 
 `expectedScripts` still applies: a whole word in an expected script is never

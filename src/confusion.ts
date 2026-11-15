@@ -75,7 +75,7 @@ export const CONDITIONAL_TWINS: Readonly<
   ]),
 ) as never;
 
-/** Default conditional set (owner, final): the x-likes on, everything else off. */
+/** Default conditional set (owner, final): the x-likes and `ı~i` on, everything else off. */
 export const DEFAULT_CONDITIONAL_TWINS: ReadonlySet<ConditionalTwinId> = new Set(
   DEFAULT_CONDITIONAL_TWIN_IDS as ConditionalTwinId[],
 );
@@ -485,6 +485,20 @@ function build(
     return look.length ? { kind: 'foreign', letters: look.join('') } : null;
   }
 
+  const latinTargetSets = LANG_LIST.filter((l) => targetNames[LATIN]?.includes(l.name)).map(
+    (l) => l.set,
+  );
+  /**
+   * §3.3: an intra-Latin fold applies only if every letter of the folded word,
+   * accents included, is in one Latin target language (ışık → işik keeps ş: no fold).
+   */
+  function fitsLatinTarget(folded: string): boolean {
+    const cs = [...folded.toLowerCase()];
+    if (cs.some((c) => MARK_RE.test(c))) return false;
+    const letters = cs.filter((c) => LETTER_RE.test(c));
+    return latinTargetSets.some((set) => letters.every((c) => set.has(c)));
+  }
+
   /** §4.5: an I-shaped last letter after lowercase letters (≥ 4 letters); -1 if none. */
   function caseAnomaly(cl: Clusters): number {
     const L = cl.letters;
@@ -543,7 +557,8 @@ function build(
     if (bases.length && whole) {
       const S = letterScripts[0]!;
       const lang = languageViolation(bases, S, /['’]$/.test(seg));
-      const intra = S === LATIN ? bases.filter((c) => intraLatin.has(c)) : [];
+      let intra = S === LATIN ? bases.filter((c) => intraLatin.has(c)) : [];
+      if (intra.length && !fitsLatinTarget(fold(cl, LATIN, -1))) intra = [];
       if (anomaly >= 0) evidence = { kind: 'case', letters: cl.base[anomaly]! };
       else if (S === LATIN_EXTRA) evidence = { kind: 'donor', letters: '' };
       else if (intra.length) evidence = { kind: 'conditional', letters: intra.join('') };

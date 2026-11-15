@@ -46,5 +46,5 @@
     "ɽ~r": { "kind": "descender", "pairs": [], "intraLatin": [["ɽ", "r"]] },
     "ʐ~z": { "kind": "descender", "pairs": [], "intraLatin": [["ʐ", "z"]] }
   },
-  "defaultConditionalTwins": ["χ~x", "χ~х", "ҳ~x", "ҳ~χ"]
+  "defaultConditionalTwins": ["χ~x", "χ~х", "ҳ~x", "ҳ~χ", "ı~i"]
 }

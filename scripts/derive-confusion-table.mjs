@@ -165,8 +165,8 @@ export const CONDITIONAL_TWINS = {
   'ɽ~r': { kind: 'descender', pairs: [] }, // intra-Latin, resolver: ɽ→r
   'ʐ~z': { kind: 'descender', pairs: [] }, // intra-Latin, resolver: ʐ→z
 };
-/** Default set (owner, final): the x-likes on; η ŋ ɳ, italic и т п, ı, ҫ ɽ ʐ off. */
-export const DEFAULT_CONDITIONAL_TWINS = new Set(['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ']);
+/** Default set (owner, final): the x-likes and ı on; η ŋ ɳ, italic и т п, ҫ ɽ ʐ off. */
+export const DEFAULT_CONDITIONAL_TWINS = new Set(['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ', 'ı~i']);
 
 const isUpper = (c) => c !== c.toLowerCase();
 export const alphabetOf = new Map();

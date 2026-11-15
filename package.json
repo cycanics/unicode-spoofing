@@ -1,6 +1,6 @@
 {
   "name": "@cycanics/unspoof",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Unicode spoofing detection: mixed-script words, UTS #39 confusables, invisible characters, and combining-mark abuse. Zero runtime dependencies.",
   "author": "cycanics (https://cycanics.github.io)",
   "license": "MIT",

@@ -1,5 +1,12 @@
 # @cycanics/unspoof
 
+## 0.6.1
+
+### Patch Changes
+
+- Alphabet model (`confusionModel: 'alphabet'`): Latin dotless `ı` now folds to `i` by default (`lınk` → `link`, reported as a confusable word); the conditional twin `ı~i` joins `DEFAULT_CONDITIONAL_TWINS`. To opt out, pass your own `conditionalTwins` without `ı~i`.
+- Alphabet model: an intra-Latin fold (`ı~i`, `ŋ~n`, …) applies only if every letter of the folded word, accents included, belongs to a Latin target language, so Turkish words such as `ışık` or `kışın` stay as written.
+
 ## 0.6.0
 
 First release as `@cycanics/unspoof`. Everything since upstream 0.4.0:

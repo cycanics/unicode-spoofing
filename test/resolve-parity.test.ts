@@ -126,6 +126,8 @@ export const PROBES = [
   "İstanbul'da ışık",
   'þorn',
   'Lınkedin',
+  'lınk pıng',
+  'kışın ığdır Iğdır',
   'ηame',
   'ɳo',
   'Wi-Fi-роутер',
