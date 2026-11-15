@@ -4,3 +4,4 @@ pnpm-lock.yaml
 src/data/*.generated.ts
 CHANGELOG.md
 test/fixtures/cases.json
+docs/evidence/*.json
