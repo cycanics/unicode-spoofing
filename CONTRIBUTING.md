@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in improving `@moderation-api/unicode-spoofing`.
+Thanks for your interest in improving `@cycanics/unspoof`.
 
 ## Development setup
 
@@ -42,7 +42,7 @@ of cases with a copy-paste template at the top. The flow:
      input: 'order １２３ now', // paste RAW — don't "clean" it
      status: 'unsupported',
      expect: { spoofed: true },
-     ref: 'https://github.com/moderation-api/unicode-spoofing/issues/123',
+     ref: 'https://github.com/cycanics/unspoof/issues/123',
    }
    ```
 
@@ -81,8 +81,7 @@ add ordinary tests alongside the code.
 ## Updating the Unicode data
 
 The confusables table is generated, not hand-edited. See the README's
-"Updating the Unicode data" section. A scheduled workflow opens a PR when the
-Unicode Consortium publishes new security data.
+"Updating the Unicode data" section.
 
 ## Code style
 

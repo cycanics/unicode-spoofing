@@ -13,6 +13,14 @@ First release as `@cycanics/unspoof`. Everything since upstream 0.4.0:
 
 - `cleanHidden` and strict `analyze`: `reportContent` lists what was hidden (`content`: decoded payloads, bidi-overridden spans in logical order, other invisible runs), and the rule action `'remove-with-content'` also removes what an LRO/RLO reverses. Default output is unchanged.
 - Strict hidden characters: stacked marks past a per-script limit are reported as `mark-stack` and trimmed (`markStacks`, `markStacksOther`, `markStackLimits`, `MARK_STACK_LIMITS`), judged by each mark's own base. The remaining default-ignorable code points count as `otherInvisibles`. U+061C alone no longer counts as RTL text, so bidi marks in non-RTL text are removed.
+- Invisible payloads right after an emoji are reported. The emoji exemption now covers only the invisible characters that belong to an emoji sequence (UTS #51: ZWJ between emoji, one VS15/VS16, keycaps, RGI subdivision-flag tags); tag payloads, stacked variation selectors, zero-width binary, bidi marks, soft hyphens, word joiners and BOMs next to an emoji are reported as `invisible` and stripped from `normalized`.
+- The `FORMAT_CHAR_SCRIPTS` exemption is judged per letter instead of per word: one Hebrew, Arabic, Persian or Indic letter no longer exempts its whole word from `invisible` and `zalgo`. Legitimate joiners (Persian ZWNJ, Indic conjuncts, a single bidi mark next to RTL text, script-specific format characters, mark stacks on these letters) stay exempt; bidi overrides, tag characters, zero-width runs and the like inside such words are reported and removed. Myanmar letters take variation selectors.
+- The variation selector supplement (VS17–VS256, U+E0100–U+E01EF) is recognised: valid only directly after a Han or kana letter, reported as `invisible` elsewhere; a base keeps one selector, further ones are removed. VS1–VS16 directly after a combining mark are reported. Valid selectors no longer count toward a `zalgo` stack. Removes a quadratic path.
+
+### Patch Changes
+
+- Whole ANSI control sequences (CSI, e.g. `\x1b[31m`) are one `illegal` finding and removed whole from `normalized`, not just the ESC.
+- The typographic apostrophe (U+2019) is kept in `normalized` when a lookalike word is folded (`Ivа’s` → `Iva’s`, not `Iva's`).
 
 ## 0.4.0
 

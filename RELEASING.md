@@ -1,56 +1,42 @@
 # Releasing
 
-Releases are automated with [changesets](https://github.com/changesets/changesets)
-and published to npm via **Trusted Publishing (OIDC)** — there is no long-lived
-`NPM_TOKEN` secret.
+Releases are published to npm by the **Release** workflow
+(`.github/workflows/release.yml`) when a version tag `v*` is pushed. Publishing
+uses npm **Trusted Publishing (OIDC)** — there is no long-lived `NPM_TOKEN`
+secret — and attaches provenance.
 
-## Day-to-day flow
+## Cutting a release
 
-1. Every user-facing PR includes a changeset (`pnpm changeset`).
-2. When those PRs land on `main`, the **Release** workflow opens or updates a
-   PR titled **"chore: version packages"** that bumps the version and rewrites
+1. Bump `version` in `package.json` and add the matching section to
    `CHANGELOG.md`.
-3. Merge that PR. The workflow then builds and runs `changeset publish`, which
-   publishes the new version to npm, creates the git tag, and pushes a GitHub
-   Release.
+2. Commit, then tag and push:
 
-You never run `npm publish` by hand.
+   ```bash
+   git tag v<version>
+   git push origin main v<version>
+   ```
 
-## One-time setup (required before the first publish)
+3. The workflow installs, builds, tests, checks that the tag equals
+   `v` + `package.json` version, and runs
+   `npm publish --access public --provenance`.
 
-Trusted Publishing must be enabled on npm, and it can only be configured by a
-maintainer of the `@moderation-api` npm org:
+## One-time setup
 
-1. Go to <https://www.npmjs.com/package/@moderation-api/unicode-spoofing/access>
-   (or, before the first publish, the org's **Packages → Add trusted publisher**
-   flow / your account's publishing settings).
-2. Add a **GitHub Actions** trusted publisher with:
-   - **Repository:** `moderation-api/unicode-spoofing`
+Trusted Publishing is attached to an existing package on npmjs.com:
+
+1. Open <https://www.npmjs.com/package/@cycanics/unspoof/access>
+   (package **Settings**).
+2. Under **Trusted Publisher**, choose **GitHub Actions** and enter:
+   - **Organization or user:** `cycanics`
+   - **Repository:** `unspoof`
    - **Workflow filename:** `release.yml`
    - **Environment:** _(leave blank)_
-3. Ensure two-factor "authorization and publishing" on the org allows automation
-   / trusted publishing (Settings → Members / Publishing).
+3. Save.
 
-### Bootstrapping the very first version
+The very first version was published manually (`npm publish --access public`,
+no `--provenance` — provenance only works from CI) so that the package exists.
 
-Trusted Publishing can only be attached to a package name that npm already knows
-about. If `@moderation-api/unicode-spoofing` has never been published, do one
-manual publish to reserve the name, then switch to the automated flow:
-
-```bash
-pnpm build
-npm publish --access public   # requires npm login with 2FA
-```
-
-> **Do not pass `--provenance` here.** Provenance is generated from a CI OIDC
-> token, so it only works inside the Release workflow — a manual local publish
-> fails with `Automatic provenance generation not supported for provider: null`.
-> The automated flow sets `NPM_CONFIG_PROVENANCE=true` for you.
-
-After that first publish, configure the trusted publisher (above) and all
-subsequent releases go through the Release workflow with no token.
-
-## Verifying a published package locally
+## Verifying a package locally
 
 ```bash
 pnpm build

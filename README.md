@@ -592,9 +592,5 @@ node scripts/generate-confusables.mjs --file confusables.txt    # offline
 node scripts/generate-identifier-status.mjs                     # Identifier_Status
 ```
 
-.github/workflows/update-unicode-data.yml is a scheduled GitHub Actions job
-that regenerates the table and opens a PR when the Unicode Consortium publishes
-new security data.
-
 Script/Script_Extensions data needs no updates from us — it tracks the
 runtime's ICU (Node 22 ships Unicode 17).
