@@ -5,8 +5,7 @@
 If you believe you have found a security vulnerability in this package, please
 report it privately. **Do not open a public issue.**
 
-- Use GitHub's [private vulnerability reporting](https://github.com/moderation-api/unicode-spoofing/security/advisories/new), or
-- Email **security@moderationapi.com**
+Use GitHub's [private vulnerability reporting](https://github.com/cycanics/unspoof/security/advisories/new).
 
 Please include a description of the issue, steps to reproduce, and the affected
 version. We aim to acknowledge reports within 3 business days.

@@ -1,9 +1,28 @@
-export { analyze, FORMAT_CHAR_SCRIPTS, ZALGO_MARK_RUN, ZERO_WIDTH_INERT_RUN } from './analyze';
 export {
+  analyze,
+  FORMAT_CHAR_SCRIPTS,
+  ZALGO_MARK_RUN,
+  ZERO_WIDTH_INERT_RUN,
+  type AnalyzeCallbacks,
+} from './analyze';
+export type { CleanupCallbacks, LostBound, Mark, OutputRecord, Region, RuleMode } from './core';
+export { WORD_CAP, type WordCallback, type WordReason } from './letters';
+export { TAIL_MARKS } from './neutral';
+export { IVD_VERSION } from './data/ivd.generated';
+export {
+  buildLookalikes,
   CONDITIONAL_TWINS,
   CONFUSION_ALPHABETS,
+  DEFAULT_ADDITIONAL_PACKS,
   DEFAULT_CONDITIONAL_TWINS,
+  defaultLookalikes,
+  defaultPacks,
   twinsOf,
+  type AdditionalPackId,
+  type LookalikeConfig,
+  type LookalikePack,
+  type LookalikePair,
+  type Lookalikes,
   type ConditionalTwinId,
   type ConfusionAlphabet,
   type ConfusionModelOptions,
@@ -14,22 +33,18 @@ export { skeleton } from './confusables';
 export { UNICODE_VERSION, DATA_DATE } from './data/confusables.generated';
 export {
   cleanHidden,
-  PAYLOAD_HEX_CAP,
+  cleanTerminal,
   MARK_STACK_DEFAULT_LIMIT,
   MARK_STACK_LIMITS,
   STRICT_HIDDEN_RULES,
   type HiddenAction,
+  type HiddenCallbacks,
   type HiddenCharRules,
-  type HiddenClass,
-  type HiddenCleanup,
-  type HiddenContent,
   type HiddenContentAction,
-  type HiddenContentKind,
-  type HiddenEdit,
-  type HiddenFinding,
-  type HiddenPayload,
-  type HiddenReport,
 } from './hidden';
+export { TERMINAL_RULES, type TerminalClass, type TerminalRules } from './terminal';
+export { CONSTRUCT_LIMIT } from './detectors';
+export { STRING_LIMIT } from './vtparse';
 export {
   DEFAULT_TARGET_LANGUAGES,
   LANGUAGES,
@@ -37,7 +52,13 @@ export {
   TARGET_LANGUAGES,
   type TargetLanguage,
 } from './languages';
-export { resolveWord, type ResolutionRule, type WholeScriptFold } from './resolve';
+export {
+  resolveWord,
+  type ResolutionRule,
+  type ResolveOptions,
+  type WholeScriptFold,
+  type WordResolution,
+} from './resolve';
 export {
   LEGITIMATE_SCRIPT_COMBINATIONS,
   primaryScript,
@@ -52,6 +73,8 @@ export {
   SPOOFING_SIGNALS,
   type AnalysisResult,
   type AnalyzeOptions,
+  type MixedCategory,
   type SpoofSignal,
+  type WordCategory,
   type WordFinding,
 } from './types';

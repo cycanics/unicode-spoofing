@@ -125,8 +125,8 @@ export const OVERRIDES = {
   remove: [],
   add: [
     ['\u03c9', 'w', 'ω/w: alike in running text (owner); no UTS #39 entry'],
-    // NOT added (owner, 2026-11-04): к/k, κ/k (Latin k's ascender stands out),
-    // п/n (italic-only lookalike). χ/x and η/n moved to CONDITIONAL_TWINS (round 6); п/n is there too, default off.
+    // NOT added (owner, 2026-11-04): к/k, κ/k (Latin k's ascender stands out).
+    // χ/x and η/n moved to CONDITIONAL_TWINS (round 6).
   ],
 };
 
@@ -153,7 +153,6 @@ export const CONDITIONAL_TWINS = {
   'ɳ~n': { kind: 'descender', pairs: [] }, // intra-Latin, resolver: ɳ→n
   'и~u': { kind: 'italic', pairs: [['\u0438', 'u']] },
   'т~m': { kind: 'italic', pairs: [['\u0442', 'm']] },
-  'п~n': { kind: 'italic', pairs: [['\u043f', 'n']] },
   'ı~i': { kind: 'shape', pairs: [] }, // intra-Latin, resolver: ı→i (dotless i; owner round 7)
   'ҫ~c': {
     kind: 'descender',
@@ -165,8 +164,8 @@ export const CONDITIONAL_TWINS = {
   'ɽ~r': { kind: 'descender', pairs: [] }, // intra-Latin, resolver: ɽ→r
   'ʐ~z': { kind: 'descender', pairs: [] }, // intra-Latin, resolver: ʐ→z
 };
-/** Default set (owner, final): the x-likes and ı on; η ŋ ɳ, italic и т п, ҫ ɽ ʐ off. */
-export const DEFAULT_CONDITIONAL_TWINS = new Set(['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ', 'ı~i']);
+/** Default set (owner, final): the x-likes on; η ŋ ɳ, italic и т п, ı, ҫ ɽ ʐ off. */
+export const DEFAULT_CONDITIONAL_TWINS = new Set(['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ']);
 
 const isUpper = (c) => c !== c.toLowerCase();
 export const alphabetOf = new Map();

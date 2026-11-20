@@ -26,7 +26,7 @@ import type { AnalyzeOptions, SpoofSignal } from '../src/index';
  *     input: 'ａｄｍｉｎ',                      // paste RAW — do not "clean" it
  *     status: 'unsupported',               // 'unsupported' until the fix lands
  *     expect: { spoofed: true, signals: { confusable_word: true } },
- *     ref: 'https://github.com/moderation-api/unicode-spoofing/issues/123',
+ *     ref: 'https://github.com/cycanics/unspoof/issues/123',
  *   },
  *
  * `expect` fields are all optional — assert only what your case is about:

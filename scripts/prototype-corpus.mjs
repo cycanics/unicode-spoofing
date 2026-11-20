@@ -5,8 +5,8 @@
  *
  *   pnpm build && node scripts/prototype-corpus.mjs path/to/cases.json [--fails]
  *     [--whole-script-fold=off|foreign-letters|all] [--step5-own-scripts]
- *     [--twins=id,id|none]       # §3.3 conditional twin set (default: x-likes, ı)
- *     [--targets=English,Russian,…]   # §4.4b target languages
+ *     [--twins=id,id|none]       # §3.3 conditional twin set (default: x-likes)
+ *     [--targets=English,Russian,…]   # §4.5 target languages
  *     [--donors=LatinExtra,Armenian,…]          # §3.4 donor alphabets (default: all non-target)
  *     [--modes]   # totals for every whole-script-fold mode
  *
@@ -21,7 +21,7 @@ import { cleanup } from './prototype-cleanup.mjs';
 import { makeResolver } from './prototype-resolve.mjs';
 
 const MODEL = new Set(['Latin', 'Cyrillic', 'Greek', 'Armenian', 'Cherokee', 'Coptic']);
-// One resolver per conditional-twin set × target-language list (§3.3, §4.4b).
+// One resolver per conditional-twin set × target-language list (§3.3, §4.5).
 const resolvers = new Map();
 const resolverFor = (set, targets, donors) => {
   const key = `${set ? [...set].sort().join(',') : 'default'}|${targets ?? 'default'}|${donors ?? 'default'}`;
@@ -163,15 +163,14 @@ if (process.argv.includes('--modes')) {
   }
   console.log('\n| conditional twins | fork pass/fail | ambiguous flagged |');
   console.log('|---|---|---|');
-  const X0 = ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'];
-  const X = [...X0, 'ı~i'];
+  const X = ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'];
   for (const [name, set] of [
     ['none', []],
-    ['x-likes only', X0],
-    ['default (x-likes, ı)', X],
+    ['default (x-likes)', X],
     ['+ η ŋ ɳ', [...X, 'η~n', 'ŋ~n', 'ɳ~n']],
     ['+ и~u', [...X, 'и~u']],
-    ['+ и~u т~m п~n', [...X, 'и~u', 'т~m', 'п~n']],
+    ['+ и~u т~m', [...X, 'и~u', 'т~m']],
+    ['+ ı~i', [...X, 'ı~i']],
     ['+ ҫ~c ɽ~r ʐ~z', [...X, 'ҫ~c', 'ɽ~r', 'ʐ~z']],
   ]) {
     const t = tot(

@@ -2,10 +2,11 @@
  * The confusion model (src/confusion.ts, src/languages.ts): case-specific
  * twins, target restriction, conditional twins, positional spelling rules,
  * foreign-letter / case-anomaly / donor evidence (docs/confusion-model.md
- * §3, §4.4–4.6).
+ * §3, §4.4–4.7).
  */
 import { describe, expect, it } from 'vitest';
 import {
+  buildLookalikes,
   CONDITIONAL_TWINS,
   createConfusionModel,
   DEFAULT_CONDITIONAL_TWINS,
@@ -29,11 +30,10 @@ const CASE_LEGIT = (
 describe('defaults', () => {
   it('targets English, Russian, Ukrainian, Greek; donors are the other alphabets', () => {
     expect(DEFAULT_TARGET_LANGUAGES).toEqual(['English', 'Russian', 'Ukrainian', 'Greek']);
-    expect(model.donorAlphabets).toEqual(['Armenian', 'Cherokee', 'Coptic', 'LatinExtra']);
-    expect([...DEFAULT_CONDITIONAL_TWINS].sort()).toEqual(
-      ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ', 'ı~i'].sort(),
-    );
-    expect(Object.keys(CONDITIONAL_TWINS)).toHaveLength(14);
+    // Donor: letters of scripts outside the table that a look-alike pack maps (decision 40).
+    expect(model.donorAlphabets).toEqual(['Armenian', 'Cherokee', 'Coptic', 'LatinExtra', 'Donor']);
+    expect([...DEFAULT_CONDITIONAL_TWINS].sort()).toEqual(['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'].sort());
+    expect(Object.keys(CONDITIONAL_TWINS)).toHaveLength(13); // 40g: п~n is an ordinary pair
     expect(Object.keys(TARGET_LANGUAGES)).toContain('Kazakh');
     expect(RU_CASE_ENDINGS.has('ами')).toBe(true);
   });
@@ -75,7 +75,7 @@ describe('twins are case-specific (§3.2)', () => {
   });
 });
 
-describe('target restriction (§4.4b)', () => {
+describe('target restriction (§4.5)', () => {
   it('folds only into letters of an enabled target language', () => {
     expect(model.twinIn('s', 'Cyrillic')).toBeNull(); // ѕ is Macedonian
     expect(model.twinIn('i', 'Cyrillic')).toBe('і'); // Ukrainian is a default target
@@ -107,14 +107,17 @@ describe('conditional twins (§3.3)', () => {
     const m = createConfusionModel({ conditionalTwins: ['ŋ~n'] });
     expect(m.inspect('ŋame').evidence).toEqual({ kind: 'conditional', letters: 'ŋ' });
   });
-  it('ı~i is on by default; an intra-Latin fold needs a target-language result', () => {
+  it('ı → i is in the default English pack; an intra-Latin fold needs a target-language result', () => {
     expect(evidence('lınk')).toEqual({ kind: 'conditional', letters: 'ı' });
     expect(evidence('Lınkedin')).toEqual({ kind: 'conditional', letters: 'ı' });
     for (const w of ['ışık', 'kışın', 'ığdır', 'Iğdır']) expect(evidence(w)).toBeNull(); // ş ğ: not English
-    const off = createConfusionModel({ conditionalTwins: ['χ~x', 'χ~х', 'ҳ~x', 'ҳ~χ'] });
+    const off = createConfusionModel({
+      lookalikes: buildLookalikes({ remove: { English: [['ı', 'i']], European: [['ı', 'i']] } }),
+    });
     expect(off.inspect('lınk').evidence).toBeNull();
     const n = createConfusionModel({ conditionalTwins: ['ŋ~n'] });
-    expect(n.inspect('ŋamé').evidence).toEqual({ kind: 'foreign', letters: 'ŋ' }); // é: not English
+    // é: not English; ŋ's only twin under the call's mapping is Latin n, so it is no proof (40d).
+    expect(n.inspect('ŋamé').evidence).toBeNull();
   });
   it('rejects unknown ids', () => {
     expect(() => createConfusionModel({ conditionalTwins: ['x~y' as never] })).toThrow();
@@ -139,7 +142,7 @@ describe('validity and proof letters', () => {
   });
 });
 
-describe('evidence (§4.4–4.6)', () => {
+describe('evidence (§4.4–4.7)', () => {
   it('foreign lookalike letters', () => {
     expect(evidence('аррӏе')).toEqual({ kind: 'foreign', letters: 'ӏ' });
     expect(evidence('ԁоm')).toBeNull(); // not a whole-script word
@@ -152,27 +155,44 @@ describe('evidence (§4.4–4.6)', () => {
     expect(evidence('goIang')).toBeNull();
     expect(evidence('NaI')).toBeNull();
   });
-  it('positional spelling rules', () => {
-    expect(evidence('Ьр')).toEqual({ kind: 'orthography', rule: 'softHardNotInitial' });
-    expect(evidence('oьo'.replace(/o/g, 'о'))).toEqual({
+  it('positional spelling rules narrow targets; they are no evidence (decision 40e)', () => {
+    const lv = (w: string, S: number) => model.languageViolation([...w], S);
+    expect(lv('Ьр', 1)).toEqual({ kind: 'orthography', rule: 'softHardNotInitial' });
+    expect(lv('оьо', 1)).toEqual({ kind: 'orthography', rule: 'softHardNotAfterVowel' });
+    expect(lv('μέσοσ'.normalize('NFD').replace(/\p{M}/gu, ''), 2)).toEqual({
       kind: 'orthography',
-      rule: 'softHardNotAfterVowel',
+      rule: 'finalSigma',
     });
-    expect(evidence('ъгъл')).toBeNull(); // Bulgarian
-    expect(evidence('ыдыс')).toBeNull(); // Kazakh
+    for (const w of ['Ьр', 'оьо', 'μέσοσ', 'ъгъл']) expect(evidence(w)).toBeNull();
+    // Decision 40d: only requested languages count; with Bulgarian requested `ъгъл` fits.
+    const bk = createConfusionModel({ targetLanguages: ['Russian', 'Bulgarian', 'Kazakh'] });
+    expect(bk.languageViolation([...'ъгъл'], 1)).toBeNull();
+    expect(lv('ъгъл', 1)).toEqual({ kind: 'orthography', rule: 'softHardNotInitial' });
     expect(evidence('Коммерсантъ')).toBeNull();
     expect(evidence('μέσος')).toBeNull();
-    expect(evidence('μέσοσ')).toEqual({ kind: 'orthography', rule: 'finalSigma' });
     expect(model.languageViolation(['μ', 'έ', 'σ'], 2, true)).toBeNull(); // elided μέσ'
   });
   it('donor-only words', () => {
     expect(evidence('ᴀᴅᴍɪɴ')).toEqual({ kind: 'donor', letters: '' });
     expect(evidence('İstanbul')).toBeNull();
-    expect(evidence('ışık')).toBeNull(); // ı is European, not a donor
+    expect(evidence('ışık')).toBeNull(); // ş: the fold is no English word (§3.3)
   });
-  it('leaves the CASE_LEGIT list clean except Chechen маӏа (foreign, harmless)', () => {
+  it('leaves the CASE_LEGIT list clean except Chechen маӏа (foreign, harmless) when its languages are requested', () => {
+    // Decision 40d: Caucasian, Bulgarian and Kazakh words are legitimate only when requested.
+    const all = createConfusionModel({
+      targetLanguages: [
+        'English',
+        'Russian',
+        'Ukrainian',
+        'Greek',
+        'Bulgarian',
+        'Kazakh',
+        'Caucasian',
+      ],
+    });
+    expect(CASE_LEGIT.filter((t) => all.inspect(t).evidence)).toEqual(['маӏа']);
     const hit = CASE_LEGIT.filter((t) => evidence(t));
-    expect(hit).toEqual(['маӏа']);
+    expect(hit).toEqual(['Кӏант', 'кӏорни', 'хӏума', 'дӏа', 'маӏа']);
     expect(model.inspect('маӏа').valid.filter((a) => a !== 1)).toEqual([]);
   });
 });

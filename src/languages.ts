@@ -1,10 +1,12 @@
 /**
  * Language alphabets inside the model scripts, positional spelling rules and
- * Russian case endings — docs/confusion-model.md §4.4, §4.4b, §4.6, §4.1.
- * Letters are NFD base letters, lowercase: "й ё ї ў" are judged as "и е і у".
+ * Russian case endings — docs/confusion-model.md §4.4, §4.5, §4.7, §4.1.
+ * Letters are lowercase. A precomposed letter an alphabet lists (`й ё ї ў ѓ ќ ӣ ӯ`) is a
+ * letter of its own, never its base (NEVER MIX LANGUAGES: `ё` is no Ukrainian `е`); other
+ * marks are diacritics, judged by their base letter (Greek tonos, Latin accents).
  */
 
-const RU = 'абвгдежзийклмнопрстуфхцчшщъыьэюя';
+const RU = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
 const without = (a: string, drop: string) => [...a].filter((c) => !drop.includes(c)).join('');
 
 /** Script of a language: one of the confusion model's target-capable scripts. */
@@ -14,14 +16,14 @@ export type LanguageScript = 'Latin' | 'Cyrillic' | 'Greek';
 export const LANGUAGES = {
   Cyrillic: {
     Russian: RU,
-    Ukrainian: without(RU, 'ъыэ') + 'ґєі',
-    Belarusian: without(RU, 'щъ') + 'і',
-    Bulgarian: without(RU, 'ыэ'),
+    Ukrainian: without(RU, 'ъыэё') + 'ґєії',
+    Belarusian: without(RU, 'щъ') + 'іў',
+    Bulgarian: without(RU, 'ыэё'),
     Serbian: 'абвгдђежзијклљмнњопрстћуфхцчџш',
-    Macedonian: 'абвгдежзѕијклљмнњопрстуфхцчџш',
+    Macedonian: 'абвгдѓежзѕијклљмнњопрстќуфхцчџш',
     Kazakh: RU + 'әғқңөұүһі',
-    Tajik: without(RU, 'щыьц') + 'ғқҳҷ',
-    Uzbek: without(RU, 'щы') + 'қғҳ',
+    Tajik: without(RU, 'щыьц') + 'ғқҳҷӣӯ',
+    Uzbek: without(RU, 'щы') + 'қғҳў',
     // Chechen, Ingush, Avar, Kabardian, Adyghe, Lak, Dargwa: Russian + palochka,
     // which only follows one of PALOCHKA_AFTER (or starts the word).
     Caucasian: RU + 'ӏ',
@@ -33,7 +35,35 @@ export const LANGUAGES = {
   },
 } as const satisfies Record<LanguageScript, Record<string, string>>;
 
-/** A language of {@link LANGUAGES}; any of them can be a fold target (§4.4b). */
+/** Precomposed letters some alphabet lists: each is a letter of its own (never its NFD base). */
+export const PRECOMPOSED_LETTERS: ReadonlySet<string> = new Set(
+  Object.values(LANGUAGES)
+    .flatMap((ls) => Object.values(ls) as string[])
+    .flatMap((l) => [...l])
+    .filter((c) => c.normalize('NFD') !== c),
+);
+
+/**
+ * A letter as the alphabets list it, lowercase: a listed precomposed letter (`ё`, also
+ * written `е` + U+0308) itself, any other letter its NFD base (`é` → `e`, `ά` → `α`).
+ */
+const KEYS = new Map<string, string>();
+export function letterKey(c: string): string {
+  let k = KEYS.get(c);
+  if (k === undefined) {
+    k = keyOf(c);
+    if (KEYS.size < 65536) KEYS.set(c, k);
+  }
+  return k;
+}
+function keyOf(c: string): string {
+  const low = c.toLowerCase();
+  const nfc = String.fromCodePoint(low.normalize('NFC').codePointAt(0)!);
+  if (PRECOMPOSED_LETTERS.has(nfc)) return nfc;
+  return String.fromCodePoint(low.normalize('NFD').codePointAt(0)!);
+}
+
+/** A language of {@link LANGUAGES}; any of them can be a fold target (§4.5). */
 export type TargetLanguage = {
   [S in LanguageScript]: keyof (typeof LANGUAGES)[S];
 }[LanguageScript];
@@ -98,7 +128,7 @@ const finalSigma = rule(
 );
 
 /**
- * Positional spelling rules per language (§4.6). Only positional rules:
+ * Positional spelling rules per language (§4.7). Only positional rules:
  * nothing that tells ь from ъ (native writers mix them up).
  */
 export const ORTHOGRAPHY: Partial<Record<TargetLanguage, readonly OrthographyRule[]>> = {

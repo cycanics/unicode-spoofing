@@ -7,7 +7,7 @@
  *   node scripts/prototype-resolve.mjs 'Пpивет' 'HОT'     # each argument is one text
  *   --whole-script-fold=off|foreign-letters|all           # §4.3 (default all)
  *   --twins=id,id|none                                    # §3.3 conditional twins (default: x-likes)
- *   --targets=English,Russian,…                           # §4.4b target languages (default English,Russian)
+ *   --targets=English,Russian,…                           # §4.5 target languages (default English,Russian)
  *   --donors=Armenian,Cherokee,…                          # §3.4 donor alphabets (default: all non-target)
  *   --step5-own-scripts                                   # measurement: step 5 only into own scripts
  */
@@ -94,7 +94,7 @@ export const LANGUAGES = {
   Greek: { Greek: 'αβγδεζηθικλμνξοπρσςτυφχψω' },
   Latin: {
     // English + Western/Central European + Turkish base letters (accents are marks).
-    English: 'abcdefghijklmnopqrstuvwxyz', // the Latin target language (§4.4b)
+    English: 'abcdefghijklmnopqrstuvwxyz', // the Latin target language (§4.5)
     European: 'abcdefghijklmnopqrstuvwxyzßæœøþðıłđ',
   },
 };
@@ -108,7 +108,7 @@ const LANG_SETS = Object.fromEntries(
 );
 
 /**
- * Positional spelling rules per language (§4.6), on lowercased NFD base
+ * Positional spelling rules per language (§4.7), on lowercased NFD base
  * letters of a word with ≥ 2 letters (`raw` keeps the case). A violation
  * means "this word is not this language". Only positional rules: nothing
  * that tells ь from ъ (native writers mix them up).
@@ -160,7 +160,7 @@ export const ORTHOGRAPHY = {
   Greek: [finalSigma],
 };
 /**
- * Hebrew final forms (§4.6): defined and measured, not wired — Hebrew is
+ * Hebrew final forms (§4.7): defined and measured, not wired — Hebrew is
  * outside the model, so no Hebrew word is ever resolved. A non-final form
  * at the end is allowed before a geresh (צ' loan sounds) and in acronyms (ח"כ).
  */
@@ -189,9 +189,9 @@ const INTRA_LATIN_DESCENDER = {
 };
 
 /**
- * Target languages (§4.4b): a word is folded into script T only if every
+ * Target languages (§4.5): a word is folded into script T only if every
  * letter after folding is in the alphabet of an enabled target language of T.
- * The other languages of LANGUAGES still serve as evidence (§4.4).
+ * Only the requested languages decide legitimacy too (decision 40d).
  */
 export const TARGET_LANGUAGES = {
   ...Object.fromEntries(
@@ -204,7 +204,7 @@ export const TARGET_LANGUAGES = {
 };
 export const DEFAULT_TARGET_LANGUAGES = ['English', 'Russian', 'Ukrainian', 'Greek']; // owner, round 7
 
-/** I-shaped letters whose lowercase alternative is Latin "l" (§4.5). */
+/** I-shaped letters whose lowercase alternative is Latin "l" (§4.6). */
 const I_SHAPED = new Set(['I', 'І', 'Ӏ', 'ӏ', 'Ι']);
 
 /**
@@ -235,15 +235,14 @@ export function makeResolver({
   const donors = donorAlphabets ?? ALL_MODEL.filter((a) => !targetScripts.has(a));
   const MODEL = ALL_MODEL.filter((a) => targetScripts.has(a) || donors.includes(a));
   // A Latin extra letter is a donor only if it has a twin among the Latin target
-  // letters (ɑ→a ɡ→g ſ→f ᴀ→a); twin-less ones (ĸ) and letters of a modelled
-  // European language (ı þ ð ß æ œ ø ł đ: Turkish, Icelandic, …) are ordinary
-  // Latin — as donors they would fold legit Turkish/Icelandic words (§3.4).
-  const europeanLatin = new Set(Object.values(LANGUAGES.Latin).flatMap((a) => [...a]));
+  // letters (ɑ→a ɡ→g ſ→f ᴀ→a) and is no letter of a requested Latin language
+  // (decision 40d: European's ı þ ð ß æ œ ø ł đ only when European is requested).
   const donorExtra = new Set(
     (MODEL.includes('LatinExtra') ? ALPHABETS.LatinExtra : []).filter(
       (c) =>
-        !europeanLatin.has(c.toLowerCase()) &&
         !targetLetters.Latin?.has(c.toLowerCase()) &&
+        // An intra-Latin conditional twin (ı) is judged by its pair, not as a donor.
+        !Object.values(INTRA_LATIN_DESCENDER).some((m) => c in m) &&
         twinIn(c, 'Latin', isUpper(c), true),
     ),
   );
@@ -311,7 +310,7 @@ export function makeResolver({
     return cl
       .map((c) => {
         if (!LETTER.test(c.base)) return c.base + c.marks;
-        if (c === anomaly && T === 'Latin') return 'l' + c.marks; // §4.5: I-shaped → l
+        if (c === anomaly && T === 'Latin') return 'l' + c.marks; // §4.6: I-shaped → l
         if (T === 'Latin' && intraLatin[c.base]) return intraLatin[c.base] + c.marks; // §3.3: ŋ → n
         if (scriptOf(c.base) === T) return c.base + c.marks;
         const i = letters.indexOf(c);
@@ -323,13 +322,16 @@ export function makeResolver({
   }
 
   /**
-   * §4.4 + §4.6: does a single-script word fit some language of S (letters
+   * §4.4 + §4.7: does a single-script word fit some language of S (letters
    * and positional rules)? null if it fits (or S has no languages), else
    * { kind: 'foreign', letters } — lookalike letters outside every language —
    * or { kind: 'orthography', rule } — letters fit, positional rules do not.
    */
   function languageViolation(letters, S, elided = false, only = null) {
-    const langs = LANG_SETS[S]?.filter(([name]) => !only || only.includes(name));
+    // Decision 40d: the requested languages of S only.
+    const langs = LANG_SETS[S]?.filter(
+      ([name]) => targetNames[S]?.includes(name) && (!only || only.includes(name)),
+    );
     if (!langs) return null;
     const raw = letters.map((c) => c.base);
     const low = raw.map((c) => c.toLowerCase());
@@ -351,24 +353,27 @@ export function makeResolver({
       if (!best || miss.length < best.length) best = miss;
     }
     if (ortho) return ortho;
-    // Target check (§4.4b): any letter outside the target languages disqualifies.
+    // Target check (§4.5): any letter outside the target languages disqualifies.
     if (only) return { kind: 'foreign', letters: (best ?? letters).map((c) => c.base).join('') };
     // Only lookalikes are spoof evidence: a foreign letter with no twin in any
     // other alphabet (Tatar җ, Bashkir ҡ) just means an unmodelled language.
-    const look = best.filter((c) =>
-      MODEL.some((T) => T !== S && twinIn(c.base, T, isUpper(c.base), false)),
+    // Decision 40d: proof letters by the effective (restricted) mapping.
+    const look = (best ?? []).filter((c) =>
+      MODEL.some((T) => T !== S && twinIn(c.base, T, isUpper(c.base), true)),
     );
     return look.length ? { kind: 'foreign', letters: look.map((c) => c.base).join('') } : null;
   }
 
-  /** §4.5: an I-shaped last letter after lowercase letters (≥ 4 letters); null if none. */
+  const palochkaLang = targetLanguages.some((n) => TARGET_LANGUAGES[n].letters.includes('ӏ'));
+  /** §4.6: an I-shaped last letter after lowercase letters (≥ 4 letters); null if none. */
   function caseAnomaly(letters) {
     if (letters.length < 4) return null;
     const last = letters[letters.length - 1];
     if (!I_SHAPED.has(last.base)) return null;
     if (letters.slice(1, -1).some((c) => isUpper(c.base))) return null;
     const prev = letters[letters.length - 2].base.toLowerCase();
-    if (PALOCHKA.has(last.base) && PALOCHKA_AFTER.has(prev)) return null; // Caucasian digraph
+    // Caucasian digraph, when a requested language has the palochka (40d).
+    if (palochkaLang && PALOCHKA.has(last.base) && PALOCHKA_AFTER.has(prev)) return null;
     return last;
   }
 
@@ -396,7 +401,7 @@ export function makeResolver({
       if (whole && scripts.has(T)) return true; // own script: judged as evidence below
       if (!targetNames[T]) return false; // no enabled target language in T
       const folded = clusters(fold(cl, letters, T, anomaly)).filter((c) => LETTER.test(c.base));
-      // Every letter after folding must be in one enabled target language of T (§4.4b).
+      // Every letter after folding must be in one enabled target language of T (§4.5).
       const v = languageViolation(folded, T, false, targetNames[T]);
       if (v) rejected[T] = v;
       return !v;
@@ -419,20 +424,24 @@ export function makeResolver({
       // §3.3: an intra-Latin fold applies only if every letter of the folded
       // word, accents included, is in one Latin target language (ışık stays).
       if (intra.length && !fitsLatinTarget(fold(cl, letters, 'Latin', null))) intra = [];
+      // Decision 41g (the word part): Turkish ı stays in a word holding ğ, ş or İ.
+      if (/[ğĞşŞİ]/.test(seg)) intra = intra.filter((c) => c.base !== 'ı');
       if (anomaly)
         [info.evidence, info.anomaly] = [{ kind: 'case', letters: anomaly.base }, anomaly];
       // A word made only of Latin extras (ᴀᴅᴍɪɴ) is no language: donor evidence.
       else if (S === 'LatinExtra') info.evidence = { kind: 'donor', letters: '' };
       else if (intra.length)
         info.evidence = { kind: 'conditional', letters: intra.map((c) => c.base).join('') };
-      else if (lang) info.evidence = lang;
+      // Decision 40e: language rules only narrow targets; a broken rule is no evidence.
+      else if (lang && lang.kind !== 'orthography') info.evidence = lang;
     }
     return info;
   }
 
   /** Stem judged for a token with an apostrophe case ending, else the token. */
   function splitEnding(token) {
-    const m = token.match(APOSTROPHE_ENDING);
+    // Russian's case endings: only when Russian is requested (40d).
+    const m = targetLanguages.includes('Russian') ? token.match(APOSTROPHE_ENDING) : null;
     return m && RU_CASE_ENDINGS.has(m[3].toLowerCase())
       ? { stem: m[1], tail: m[2] + m[3], ending: m[3] }
       : { stem: token, tail: '', ending: null };
@@ -445,6 +454,7 @@ export function makeResolver({
     const model = [...scripts].filter(Boolean);
     if (letters.length === 0 || model.length !== 1 || evidence) return null;
     const [S] = model;
+    if (!targetScripts.has(S)) return null; // decision 40d: only a requested target votes
     if (!scripts.has(null) && valid.some((T) => T !== S)) return null; // confusable
     return { S, n: letters.filter((c) => scriptOf(c.base) === S).length };
   }
@@ -466,12 +476,17 @@ export function makeResolver({
     );
     const base = { valid, rejected: info.rejected, blockers: evidenceOut, evidence };
     const keep = (kind, extra) => ({ kind, script: null, normalized: seg, ...base, ...extra });
-
     let cands = valid;
+    // Decision 41n: only targets already holding one of the word's letters; none at all: any.
+    if (!whole) {
+      const holding = valid.filter((T) => native[T] > 0);
+      const anyTarget = [...targetScripts].some((T) => native[T] > 0);
+      cands = holding.length ? holding : anyTarget ? [] : valid;
+    }
     if (whole) {
       if (letters.length < 2 || (opts.expectedScripts ?? []).includes(S)) return null;
       if (!evidence && mode !== 'all') return null;
-      if (S === 'Latin') {
+      if (S === 'Latin' && targetScripts.has('Latin')) {
         // Never folded out of Latin; only intra-Latin folds: case anomaly
         // (paypaI → paypal) and enabled intra-Latin descender twins (ŋ → n).
         if (evidence?.kind !== 'case' && evidence?.kind !== 'conditional') return null;
@@ -514,12 +529,24 @@ export function makeResolver({
     // Step 3: word majority (no outnumber gate: removed, owner round 7).
     const ranked = [...cands].sort((a, b) => native[b] - native[a]);
     const lead = ranked[0];
-    if (lead && native[lead] > 0 && (ranked.length === 1 || native[lead] > native[ranked[1]]))
+    // Decision 41m: a sizable majority only (≥ 3 letters and ≥ 2/3 of the word's letters).
+    if (
+      lead &&
+      native[lead] >= (opts.wordMajorityMinLetters ?? 3) &&
+      native[lead] >= (opts.wordMajorityMinShare ?? 2 / 3) * letters.length &&
+      (ranked.length === 1 || native[lead] > native[ranked[1]])
+    )
       return take(lead, 'word-majority');
-    // Step 5: any valid alphabet, least by script name.
+    // Step 5: any valid alphabet, the primary target first (41e).
     // --step5-own-scripts (measurement only): step 5 only into scripts the word has letters in.
     const c5 = opts.step5OwnScripts && !evidence ? cands.filter((T) => scripts.has(T)) : cands;
-    if (c5.length) return take([...c5].sort()[0], 'any-valid');
+    // Decision 41e: the primary target, else the first requested target that can take it.
+    if (c5.length)
+      return take(
+        targetLanguages.map((n) => TARGET_LANGUAGES[n].script).find((T) => c5.includes(T)) ??
+          [...c5].sort()[0],
+        'any-valid',
+      );
     if (cands.length) return keep('confusable', { rule: 'step5-restricted', folded: false });
     return keep('mixed', { rule: 'no-valid-alphabet' });
   }
@@ -545,13 +572,6 @@ export function makeResolver({
       const gap = i ? text.slice(tokens[i - 1].index + tokens[i - 1][0].length, m.index) : null;
       compound.push(i && /^[-\u2010\u2011]$/.test(gap) ? compound[i - 1] : i);
     });
-    const partners = (i) => {
-      const al = new Set();
-      tokens.forEach(
-        (_, j) => j !== i && compound[j] === compound[i] && clean[j] && al.add(clean[j].S),
-      );
-      return al;
-    };
     const nearest = (i, step) => {
       for (let j = i + step; j >= 0 && j < tokens.length && para[j] === para[i]; j += step)
         if (clean[j]) return clean[j].S;
@@ -573,9 +593,9 @@ export function makeResolver({
       const R = nearest(i, +1);
       // Step 1: clean hyphen partners if any (all one alphabet), else a clean
       // word on BOTH sides that agree; at a text/paragraph edge step 2 decides.
-      const hp = partners(i);
-      const near = hp.size ? (hp.size === 1 ? [...hp][0] : null) : L && R && L === R ? L : null;
-      const ctx = { near, window: windowMajority(i), hyphen: hp.size > 0 };
+      // Decision 42b: no hyphen step; a compound's parts are no context for each other.
+      const near = L && R && L === R ? L : null;
+      const ctx = { near, window: windowMajority(i), hyphen: false };
       const { stem, tail, ending } = splitEnding(m[0]);
       let r = resolveSegment(stem, ctx, opts);
       if (!r) return;

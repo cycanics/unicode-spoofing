@@ -2,13 +2,13 @@
 /**
  * MEASUREMENT — how stacked marks read: how far a stack leaves its line and how
  * much of the neighbouring lines it runs through, by script and depth, against
- * real text of the script (docs/confusion-model.md §18.6). Every letter of a
+ * real text of the script (docs/confusion-model.md §15.7). Every letter of a
  * word carries the stack, between two lines of ordinary text, in 3 fonts.
  * `up`, `down`: ink past the line box, in lines (worst font). `above`, `below`:
  * share of the neighbour line's letters that the stack's ink crosses. Writes
  * docs/evidence/mark-stacks.json. Imports dist/ for the limits, so build first.
  *
- *   node scripts/measure-mark-stacks.mjs [path/to/playwright] [chrome]
+ *   node scripts/measure-mark-stacks.mjs [path/to/playwright] [chrome]   (or PLAYWRIGHT_PATH)
  */
 /* global document, createImageBitmap, OffscreenCanvas */
 import fs from 'node:fs';
@@ -19,9 +19,18 @@ import { MARK_STACK_LIMITS } from '../dist/index.js';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PW = process.argv[2] ?? '/home/user/.nvm/versions/node/v20.19.5/lib/node_modules/playwright';
+const PW = process.argv[2] ?? process.env.PLAYWRIGHT_PATH ?? 'playwright';
 const CHROME = process.argv[3] ?? '/usr/bin/google-chrome';
-const { chromium } = require(PW);
+const { chromium } = (() => {
+  try {
+    return require(PW);
+  } catch {
+    console.error(
+      `playwright not found (${PW}): pass its path as the first argument or set PLAYWRIGHT_PATH`,
+    );
+    process.exit(1);
+  }
+})();
 const OUT = path.join(__dirname, '..', 'docs', 'evidence', 'mark-stacks.json');
 const FONTS = ['DejaVu Sans', 'Noto Sans', 'Liberation Serif'];
 const DEPTHS = [1, 2, 3, 4, 5, 6, 8, 10, 15, 20, 40];

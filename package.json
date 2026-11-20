@@ -1,6 +1,6 @@
 {
   "name": "@cycanics/unspoof",
-  "version": "0.6.1",
+  "version": "1.0.0",
   "description": "Unicode spoofing detection: mixed-script words, UTS #39 confusables, invisible characters, and combining-mark abuse. Zero runtime dependencies.",
   "author": "cycanics (https://cycanics.github.io)",
   "license": "MIT",
@@ -55,6 +55,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:gaps": "vitest run -c vitest.gaps.config.ts",
+    "test:perf": "vitest run -c vitest.perf.config.ts",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "publint": "publint",

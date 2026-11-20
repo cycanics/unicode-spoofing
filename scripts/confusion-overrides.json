@@ -5,7 +5,7 @@
   "notAdded": [
     ["к", "k", "distinct: Latin k's ascender stands out (owner)"],
     ["κ", "k", "distinct: Latin k's ascender stands out (owner)"],
-    ["п", "n", "italic-only lookalike (owner); conditional twin п~n"]
+    ["п", "n", "owner pack rows instead (decision 40g: English, Russian, Ukrainian only)"]
   ],
   "smallCapitals": {
     "$comment": "Latin small capitals read as the lowercase letter at x-height (§3.4); UTS #39 maps most of them to themselves.",
@@ -34,7 +34,6 @@
     "ɳ~n": { "kind": "descender", "pairs": [], "intraLatin": [["ɳ", "n"]] },
     "и~u": { "kind": "italic", "pairs": [["и", "u"]] },
     "т~m": { "kind": "italic", "pairs": [["т", "m"]] },
-    "п~n": { "kind": "italic", "pairs": [["п", "n"]] },
     "ı~i": { "kind": "shape", "pairs": [], "intraLatin": [["ı", "i"]] },
     "ҫ~c": {
       "kind": "descender",
@@ -46,5 +45,5 @@
     "ɽ~r": { "kind": "descender", "pairs": [], "intraLatin": [["ɽ", "r"]] },
     "ʐ~z": { "kind": "descender", "pairs": [], "intraLatin": [["ʐ", "z"]] }
   },
-  "defaultConditionalTwins": ["χ~x", "χ~х", "ҳ~x", "ҳ~χ", "ı~i"]
+  "defaultConditionalTwins": ["χ~x", "χ~х", "ҳ~x", "ҳ~χ"]
 }

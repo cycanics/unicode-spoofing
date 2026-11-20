@@ -1,4 +1,5 @@
 import { analyze } from '../src/index';
+import { growth, LINEAR, timed } from './helpers/growth';
 
 // The message from the customer report that triggered this feature. Words like
 // "busіnеss" mix Latin and Cyrillic; "Неу"/"НОТ" are written entirely in
@@ -232,11 +233,16 @@ describe('analyze — result shape', () => {
     expect(r.counts.wordsTotal).toBe(3);
   });
 
-  it('handles long input without pathological slowdown', () => {
-    const text = `${'The quick brown fox jumps over the lazy dog. '.repeat(200)}Неу НОТ рrоduсt`;
-    const start = performance.now();
-    const r = analyze(text);
-    expect(performance.now() - start).toBeLessThan(1000);
-    expect(r.spoofed).toBe(true);
+  const text = (n: number) =>
+    `${'The quick brown fox jumps over the lazy dog. '.repeat(n)}Неу НОТ рrоduсt`;
+  it('handles long input', () => {
+    expect(analyze(text(200)).spoofed).toBe(true);
   });
+  timed(
+    'handles long input without pathological slowdown',
+    () => {
+      expect(growth((n) => analyze(text(n)), 2000)).toBeLessThan(LINEAR);
+    },
+    30_000,
+  );
 });
