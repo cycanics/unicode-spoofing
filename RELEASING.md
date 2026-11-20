@@ -20,6 +20,10 @@ secret — and attaches provenance.
    `v` + `package.json` version, and runs
    `npm publish --access public --provenance`.
 
+The release checks are `pnpm lint`, `pnpm check-types`, `pnpm test` and
+`pnpm build`. The timing tests (`pnpm test:perf`) are internal and not a
+release check: their results depend on the machine.
+
 ## One-time setup
 
 Trusted Publishing is attached to an existing package on npmjs.com:

@@ -12,25 +12,32 @@
 import {
   ALPHABET_LETTERS_PACKED,
   CONDITIONAL_TWIN_DATA,
-  CONFUSION_ALPHABETS,
+  CONFUSION_ALPHABETS as TABLE_ALPHABETS,
   DEFAULT_CONDITIONAL_TWIN_IDS,
   TWIN_PAIRS_PACKED,
 } from './data/confusion.generated';
+import { DONOR_ROWS, REPLACED_TABLE_PAIRS } from './data/donor-rows';
 import {
   DEFAULT_TARGET_LANGUAGES,
-  LANGUAGES,
   ORTHOGRAPHY,
   PALOCHKA,
   PALOCHKA_AFTER,
   RULE_LETTERS,
   TARGET_LANGUAGES,
+  letterKey,
   type LanguageScript,
   type TargetLanguage,
 } from './languages';
 import { primaryScript } from './scripts';
 
-export { CONFUSION_ALPHABETS };
-/** An alphabet of the twin table (§3.4). `LatinExtra` = donor-only Latin letters. */
+/**
+ * Model alphabets: the twin table's (§3.4; `LatinExtra` = donor-only Latin
+ * letters) and `Donor`, the letters (or digits, marks) of scripts outside the
+ * table that a look-alike pack maps into a target (decision 40). Donors are
+ * never fold targets.
+ */
+export const CONFUSION_ALPHABETS = [...TABLE_ALPHABETS, 'Donor'] as const;
+/** An alphabet of the model. */
 export type ConfusionAlphabet = (typeof CONFUSION_ALPHABETS)[number];
 /** Alphabets whose letters may be lookalikes but are never fold targets (§3.4). */
 export type DonorAlphabet = ConfusionAlphabet;
@@ -46,7 +53,6 @@ export type ConditionalTwinId =
   | 'ɳ~n'
   | 'и~u'
   | 'т~m'
-  | 'п~n'
   | 'ı~i'
   | 'ҫ~c'
   | 'ɽ~r'
@@ -75,7 +81,7 @@ export const CONDITIONAL_TWINS: Readonly<
   ]),
 ) as never;
 
-/** Default conditional set (owner, final): the x-likes and `ı~i` on, everything else off. */
+/** Default conditional set: the x-likes on, everything else off. */
 export const DEFAULT_CONDITIONAL_TWINS: ReadonlySet<ConditionalTwinId> = new Set(
   DEFAULT_CONDITIONAL_TWIN_IDS as ConditionalTwinId[],
 );
@@ -87,11 +93,16 @@ const LATIN = 0;
 const CYRILLIC = 1;
 const GREEK = 2;
 const LATIN_EXTRA = 6;
+const DONOR = 7;
 const N_ALPHA = CONFUSION_ALPHABETS.length;
-/** Kinds returned by `info(cp) & KIND_MASK` beyond the alphabet ids 0..6. */
-export const KIND_NONE = 7; // a letter outside the model
-export const KIND_MARK = 8;
-export const KIND_OTHER = 9;
+/** Alphabets with a twin bit (`TWIN_SHIFT`): the table's; nothing folds into `Donor`. */
+const N_TWIN = TABLE_ALPHABETS.length;
+// Kinds returned by `info(cp) & KIND_MASK` beyond the alphabet ids 0..7.
+/** `info(cp) & KIND_MASK` of a pack donor (the Donor alphabet). */
+export const KIND_DONOR = DONOR;
+export const KIND_NONE = 8; // a letter outside the model
+export const KIND_MARK = 9;
+export const KIND_OTHER = 10;
 export const KIND_MASK = 0xf;
 export const F_UPPER = 1 << 4;
 /** Letter some language rule looks at (ь ъ ы σ ς palochka): never fast-path. */
@@ -114,7 +125,7 @@ function loadTable(): Table {
   if (table) return table;
   const alphabetOf = new Map<number, number>();
   const order = new Map<number, number>();
-  const letters = CONFUSION_ALPHABETS.map((name, a) => {
+  const letters = TABLE_ALPHABETS.map((name, a) => {
     const list = ALPHABET_LETTERS_PACKED[name].split(',').map((h) => parseInt(h, 16));
     list.forEach((cp, i) => {
       alphabetOf.set(cp, a);
@@ -142,13 +153,14 @@ export function twinPairs(): readonly { a: string; b: string; tag: 'u' | 'x' | '
 export function alphabetLetters(): Readonly<Record<ConfusionAlphabet, string>> {
   const t = loadTable();
   return Object.fromEntries(
-    CONFUSION_ALPHABETS.map((n, a) => [n, t.letters[a]!.map(ch).join('')]),
+    TABLE_ALPHABETS.map((n, a) => [n, t.letters[a]!.map(ch).join('')]),
   ) as Record<ConfusionAlphabet, string>;
 }
 
 const isUpperStr = (c: string) => c !== c.toLowerCase();
 const LETTER_RE = /\p{L}/u;
 const MARK_RE = /\p{M}/u;
+const DIGIT_RE = /\p{Nd}/u;
 /** Fold targets are restricted to core letters (§3.1). */
 function isCore(cp: number, T: number): boolean {
   if (T === LATIN) return (cp >= 0x41 && cp <= 0x5a) || (cp >= 0x61 && cp <= 0x7a);
@@ -177,19 +189,25 @@ const LANG_LIST = (Object.keys(TARGET_LANGUAGES) as TargetLanguage[]).map((name,
 }));
 /** Language bits per alphabet id (Latin, Cyrillic, Greek; 0 for the rest). */
 export const SCRIPT_LANG_MASK: number[] = [0, 0, 0, 0, 0, 0, 0];
+/** The alphabet id of each language bit. */
+export const LANG_ALPHA: readonly number[] = LANG_LIST.map((l) => SCRIPT_ALPHABET[l.script]!);
 for (const l of LANG_LIST) SCRIPT_LANG_MASK[SCRIPT_ALPHABET[l.script]!]! |= 1 << l.bit;
-const EUROPEAN_LATIN = new Set(Object.values(LANGUAGES.Latin).flatMap((a) => [...a]));
 
 // ---------------------------------------------------------------------------
 // Model.
 
 export interface ConfusionModelOptions {
-  /** Fold destinations (§4.4b). Default: English, Russian, Ukrainian, Greek. */
+  /** Fold destinations (§4.5). Default: English, Russian, Ukrainian, Greek. */
   targetLanguages?: readonly TargetLanguage[];
   /** Lookalike-only alphabets (§3.4). Default: every alphabet no target language uses. */
   donorAlphabets?: readonly DonorAlphabet[];
-  /** Enabled conditional twins (§3.3). Default {@link DEFAULT_CONDITIONAL_TWINS}. */
+  /**
+   * Enabled conditional twins (§3.3), as additional packs. Default
+   * {@link DEFAULT_CONDITIONAL_TWINS}. Ignored when `lookalikes` is given.
+   */
   conditionalTwins?: ReadonlySet<ConditionalTwinId> | readonly ConditionalTwinId[];
+  /** The look-alike packs, built by {@link buildLookalikes} (decision 40c). Default {@link defaultLookalikes}. */
+  lookalikes?: Lookalikes;
 }
 
 export type Evidence =
@@ -216,7 +234,17 @@ export interface Inspection {
   blockers: string[];
   /** Alphabet ids the whole word fits. */
   valid: number[];
-  rejected: Partial<Record<ConfusionAlphabet, string>>;
+  /**
+   * Per-language rule: the requested languages (bits, request order)
+   * that can take the word: folded with that language's letters only, it is all its letters
+   * (for a word already of the language's script: it is that language's letters).
+   */
+  validLangs: number[];
+  /** Per language bit: letters of the word that are that language's letters (its native count). */
+  nativeLang: number[];
+  /** Language bits of the requested languages whose letters hold all of the word's letters. */
+  ownLangs: number;
+  rejected: Partial<Record<TargetLanguage, string>>;
   evidence: Evidence | null;
   /** Cluster index of the case-anomaly letter, or -1. */
   anomaly: number;
@@ -230,6 +258,20 @@ export interface ConfusionModel {
   readonly alphabets: readonly ConfusionAlphabet[];
   /** Bit mask of alphabets with an enabled target language. */
   readonly targetMask: number;
+  /** Language bits (`LANG_SHIFT` positions) of the requested target languages (decision 40d). */
+  readonly langMask: number;
+  /** The requested languages, in `targetLanguages` order: bit, name and alphabet id. */
+  readonly languages: readonly { bit: number; name: TargetLanguage; alpha: number }[];
+  /** The word folded into one language's letters (bit), its other letters as written. */
+  foldLang(cl: Clusters, lang: number, anomaly: number): string;
+  /** Language bits of the requested languages (`all`: every known language) holding every letter of `word` (0: none). */
+  langsOf(word: string, all?: boolean): number;
+  /** A letter's twin among one requested language's letters (bit); null if none. */
+  twinInLang(c: string, lang: number): string | null;
+  /** Decision 41b: the unrequested languages (bits) holding all of a word's letters; 0 if a letter is a requested language's. */
+  foreignLangsOf(word: string): number;
+  /** 40f / §4.6: the first requested language of alphabet S whose letters the word folded within S is (bit, -1 none). */
+  fitsLanguage(cl: Clusters, S: number, anomaly: number): number;
   /** Packed per-code-point facts (see the F_* / *_SHIFT constants). */
   info(cp: number): number;
   /** The BMP part of `info`, read directly on the hot path (0 = not computed yet). */
@@ -251,12 +293,15 @@ const cache = new Map<string, ConfusionModel>();
 /** Builds (or returns the cached) confusion model for an option set. */
 export function createConfusionModel(options: ConfusionModelOptions = {}): ConfusionModel {
   const targets = options.targetLanguages ?? DEFAULT_TARGET_LANGUAGES;
-  const twinsOpt = options.conditionalTwins ?? DEFAULT_CONDITIONAL_TWINS;
-  const conditional = [...new Set(twinsOpt)].sort();
-  const key = `${[...targets].join(',')}|${options.donorAlphabets ? [...options.donorAlphabets].join(',') : '*'}|${conditional.join(',')}`;
+  const looks =
+    options.lookalikes ??
+    (options.conditionalTwins
+      ? buildLookalikes({ additional: [...options.conditionalTwins] })
+      : defaultLookalikes());
+  const key = `${[...targets].join(',')}|${options.donorAlphabets ? [...options.donorAlphabets].join(',') : '*'}|${looks.key}`;
   const hit = cache.get(key);
   if (hit) return hit;
-  const model = build(targets, options.donorAlphabets ?? null, conditional);
+  const model = build(targets, options.donorAlphabets ?? null, looks);
   cache.set(key, model);
   return model;
 }
@@ -264,30 +309,68 @@ export function createConfusionModel(options: ConfusionModelOptions = {}): Confu
 function build(
   targetLanguages: readonly TargetLanguage[],
   donorOpt: readonly ConfusionAlphabet[] | null,
-  conditional: readonly ConditionalTwinId[],
+  looks: Lookalikes,
 ): ConfusionModel {
   const t = loadTable();
-  for (const id of conditional)
-    if (!(id in CONDITIONAL_TWINS)) throw new Error(`unknown conditional twin ${id}`);
-  // twins[cp] = per alphabet, the twin code points.
-  const twins = new Map<number, number[][]>();
-  const link = (a: number, b: number) => {
-    for (const [x, y] of [
-      [a, b],
-      [b, a],
-    ] as const) {
-      let per = twins.get(x);
-      if (!per) twins.set(x, (per = Array.from({ length: N_ALPHA }, () => [])));
-      const list = per[t.alphabetOf.get(y)!]!;
-      if (!list.includes(y)) list.push(y);
-    }
+  // Letters of scripts outside the table that an enabled pack maps: the Donor alphabet.
+  const packDonors = new Set<number>();
+  // Decision 40f: a pair into a letter of the donor's own script, outside the twin table, is a
+  // fold within that script (`ı` → `i`, `ſ` → `s`, `ϲ` → `σ`).
+  const sameScript = (d: string, y: string, name: TargetLanguage) =>
+    primaryScript(d) === TARGET_LANGUAGES[name].script &&
+    (looks.intra.has(d) || !isTablePair(d, y));
+  for (const name of targetLanguages)
+    for (const [d, y] of looks.pack[name] ?? [])
+      if (!sameScript(d, y, name)) {
+        const cp = d.codePointAt(0)!;
+        if (!t.alphabetOf.has(cp) && SCRIPT_ALPHABET[primaryScript(d)] === undefined)
+          packDonors.add(cp);
+      }
+  const alphabetOf = (cp: number) => t.alphabetOf.get(cp) ?? (packDonors.has(cp) ? DONOR : -1);
+  // Unrestricted twins (any alphabet, §4.7 evidence): the table's and the enabled
+  // conditional pairs, both ways; pack pairs donor → target.
+  const twinsAll = new Map<number, number[][]>();
+  // Fold twins (decision 40): per enabled target language, its pack, donor → target.
+  const twinsDir = new Map<number, number[][]>();
+  const linkTo = (m: Map<number, number[][]>, x: number, y: number) => {
+    const a = alphabetOf(y);
+    if (a < 0) return;
+    let per = m.get(x);
+    if (!per) m.set(x, (per = Array.from({ length: N_ALPHA }, () => [])));
+    const list = per[a]!;
+    if (!list.includes(y)) list.push(y);
   };
-  for (const [a, b] of t.pairs) link(a, b);
-  const intraLatin = new Map<string, string>();
-  for (const id of conditional) {
-    const d = CONDITIONAL_TWIN_DATA[id]!;
-    for (const [a, b] of d.pairs) link(a, b);
-    for (const [a, b] of d.intraLatin) intraLatin.set(ch(a), ch(b));
+  for (const [a, b] of t.pairs) {
+    linkTo(twinsAll, a, b);
+    linkTo(twinsAll, b, a);
+  }
+  for (const [a, b] of looks.symmetric) {
+    linkTo(twinsAll, a, b);
+    linkTo(twinsAll, b, a);
+  }
+  /** Folds within a script, per alphabet id (decision 40f; Latin: `ı` → `i`, `ſ` → `s`). */
+  const intraOf = new Map<number, Map<string, string>>();
+  const intraAny = new Set<string>();
+  // Pairs given with their case (curated rows, added pairs): the case is the pair's.
+  const caseGiven = new Set<string>();
+  for (const name of targetLanguages) {
+    const L = TARGET_LANGUAGES[name];
+    if (!L) throw new Error(`unknown target language ${name}`);
+    for (const [d, y] of looks.pack[name] ?? []) {
+      // An intra donor (`ı`) folds only within its script; its other pairs stay out.
+      if (looks.intra.has(d) && !sameScript(d, y, name)) continue;
+      if (sameScript(d, y, name)) {
+        const a = SCRIPT_ALPHABET[L.script]!;
+        let m = intraOf.get(a);
+        if (!m) intraOf.set(a, (m = new Map()));
+        if (!m.has(d)) m.set(d, y);
+        intraAny.add(d);
+        continue;
+      }
+      if (!isTablePair(d, y) || CURATED_KEYS.has(`${d}>${y}`)) caseGiven.add(`${d}>${y}`);
+      linkTo(twinsDir, d.codePointAt(0)!, y.codePointAt(0)!);
+      linkTo(twinsAll, d.codePointAt(0)!, y.codePointAt(0)!);
+    }
   }
 
   const targetLetters: (Set<string> | undefined)[] = [];
@@ -312,11 +395,12 @@ function build(
   const inModel = (a: number) => (modelMask & (1 << a)) !== 0;
 
   const twinMemo = new Map<number, string | null>();
-  function twinIn(c: string, T: number, wantUpper = isUpperStr(c), restricted = true) {
+  function twinIn(c: string, T: number, wantUpper = isUpperStr(c), restricted = true, lang = -1) {
     const cp = c.codePointAt(0)!;
-    const key = cp * 32 + T * 4 + (wantUpper ? 2 : 0) + (restricted ? 1 : 0);
+    const key = cp * 512 + (lang + 1) * 32 + T * 4 + (wantUpper ? 2 : 0) + (restricted ? 1 : 0);
     let r = twinMemo.get(key);
-    if (r === undefined) twinMemo.set(key, (r = twinInUncached(c, cp, T, wantUpper, restricted)));
+    if (r === undefined)
+      twinMemo.set(key, (r = twinInUncached(c, cp, T, wantUpper, restricted, lang)));
     return r;
   }
   function twinInUncached(
@@ -325,12 +409,16 @@ function build(
     T: number,
     wantUpper: boolean,
     restricted: boolean,
+    lang: number,
   ) {
-    const all = twins.get(cp)?.[T];
+    const all = (restricted ? twinsDir : twinsAll).get(cp)?.[T];
     if (!all || all.length === 0) return null;
-    const allowed = targetLetters[T];
+    // One language's letters (never another language's of the same script), else the alphabet's.
+    const allowed = lang >= 0 ? LANG_LIST[lang]!.set : targetLetters[T];
     if (restricted && !allowed) return null;
     const up = isUpperStr(c);
+    // Decision 37: a donor without letter case folds to the case it looks like.
+    const caseless = !up && c.toUpperCase() === c;
     let best: number | null = null;
     let bestScore = 0;
     for (const y of all) {
@@ -338,7 +426,13 @@ function build(
       const yUp = isUpperStr(ys);
       if (!isCore(y, T)) continue;
       if (restricted && !allowed!.has(ys.toLowerCase())) continue;
-      if (yUp !== up && !CROSS_CASE_ALLOWED.has(`${c}>${ys}`)) continue;
+      if (
+        yUp !== up &&
+        !caseless &&
+        !CROSS_CASE_ALLOWED.has(`${c}>${ys}`) &&
+        !caseGiven.has(`${c}>${ys}`)
+      )
+        continue;
       const score = (yUp !== wantUpper ? 1 << 20 : 0) + t.order.get(y)!;
       if (best === null || score < bestScore) [best, bestScore] = [y, score];
     }
@@ -346,16 +440,12 @@ function build(
   }
 
   // A Latin extra letter is a donor only if it has a twin among the Latin
-  // target letters and is not a letter of a modelled European language (§3.4).
+  // target letters and is not a letter of a requested language written in Latin letters (§3.4, 40d).
   const donorExtra = new Set<number>();
   if (inModel(LATIN_EXTRA))
     for (const cp of t.letters[LATIN_EXTRA]!) {
       const c = ch(cp);
-      if (
-        !EUROPEAN_LATIN.has(c.toLowerCase()) &&
-        !targetLetters[LATIN]?.has(c.toLowerCase()) &&
-        twinIn(c, LATIN, isUpperStr(c), true)
-      )
+      if (!targetLetters[LATIN]?.has(c.toLowerCase()) && twinIn(c, LATIN, isUpperStr(c), true))
         donorExtra.add(cp);
     }
 
@@ -363,9 +453,12 @@ function build(
   function scriptOf(c: string): number {
     const cp = c.codePointAt(0)!;
     let a = t.alphabetOf.get(cp);
+    if (a === undefined && packDonors.has(cp)) a = DONOR;
     if (a === undefined) a = SCRIPT_ALPHABET[primaryScript(c)];
     if (a === undefined) return -1;
     if (a === LATIN_EXTRA && !donorExtra.has(cp)) return inModel(LATIN) ? LATIN : -1;
+    // Decision 40f: a curated donor (`ϲ`) of a script no requested language writes is a donor.
+    if (a < N_ALPHA && DONOR_CPS.has(cp) && !(targetMask & (1 << a))) return DONOR;
     return inModel(a) ? a : -1;
   }
 
@@ -375,20 +468,27 @@ function build(
   function compute(cp: number): number {
     const s = ch(cp);
     if (cp === 0x27 || cp === 0x2019) return F_COMPUTED | KIND_OTHER | F_APOSTROPHE;
-    if (!LETTER_RE.test(s)) return F_COMPUTED | (MARK_RE.test(s) ? KIND_MARK : KIND_OTHER);
-    const base = String.fromCodePoint(s.normalize('NFD').codePointAt(0)!);
-    if (!LETTER_RE.test(base)) return F_COMPUTED | KIND_OTHER;
+    const donor = packDonors.has(cp);
+    if (!donor && !LETTER_RE.test(s)) {
+      // Decision 0a: a digit of another script with no mapping keeps its word from being mapped.
+      if (cp > 0x7f && DIGIT_RE.test(s) && primaryScript(s) !== 'Common')
+        return F_COMPUTED | KIND_NONE;
+      return F_COMPUTED | (MARK_RE.test(s) ? KIND_MARK : KIND_OTHER);
+    }
+    const base = donor ? s : String.fromCodePoint(s.normalize('NFD').codePointAt(0)!);
+    if (!donor && !LETTER_RE.test(base)) return F_COMPUTED | KIND_OTHER;
     const a = scriptOf(base);
     let v = F_COMPUTED | (a < 0 ? KIND_NONE : a);
     const up = isUpperStr(base);
     if (up) v |= F_UPPER;
     if (RULE_LETTERS.has(base)) v |= F_RULE;
     if (I_SHAPED.has(base)) v |= F_I_SHAPED;
-    if (intraLatin.has(base)) v |= F_INTRA_LATIN;
+    if (intraAny.has(base)) v |= F_INTRA_LATIN;
     if (a >= 0)
-      for (let T = 0; T < N_ALPHA; T++)
+      for (let T = 0; T < N_TWIN; T++)
         if (T !== a && inModel(T) && twinIn(base, T, up, true)) v |= 1 << (TWIN_SHIFT + T);
-    const low = base.toLowerCase();
+    // A listed precomposed letter (`ё`) is a letter of its own, not its base (per-language rule).
+    const low = donor ? s.toLowerCase() : letterKey(s);
     for (const l of LANG_LIST) if (l.set.has(low)) v |= 1 << (LANG_SHIFT + l.bit);
     return v;
   }
@@ -420,8 +520,8 @@ function build(
     return { base, marks, letters };
   }
 
-  /** Folds every letter not native to T into its twin in T (§4.1 step 7). */
-  function fold(cl: Clusters, T: number, anomaly: number): string {
+  /** Folds every letter not native to T into its twin in T (§4.1 step 7); `lang`: that language's letters only. */
+  function fold(cl: Clusters, T: number, anomaly: number, lang = -1): string {
     const L = cl.letters;
     let lowerAfterFirst = 0;
     for (let k = 1; k < L.length; k++) if (!isUpperStr(cl.base[L[k]!]!)) lowerAfterFirst++;
@@ -437,14 +537,57 @@ function build(
       }
       const pos = li++;
       if (i === anomaly && T === LATIN) out += 'l' + m;
-      else if (T === LATIN && intraLatin.has(b)) out += intraLatin.get(b)! + m;
+      else if (intraOf.get(T)?.has(b)) out += intraOf.get(T)!.get(b)! + m;
       else if (scriptOf(b) === T) out += b + m;
-      else out += (twinIn(b, T, pos > 0 && lowerWord ? false : isUpperStr(b)) ?? b) + m;
+      else out += (twinIn(b, T, pos > 0 && lowerWord ? false : isUpperStr(b), true, lang) ?? b) + m;
     }
     return out.normalize('NFC');
   }
 
-  /** §4.4 + §4.6: does a single-script word fit some language of S? */
+  /** The requested languages in request order. */
+  const languages = targetLanguages.map((name) => {
+    const l = LANG_LIST.find((x) => x.name === name)!;
+    return { bit: l.bit, name, alpha: SCRIPT_ALPHABET[l.script]! };
+  });
+  /** A cluster's letter as the alphabets list it (its case kept): `е` + U+0308 is `ё`. */
+  const caseKey = (b: string, m: string) => {
+    const k = m ? letterKey(b + m) : letterKey(b);
+    return isUpperStr(b) ? k.toUpperCase() : k;
+  };
+  /** The word's letters as the alphabets list them (see {@link letterKey}), case kept. */
+  const keysOf = (cl: Clusters) => cl.letters.map((i) => caseKey(cl.base[i]!, cl.marks[i]!));
+  /** `letters` (lowercase letter keys) are all letters of language `bit`. */
+  const holdsAll = (bit: number, letters: readonly string[]) => {
+    const set = LANG_LIST[bit]!.set;
+    return letters.every((c) => set.has(c));
+  };
+  function lettersOf(word: string): string[] {
+    const cl = clusters(word);
+    return keysOf(cl)
+      .map((c) => c.toLowerCase())
+      .filter((c, k) => LETTER_RE.test(cl.base[cl.letters[k]!]!));
+  }
+  function langsOf(word: string, all = false): number {
+    const letters = lettersOf(word);
+    if (!letters.length) return 0;
+    let m = 0;
+    for (const l of all ? LANG_LIST : languages) if (holdsAll(l.bit, letters)) m |= 1 << l.bit;
+    return m;
+  }
+
+  const requestedBits = languages.reduce((m, l) => m | (1 << l.bit), 0);
+  /**
+   * Decision 41b: the unrequested languages (bits) a word of no requested language is written
+   * in, each holding all its letters; 0 when a letter is a requested language's.
+   */
+  function foreignLangsOf(word: string): number {
+    const letters = lettersOf(word);
+    if (!letters.length) return 0;
+    for (const l of languages) if (letters.some((c) => LANG_LIST[l.bit]!.set.has(c))) return 0;
+    return langsOf(word, true) & ~requestedBits;
+  }
+
+  /** §4.4 + §4.7: does a single-script word fit some language of S? */
   function languageViolation(
     bases: readonly string[],
     S: number,
@@ -453,7 +596,11 @@ function build(
   ): Evidence | null {
     if (S !== LATIN && S !== CYRILLIC && S !== GREEK) return null;
     const script = CONFUSION_ALPHABETS[S] as LanguageScript;
-    const langs = LANG_LIST.filter((l) => l.script === script && (!only || only.includes(l.name)));
+    // Decision 40d: the requested languages of the script only.
+    const req = targetNames[S];
+    const langs = LANG_LIST.filter(
+      (l) => l.script === script && req?.includes(l.name) && (!only || only.includes(l.name)),
+    );
     const low = bases.map((c) => c.toLowerCase());
     let best: string[] | null = null;
     let ortho: Evidence | null = null;
@@ -479,35 +626,62 @@ function build(
     // other alphabet (Tatar җ, Bashkir ҡ) just means an unmodelled language.
     const look = (best ?? []).filter((c) => {
       for (let T = 0; T < N_ALPHA; T++)
-        if (T !== S && inModel(T) && twinIn(c, T, isUpperStr(c), false)) return true;
+        if (T !== S && inModel(T) && twinIn(c, T, isUpperStr(c), true)) return true;
       return false;
     });
     return look.length ? { kind: 'foreign', letters: look.join('') } : null;
   }
 
-  const latinTargetSets = LANG_LIST.filter((l) => targetNames[LATIN]?.includes(l.name)).map(
-    (l) => l.set,
-  );
+  // Decision 40d: language rules of requested languages only (the Caucasian palochka digraph).
+  const palochkaLang = targetLanguages.some((n) => TARGET_LANGUAGES[n].letters.includes('ӏ'));
   /**
-   * §3.3: an intra-Latin fold applies only if every letter of the folded word,
-   * accents included, is in one Latin target language (ışık → işik keeps ş: no fold).
+   * §3.3, 40f: a fold within a script applies only if the word folded with one requested
+   * language's letters is all that language's letters (per-language rule). Latin counts
+   * accents too (ışık → işik keeps ş: no fold); other scripts their NFD base letters (λόγοϲ).
+   * Returns the language bit, -1 for none.
    */
-  function fitsLatinTarget(folded: string): boolean {
-    const cs = [...folded.toLowerCase()];
-    if (cs.some((c) => MARK_RE.test(c))) return false;
-    const letters = cs.filter((c) => LETTER_RE.test(c));
-    return latinTargetSets.some((set) => letters.every((c) => set.has(c)));
+  function fitsLanguage(cl: Clusters, S: number, anomaly: number): number {
+    for (const l of languages) {
+      if (l.alpha !== S) continue;
+      const folded = fold(cl, S, anomaly, l.bit);
+      const set = LANG_LIST[l.bit]!.set;
+      if (S === LATIN) {
+        const cs = [...folded.toLowerCase()];
+        if (cs.some((c) => MARK_RE.test(c))) continue;
+        if (cs.filter((c) => LETTER_RE.test(c)).every((c) => set.has(c))) return l.bit;
+        continue;
+      }
+      const fc = clusters(folded);
+      const letters = keysOf(fc)
+        .map((c) => c.toLowerCase())
+        .filter((c, k) => LETTER_RE.test(fc.base[fc.letters[k]!]!));
+      if (letters.every((c) => set.has(c))) return l.bit;
+    }
+    return -1;
   }
 
-  /** §4.5: an I-shaped last letter after lowercase letters (≥ 4 letters); -1 if none. */
+  /** §4.6: an I-shaped last letter after lowercase letters (≥ 4 letters); -1 if none. */
   function caseAnomaly(cl: Clusters): number {
-    const L = cl.letters;
+    // Decision 42: a positional check applies per dash-separated part (`type-I` keeps its `I`).
+    let from = 0;
+    for (let i = 0; i < cl.base.length; i++) {
+      const b = cl.base[i]!;
+      if (b !== '-' && b !== '\u2010' && b !== '\u2011') continue;
+      const part = cl.letters.filter((k) => k >= from && k < i);
+      const r = partAnomaly(cl, part);
+      if (r >= 0) return r;
+      from = i + 1;
+    }
+    return partAnomaly(cl, from ? cl.letters.filter((k) => k >= from) : cl.letters);
+  }
+
+  function partAnomaly(cl: Clusters, L: readonly number[]): number {
     if (L.length < 4) return -1;
     const last = cl.base[L[L.length - 1]!]!;
     if (!I_SHAPED.has(last)) return -1;
     for (let k = 1; k < L.length - 1; k++) if (isUpperStr(cl.base[L[k]!]!)) return -1;
     const prev = cl.base[L[L.length - 2]!]!.toLowerCase();
-    if (PALOCHKA.has(last) && PALOCHKA_AFTER.has(prev)) return -1; // Caucasian digraph
+    if (palochkaLang && PALOCHKA.has(last) && PALOCHKA_AFTER.has(prev)) return -1; // Caucasian digraph
     return L[L.length - 1]!;
   }
 
@@ -534,7 +708,7 @@ function build(
     }
     const whole = scripts.size === 1 && !scripts.has(-1);
     const anomaly = whole ? caseAnomaly(cl) : -1;
-    const rejected: Partial<Record<ConfusionAlphabet, string>> = {};
+    const rejected: Partial<Record<TargetLanguage, string>> = {};
     const valid: number[] = [];
     for (let T = 0; T < N_ALPHA; T++) {
       if (!inModel(T) || blockers[T] !== '') continue;
@@ -544,27 +718,72 @@ function build(
       }
       if (!targetNames[T]) continue;
       const folded = clusters(fold(cl, T, anomaly));
-      const v = languageViolation(
-        folded.letters.map((i) => folded.base[i]!),
-        T,
-        false,
-        targetNames[T]!,
-      );
-      if (v) rejected[CONFUSION_ALPHABETS[T]!] = v.kind === 'orthography' ? v.rule : v.letters;
-      else valid.push(T);
+      const v = languageViolation(keysOf(folded), T, false, targetNames[T]!);
+      if (!v) {
+        valid.push(T);
+        continue;
+      }
+      // No requested language of T takes the fold: each one's own reason (letters or rule).
+      for (const n of targetNames[T]!) {
+        const w = languageViolation(keysOf(folded), T, false, [n]) ?? v;
+        rejected[n as TargetLanguage] = w.kind === 'orthography' ? w.rule : w.letters;
+      }
+    }
+    // Per-language rule: which requested languages can take the word, each with its own letters.
+    const keys = keysOf(cl);
+    const lowBases = keys.map((c) => c.toLowerCase());
+    const nativeLang: number[] = [];
+    let ownLangs = 0;
+    for (const l of LANG_LIST) {
+      const set = l.set;
+      nativeLang[l.bit] = lowBases.filter((c) => set.has([...c][0]!)).length;
+    }
+    const validLangs: number[] = [];
+    for (const l of languages) {
+      const own =
+        bases.length > 0 &&
+        holdsAll(
+          l.bit,
+          lowBases.map((c) => [...c][0]!),
+        );
+      if (own) ownLangs |= 1 << l.bit;
+      if (!inModel(l.alpha) || blockers[l.alpha] !== '') continue;
+      if (whole && scripts.has(l.alpha)) {
+        if (own) validLangs.push(l.bit);
+        continue;
+      }
+      const folded = clusters(fold(cl, l.alpha, anomaly, l.bit));
+      const v = languageViolation(keysOf(folded), l.alpha, false, [l.name]);
+      if (!v) validLangs.push(l.bit);
     }
     let evidence: Evidence | null = null;
     if (bases.length && whole) {
       const S = letterScripts[0]!;
+      // Twin evidence reads base letters (its look-alike test is per base: `її` under English and
+      // Russian is evidence, `её` under English and Ukrainian is not); membership is exact above.
       const lang = languageViolation(bases, S, /['’]$/.test(seg));
-      let intra = S === LATIN ? bases.filter((c) => intraLatin.has(c)) : [];
-      if (intra.length && !fitsLatinTarget(fold(cl, LATIN, -1))) intra = [];
+      const own = intraOf.get(S);
+      let intra = own ? bases.filter((c) => own.has(c)) : [];
+      if (intra.length && fitsLanguage(cl, S, -1) < 0) intra = [];
       if (anomaly >= 0) evidence = { kind: 'case', letters: cl.base[anomaly]! };
       else if (S === LATIN_EXTRA) evidence = { kind: 'donor', letters: '' };
       else if (intra.length) evidence = { kind: 'conditional', letters: intra.join('') };
-      else if (lang) evidence = lang;
+      // Decision 40e: language rules only narrow targets; a broken rule is no evidence.
+      else if (lang && lang.kind !== 'orthography') evidence = lang;
     }
-    const r: Inspection = { cl, scripts, native, blockers, valid, rejected, evidence, anomaly };
+    const r: Inspection = {
+      cl,
+      scripts,
+      native,
+      blockers,
+      valid,
+      validLangs,
+      nativeLang,
+      ownLangs,
+      rejected,
+      evidence,
+      anomaly,
+    };
     if (inspectCache.size >= 20000) inspectCache.clear();
     inspectCache.set(seg, r);
     return r;
@@ -572,17 +791,29 @@ function build(
 
   const alphabets = CONFUSION_ALPHABETS.filter((_, a) => inModel(a));
   return {
-    key: `${targetLanguages.join(',')}|${donors.join(',')}|${conditional.join(',')}`,
+    key: `${targetLanguages.join(',')}|${donors.join(',')}|${looks.key}`,
     targetLanguages,
     donorAlphabets: donors,
     alphabets,
     targetMask,
+    langMask: LANG_LIST.filter((l) => targetLanguages.includes(l.name)).reduce(
+      (m, l) => m | (1 << l.bit),
+      0,
+    ),
     info,
     bmpInfo: bmp,
     twinIn: (c, T, wantUpper, restricted) =>
       twinIn(c, CONFUSION_ALPHABETS.indexOf(T), wantUpper ?? isUpperStr(c), restricted ?? true),
     inspect,
     fold,
+    languages,
+    foldLang: (cl, lang, anomaly) =>
+      fold(cl, languages.find((l) => l.bit === lang)!.alpha, anomaly, lang),
+    langsOf,
+    foreignLangsOf,
+    fitsLanguage,
+    twinInLang: (c, lang) =>
+      twinIn(c, languages.find((l) => l.bit === lang)!.alpha, isUpperStr(c), true, lang),
     languageViolation,
   };
 }
@@ -618,3 +849,194 @@ export function twinsOf(
 }
 
 export const ALPHABET_ID = { LATIN, CYRILLIC, GREEK, LATIN_EXTRA } as const;
+
+// ---------------------------------------------------------------------------
+// Look-alike packs (decisions 40–40c).
+
+/** A look-alike pair, one direction: the donor and the target letter a reader takes it for. */
+export type LookalikePair = readonly [donor: string, target: string];
+/** Pairs per target language (decision 40: a pack holds conversions into its target only). */
+export type LookalikePack = Partial<Record<TargetLanguage, readonly LookalikePair[]>>;
+
+/** Ids of the additional packs (decision 40a). */
+export type AdditionalPackId = ConditionalTwinId | 'optional';
+
+/**
+ * How the packs are put together (decision 40a): the default pack of every
+ * target, the additional packs named, then pairs added and removed — any
+ * pair, either direction.
+ */
+export interface LookalikeConfig {
+  /** Additional packs on top of the defaults. Default {@link DEFAULT_ADDITIONAL_PACKS}. */
+  additional?: readonly AdditionalPackId[];
+  /** Pairs added, per target language. */
+  add?: LookalikePack;
+  /** Pairs removed, per target language. */
+  remove?: LookalikePack;
+}
+
+/** Packs built by {@link buildLookalikes}: a value to pass to `analyze` (decision 40c). */
+export interface Lookalikes {
+  readonly key: string;
+  /** The pairs per target language. */
+  readonly pack: Readonly<Partial<Record<TargetLanguage, readonly LookalikePair[]>>>;
+  /** Donors read as another Latin letter by the target languages written in Latin letters (`ı` → `i`): the model's intra-Latin folds. */
+  readonly intra: ReadonlySet<string>;
+  /** Conditional pairs enabled (both ways), for the unrestricted twin relation (§4.7). */
+  readonly symmetric: readonly (readonly [number, number])[];
+}
+
+/** Additional packs on by default: today's conditional defaults, the x-likes. */
+export const DEFAULT_ADDITIONAL_PACKS: readonly AdditionalPackId[] =
+  DEFAULT_CONDITIONAL_TWIN_IDS.filter((id) => id !== 'ı~i') as AdditionalPackId[];
+
+/** `ı` → `i`: in the default English pack, not a conditional twin. */
+const DEFAULT_INTRA: readonly LookalikePair[] = [['ı', 'i']];
+
+/** Target languages holding a letter (lowercase), for packs derived from the twin table. */
+function languagesOf(y: string): TargetLanguage[] {
+  const low = y.toLowerCase();
+  const script = primaryScript(y);
+  return (Object.keys(TARGET_LANGUAGES) as TargetLanguage[]).filter(
+    (n) => TARGET_LANGUAGES[n].script === script && TARGET_LANGUAGES[n].letters.includes(low),
+  );
+}
+
+function addTo(
+  out: Partial<Record<TargetLanguage, LookalikePair[]>>,
+  L: TargetLanguage,
+  p: LookalikePair,
+) {
+  const list = (out[L] ??= []);
+  if (!list.some(([d, y]) => d === p[0] && y === p[1])) list.push(p);
+}
+
+let defaults: Record<TargetLanguage, LookalikePair[]> | null = null;
+/**
+ * The default pack of every target language: the twin table's pairs into its
+ * letters (each twin pair gives both directions), `ı` → `i` for the Latin
+ * targets, and the curated default donor rows (donor-rows.ts).
+ */
+export function defaultPacks(): Readonly<Record<TargetLanguage, readonly LookalikePair[]>> {
+  if (defaults) return defaults;
+  const t = loadTable();
+  const out: Partial<Record<TargetLanguage, LookalikePair[]>> = {};
+  for (const [a, b] of t.pairs)
+    for (const [x, y] of [
+      [a, b],
+      [b, a],
+    ] as const)
+      for (const L of languagesOf(ch(y))) addTo(out, L, [ch(x), ch(y)]);
+  for (const L of Object.keys(TARGET_LANGUAGES) as TargetLanguage[])
+    if (TARGET_LANGUAGES[L].script === 'Latin') for (const p of DEFAULT_INTRA) addTo(out, L, p);
+  for (const [cp, y, L, pack] of DONOR_ROWS)
+    if (pack === 'default') addTo(out, L as TargetLanguage, [ch(cp), y]);
+  // Decision 40f: a table pair a curated row replaces (`ſ` reads `s`, not `f`).
+  for (const [d, y, L] of REPLACED_TABLE_PAIRS)
+    out[L as TargetLanguage] = (out[L as TargetLanguage] ?? []).filter(
+      ([a, b]) => !(a === d && b === y),
+    );
+  for (const L of Object.keys(TARGET_LANGUAGES) as TargetLanguage[]) out[L] ??= [];
+  return (defaults = out as Record<TargetLanguage, LookalikePair[]>);
+}
+
+/** An additional pack's pairs per target language, and its symmetric twin pairs. */
+function additionalPack(id: AdditionalPackId): {
+  pack: Partial<Record<TargetLanguage, LookalikePair[]>>;
+  intra: Set<string>;
+  symmetric: [number, number][];
+} {
+  const pack: Partial<Record<TargetLanguage, LookalikePair[]>> = {};
+  const intra = new Set<string>();
+  if (id === 'optional') {
+    for (const [cp, y, L, p] of DONOR_ROWS)
+      if (p === 'optional') addTo(pack, L as TargetLanguage, [ch(cp), y]);
+    return { pack, intra, symmetric: [] };
+  }
+  const d = CONDITIONAL_TWIN_DATA[id];
+  if (!d) throw new Error(`unknown look-alike pack ${id}`);
+  for (const [a, b] of d.pairs)
+    for (const [x, y] of [
+      [a, b],
+      [b, a],
+    ] as const)
+      for (const L of languagesOf(ch(y))) addTo(pack, L, [ch(x), ch(y)]);
+  for (const [a, b] of d.intraLatin) {
+    intra.add(ch(a));
+    for (const L of Object.keys(TARGET_LANGUAGES) as TargetLanguage[])
+      if (TARGET_LANGUAGES[L].script === 'Latin') addTo(pack, L, [ch(a), ch(b)]);
+  }
+  return { pack, intra, symmetric: d.pairs };
+}
+
+const builtPacks = new Map<string, Lookalikes>();
+
+/**
+ * Builds the look-alike packs for a configuration (decisions 40a, 40c), once:
+ * the caller builds a custom configuration before processing and passes it as
+ * `lookalikes`; the default is {@link defaultLookalikes}. An unknown additional
+ * pack or target language throws a plain `Error` (`unknown look-alike pack …`,
+ * `unknown target language …`).
+ */
+export function buildLookalikes(config: LookalikeConfig = {}): Lookalikes {
+  const additional = [...new Set(config.additional ?? DEFAULT_ADDITIONAL_PACKS)].sort();
+  const norm = (p: LookalikePack | undefined) =>
+    p
+      ? (Object.keys(p) as TargetLanguage[])
+          .sort()
+          .map((L) => `${L}:${[...p[L]!].map(([d, y]) => d + y).join(',')}`)
+          .join(';')
+      : '';
+  const key = `${additional.join(',')}|+${norm(config.add)}|-${norm(config.remove)}`;
+  const hit = builtPacks.get(key);
+  if (hit) return hit;
+  for (const L of [...Object.keys(config.add ?? {}), ...Object.keys(config.remove ?? {})])
+    if (!(L in TARGET_LANGUAGES)) throw new Error(`unknown target language ${L}`);
+  const pack: Partial<Record<TargetLanguage, LookalikePair[]>> = {};
+  for (const [L, list] of Object.entries(defaultPacks()) as [TargetLanguage, LookalikePair[]][])
+    for (const p of list) addTo(pack, L, p);
+  const intra = new Set<string>(DEFAULT_INTRA.map(([d]) => d));
+  const symmetric: [number, number][] = [];
+  for (const id of additional) {
+    const a = additionalPack(id);
+    for (const [L, list] of Object.entries(a.pack) as [TargetLanguage, LookalikePair[]][])
+      for (const p of list) addTo(pack, L, p);
+    for (const d of a.intra) intra.add(d);
+    symmetric.push(...a.symmetric);
+  }
+  for (const [L, list] of Object.entries(config.add ?? {}) as [TargetLanguage, LookalikePair[]][])
+    for (const [d, y] of list) {
+      addTo(pack, L, [d, y]);
+      // A pair between two Latin letters outside the table is an intra-Latin fold.
+      if (primaryScript(d) === 'Latin' && primaryScript(y) === 'Latin' && !isTablePair(d, y))
+        intra.add(d);
+    }
+  for (const [L, list] of Object.entries(config.remove ?? {}) as [
+    TargetLanguage,
+    LookalikePair[],
+  ][])
+    pack[L] = (pack[L] ?? []).filter(([d, y]) => !list.some(([rd, ry]) => rd === d && ry === y));
+  // Decision 40f, the loop guard: a pack never maps a letter of its own language as a donor.
+  for (const L of Object.keys(pack) as TargetLanguage[]) {
+    const letters = TARGET_LANGUAGES[L].letters;
+    pack[L] = pack[L]!.filter(([d]) => !letters.includes(d.toLowerCase()));
+  }
+  const built: Lookalikes = Object.freeze({ key, pack, intra, symmetric });
+  builtPacks.set(key, built);
+  return built;
+}
+
+/** The curated rows as `donor>target`: their case is the judged one (decision 37). */
+const DONOR_CPS = new Set(DONOR_ROWS.map(([cp]) => cp));
+const CURATED_KEYS = new Set(DONOR_ROWS.map(([cp, y]) => `${String.fromCodePoint(cp)}>${y}`));
+
+let tablePairs: Set<string> | null = null;
+function isTablePair(d: string, y: string): boolean {
+  tablePairs ??= new Set(loadTable().pairs.flatMap(([a, b]) => [`${a}.${b}`, `${b}.${a}`]));
+  return tablePairs.has(`${d.codePointAt(0)}.${y.codePointAt(0)}`);
+}
+
+/** The ready-made default packs (decision 40c). */
+export function defaultLookalikes(): Lookalikes {
+  return buildLookalikes();
+}

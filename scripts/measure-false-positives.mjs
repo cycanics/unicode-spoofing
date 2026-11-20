@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * MEASUREMENT — false positives of the language evidence: foreign letters
- * (§4.4), case anomaly (§4.5), positional spelling rules (§4.6), plus the
- * not-adopted mid-word I-for-l rule (§15).
+ * (§4.4), case anomaly (§4.6), positional spelling rules (§4.7), plus the
+ * not-adopted mid-word I-for-l rule (§8.5).
  *
  *   node scripts/measure-false-positives.mjs                       # built-in token lists
  *   node scripts/measure-false-positives.mjs --dict=Script:file …  # dictionary words with evidence
@@ -25,7 +25,7 @@ const words = (f) =>
     .map((l) => l.split('/')[0].trim())
     .filter(Boolean);
 
-/** camelCase / brand / formula tokens the case-anomaly rule (§4.5) must leave alone. */
+/** camelCase / brand / formula tokens the case-anomaly rule (§4.6) must leave alone. */
 export const CASE_LEGIT = (
   'iPhone GitHub McDonald eBay YouTube PayPal LinkedIn iOS macOS WiFi JavaScript DeepL NaI AgI PbI2 ' +
   'CsI getId userId isIn openAI OpenAI SwiftUI PowerBI WWII HenryVIII XboX iPadOS ChatGPT TikTok WhatsApp ' +

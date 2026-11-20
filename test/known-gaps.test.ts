@@ -17,11 +17,11 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { analyze, type ScriptName } from '../src';
+import { analyze, type TargetLanguage } from '../src';
 
 /** Was anything flagged? */
-const flagged = (input: string, expectedScripts?: ScriptName[]) =>
-  analyze(input, expectedScripts ? { expectedScripts } : undefined).spoofed;
+const flagged = (input: string, inputLanguages?: TargetLanguage[]) =>
+  analyze(input, inputLanguages ? { inputLanguages } : undefined).spoofed;
 
 describe('known gap: allowed multi-script combinations (UTS #39 augmented sets)', () => {
   // The detector flags ANY intra-token script mix. UTS #39 treats some
@@ -36,7 +36,7 @@ describe('known gap: allowed multi-script combinations (UTS #39 augmented sets)'
 
 describe('known gap: URL host-separator confusables', () => {
   // Letter homographs in a domain ARE caught: "pаypal.com" (Cyrillic a) flags
-  // mixed_script, and "аррӏе.com" flags confusable_word with expectedScripts.
+  // mixed_script, and "аррӏе.com" flags confusable_word with inputLanguages.
   // What is NOT caught is a compatibility FULL STOP spoofing the label dot
   // ("example．com", "example。com"). The blocker: U+FF0E / U+3002 are ordinary
   // sentence punctuation in CJK ("終わり。次へ"), so flagging them needs URL/host
@@ -88,21 +88,21 @@ describe('known gap: mixed / confusable numeral systems', () => {
 });
 
 describe('known gap (default mode only): standalone whole-script confusables (no caller context)', () => {
-  // WITH expectedScripts the detector catches these (see the main suite). But a
+  // WITH inputLanguages the detector catches these (see the main suite). But a
   // bare all-Cyrillic word whose skeleton is ASCII, analyzed with NO context,
   // is genuinely ambiguous — real Cyrillic words collide too ("оса"→"oca",
   // "сор"→"cop") — so it is not flagged by default. Callers opt in by declaring
-  // the scripts they expect. Default mode only: with confusionModel: 'alphabet'
+  // the scripts they expect. Default mode only: with confusionModel: 'language'
   // the foreign letter ӏ is evidence and аррӏе folds to apple
   // (test/analyze-options.test.ts).
-  it('flags all-Cyrillic "apple" (аррӏе) with no expectedScripts', () => {
+  it('flags all-Cyrillic "apple" (аррӏе) with no inputLanguages', () => {
     expect(flagged('аррӏе')).toBe(true);
   });
 });
 
 /* ---------------------------------------------------------------------------
  * Gaps surfaced by porting the out-of-character corpus (see invisible.test.ts).
- * Everything else that corpus covers is now handled and lives in the main suite.
+ * Everything else that corpus covers is handled and lives in the main suite.
  * ------------------------------------------------------------------------- */
 
 describe('known gap: the Unicode whitespace family', () => {

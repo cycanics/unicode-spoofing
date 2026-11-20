@@ -1,5 +1,5 @@
 /**
- * The resolver (src/resolve.ts): the rows of docs/confusion-model.md §4.7,
+ * The resolver (src/resolve.ts): the rows of docs/confusion-model.md §4.8,
  * the wholeScriptFold mode table of §4.3, and a property test — a real word
  * with one injected lookalike resolves back to itself when it holds a proof
  * letter against the lookalike's alphabet and the lookalike folds back to
@@ -7,7 +7,10 @@
  */
 import { describe, expect, it } from 'vitest';
 import { createConfusionModel, type ConfusionModelOptions } from '../src/confusion';
-import { resolveTokens, type WholeScriptFold, type WordResolution } from '../src/resolve';
+import { analyze } from '../src';
+import type { TargetLanguage } from '../src/languages';
+import { resolveTokens } from './helpers/resolve-tokens';
+import type { WholeScriptFold, WordResolution } from '../src/resolve';
 
 const TOKEN_RE = /[\p{L}\p{M}\p{N}\p{Cf}'’]+/gu;
 
@@ -15,7 +18,7 @@ function resolve(text: string, mode: WholeScriptFold = 'all', o: ConfusionModelO
   const tokens = [...text.matchAll(TOKEN_RE)];
   const { resolved } = resolveTokens(
     text,
-    { starts: tokens.map((t) => t.index), ends: tokens.map((t) => t.index + t[0].length) },
+    tokens.map((t) => t.index),
     createConfusionModel(o),
     {
       wholeScriptFold: mode,
@@ -33,52 +36,88 @@ function resolve(text: string, mode: WholeScriptFold = 'all', o: ConfusionModelO
   return { normalized: out + text.slice(cursor), words };
 }
 
-/** [text, normalized, word → `rule/class` of the resolved words] (§4.7, defaults). */
+/** [text, normalized, word → `rule/class` of the resolved words] (§4.8, defaults). */
 const ROWS: [string, string, string[]][] = [
   ['НОТ dog', 'HOT dog', ['window/confusable']],
   ['НОТ deal today', 'HOT deal today', ['window/confusable']],
   ['This is НОТ news', 'This is HOT news', ['neighbours/confusable']],
   ['Мы были в НОТ', 'Мы были в НОТ', []],
   ['НОТ', 'НОТ', []],
-  ['cоса', 'соса', ['word-majority/confusable']],
-  ['TЕХ', 'ТЕХ', ['word-majority/confusable']],
-  ['Αрр', 'Арр', ['word-majority/confusable']],
-  ['HОT', 'HOT', ['word-majority/confusable']],
-  ['НOТ', 'НОТ', ['word-majority/confusable']],
-  ['CОК', 'СОК', ['word-majority/confusable']],
-  ['COК', 'COK', ['word-majority/confusable']],
-  ['drink cоса now', 'drink coca now', ['neighbours/confusable']],
-  ['open the Αрр', 'open the App', ['window/confusable']],
-  ['Bank ассоunt verification', 'Bank account verification', ['neighbours/confusable']],
-  ['Wе landed at Orly.', 'We landed at Orly.', ['window/confusable']],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['cоса', 'cоса', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['TЕХ', 'TЕХ', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decisions 41m, 41n: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['Αрр', 'Αрр', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['HОT', 'HОT', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['НOТ', 'НOТ', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['CОК', 'CОК', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['COК', 'COК', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['drink cоса now', 'drink cоса now', []],
+  // Decisions 41m, 41n: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['open the Αрр', 'open the Αрр', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['Bank ассоunt verification', 'Bank ассоunt verification', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['Wе landed at Orly.', 'Wе landed at Orly.', []],
   ['аррӏе.com', 'apple.com', ['window/confusable']],
-  ['ΑΡΡLE', 'APPLE', ['word-majority/confusable']],
-  ['раураl', 'paypal', ['word-majority/confusable']],
-  ['иser', 'иser', ['no-valid-alphabet/mixed']],
-  ['my иser name', 'my иser name', ['no-valid-alphabet/mixed']],
-  ['кey', 'кеу', ['word-majority/confusable']],
-  ['тap', 'тар', ['word-majority/confusable']],
-  [
-    'тail admiп вank тime quіск Пpивеt',
-    'тail admiп вank тime quіск Пpивеt',
-    Array(6).fill('no-valid-alphabet/mixed'),
-  ],
-  ['paᏏy', 'paᏏy', ['no-valid-alphabet/mixed']],
-  ['ьank ъеst', 'ьank ъеst', ['no-valid-alphabet/mixed', 'no-valid-alphabet/mixed']],
-  ['Пpивет', 'Привет', ['word-majority/confusable']],
-  ['Москвa', 'Москва', ['word-majority/confusable']],
-  ['paypaІ', 'paypal', ['word-majority/confusable']],
-  ['шaг', 'шаг', ['word-majority/confusable']],
-  ['pаypal’ѕ', 'paypal’s', ['word-majority/confusable']],
-  ['Kαλημέρα', 'Καλημέρα', ['word-majority/confusable']],
-  ['ᴀᴅᴍɪɴ', 'admin', ['any-valid/confusable']],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['ΑΡΡLE', 'ΑΡΡLE', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['раураl', 'раураl', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['иser', 'иser', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['my иser name', 'my иser name', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['кey', 'кey', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['тap', 'тap', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['тail admiп вank тime quіск Пpивеt', 'тail admiп вank тime quіск Пpивеt', []],
+  ['paᏏy', 'paᏏy', ['no-valid-language/mixed']],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['ьank ъеst', 'ьank ъеst', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['Пpивет', 'Пpивет', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['Москвa', 'Москвa', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['paypaІ', 'paypaІ', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['шaг', 'шaг', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['pаypal’ѕ', 'pаypal’ѕ', []],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['Kαλημέρα', 'Kαλημέρα', []],
+  ['ᴀᴅᴍɪɴ', 'admin', ['primary-target/confusable']],
   ['ɡoogle', 'google', ['word-majority/confusable']],
   ['pɑypal', 'paypal', ['word-majority/confusable']],
-  ["İstanbul'da ışık þorn", "İstanbul'da ışık þorn", []],
+  // Decision 40d: European is not requested by default, so þ is a donor of p.
+  ["İstanbul'da ışık þorn", "İstanbul'da ışık porn", ['window/confusable']],
   ['lınk pıng Lınkedin', 'link ping Linkedin', Array(3).fill('conditional-twin/confusable')],
   ['kışın ığdır Iğdır', 'kışın ığdır Iğdır', []],
   ["GitHub'а iPhone’ов", "GitHub'а iPhone’ов", []],
-  ["форк на GіtHub'а", "форк на GitHub'а", ['word-majority/confusable']],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution.
+  ["форк на GіtHub'а", "форк на GіtHub'а", []],
   ['I bought сок today', 'I bought сок today', []],
   ['I bought сор today', 'I bought cop today', ['neighbours/confusable']],
   ['the рос here', 'the poc here', ['neighbours/confusable']],
@@ -86,61 +125,94 @@ const ROWS: [string, string, string[]][] = [
   ['eat уха soup', 'eat yxa soup', ['neighbours/confusable']],
   ['an оса flew', 'an oca flew', ['neighbours/confusable']],
   ['add сахар now', 'add caxap now', ['neighbours/confusable']],
-  ['раураӏ', 'paypal', ['any-valid/confusable']],
-  ['Зайди на раураӏ сегодня', 'Зайди на paypal сегодня', ['any-valid/confusable']],
-  ['раураІ', 'paypal', ['any-valid/confusable']],
+  ['раураӏ', 'paypal', ['primary-target/confusable']],
+  ['Зайди на раураӏ сегодня', 'Зайди на paypal сегодня', ['primary-target/confusable']],
+  ['раураІ', 'paypal', ['primary-target/confusable']],
   ['paypaI', 'paypal', ['case-anomaly/confusable']],
   ['gmaiI', 'gmail', ['case-anomaly/confusable']],
-  ['Ьр', 'bp', ['any-valid/confusable']],
+  // Decision 40e: a broken language rule is no evidence; the word stays.
+  ['Ьр', 'Ьр', []],
   ['маӏа Коммерсантъ', 'маӏа Коммерсантъ', []],
   ['Το iPhone είναι ακριβό', 'Το iPhone είναι ακριβό', []],
   ['g00gle app1e НОВ0СТИ', 'g00gle app1e НОВ0СТИ', []],
   ['СОСА-СОЛА', 'СОСА-СОЛА', []],
-  ['СОСА-COLA', 'COCA-COLA', ['hyphen/confusable']],
+  // Decision 42b: no hyphen step; the window decides.
+  ['СОСА-COLA', 'COCA-COLA', ['window/confusable']],
   ['Wi-Fi-роутер Docker-контейнер', 'Wi-Fi-роутер Docker-контейнер', []],
-  ['χbox ҳbox Ҳbox paχos', 'xbox xbox Xbox paxos', Array(4).fill('word-majority/confusable')],
-  ['ŋame ɳo ηame', 'ŋame ɳo ηame', ['no-valid-alphabet/mixed']],
-  ['ҳа', 'ҳа', []],
-  ['pay with раураl today', 'pay with paypal today', ['neighbours/confusable']],
-  ['мiр сiла', 'мір сіла', ['word-majority/confusable', 'word-majority/confusable']],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  [
+    'χbox ҳbox Ҳbox paχos',
+    'χbox xbox Xbox paχos',
+    ['word-majority/confusable', 'word-majority/confusable'],
+  ],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['ŋame ɳo ηame', 'ŋame ɳo ηame', []],
+  // Decision 40d: Tajik is not requested by default; several targets take it, no context: the primary (41e).
+  ['ҳа', 'xa', ['primary-target/confusable']],
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['pay with раураl today', 'pay with раураl today', []],
+  // Decision 41m: a sizable word majority only, else the request order.
+  // Decision 36e (ordering B): letters of two requested languages, no whole-word resolution (40g: п~n).
+  ['мiр сiла', 'мiр сiла', []],
 ];
 
-describe('§4.7 rows (defaults)', () => {
+describe('§4.8 rows (defaults)', () => {
   it.each(ROWS)('%s', (text, normalized, words) => {
     const r = resolve(text);
     expect(r.normalized).toBe(normalized);
     expect(r.words.map((w) => `${w.rule}/${w.class}`)).toEqual(words);
   });
 
-  it('records context, candidates and evidence', () => {
-    const [w] = resolve('Bank ассоunt verification').words;
-    expect(w).toMatchObject({
-      script: 'Latin',
-      folded: true,
-      wholeScript: false,
-      context: { neighbours: 'Latin', window: 'Latin' },
-      candidates: ['Latin'],
-    });
-    expect(resolve('аррӏе.com').words[0]!.evidence).toEqual({ kind: 'foreign', letters: 'ӏ' });
-    expect(resolve('paᏏy').words[0]!.rejected).toEqual({ Cyrillic: 'softHardNotAfterVowel' });
+  it('decision 40d: a requested language keeps its letters (European þ, Tajik ҳ)', () => {
+    expect(
+      resolve("İstanbul'da ışık þorn", 'all', { targetLanguages: ['English', 'European'] })
+        .normalized,
+    ).toBe("İstanbul'da ışık þorn");
+    expect(
+      resolve('ҳа', 'all', { targetLanguages: ['Russian', 'Tajik', 'Greek'] }).normalized,
+    ).toBe('ҳа');
   });
 
-  it('owner: a Russian word with Latin i folds to Ukrainian і (no Russian letter looks like i)', () => {
-    expect(resolve('мiр').normalized).toBe('мір');
-    expect(resolve('мiр', 'all', { targetLanguages: ['English', 'Russian'] }).normalized).toBe(
+  it('records context, candidates and evidence', () => {
+    // A mixed word of one requested language's letters and donors (36e ordering B leaves it to the ladder).
+    const [w] = resolve('Bank ᴀccount verification').words;
+    expect(w).toMatchObject({
+      folded: true,
+      wholeScript: false,
+      language: 'English',
+      context: { neighbours: ['English'], window: 'English' },
+    });
+    expect(resolve('аррӏе.com').words[0]!.evidence).toEqual({ kind: 'foreign', letters: 'ӏ' });
+    expect(resolve('paᏏy').words[0]!.rejected).toEqual({
+      Russian: 'softHardNotAfterVowel',
+      Ukrainian: 'softNotAfterVowel',
+    });
+  });
+
+  it('36e: a Russian word with Latin i converts the one-letter piece toward Russian', () => {
+    const A = { hiddenChars: 'strict', confusionModel: 'language' } as const;
+    // Ukrainian і is the twin in the requested language holding more of the word's letters.
+    expect(analyze('мiр', A).normalized).toBe('мір');
+    // With English and Russian no requested language of Cyrillic letters has a twin of i: reported.
+    expect(analyze('мiр', { ...A, targetLanguages: ['English', 'Russian'] }).normalized).toBe(
       'мiр',
     );
   });
 
   it('conditional twins switch rows on and off', () => {
-    const none = { conditionalTwins: [] };
-    expect(resolve('χbox ҳbox', 'all', none).words.map((w) => w.class)).toEqual(['mixed', 'mixed']);
+    // `χbox` and `ηame` hold letters of two requested languages (36e ordering B: no whole-word mapping);
+    // the descender twins switch rows of one requested language (`χbox` with English and Russian).
+    const enRu = { targetLanguages: ['English', 'Russian'] as TargetLanguage[] };
+    const none = { ...enRu, conditionalTwins: [] };
+    expect(resolve('χbox', 'all', none).words.map((w) => w.class)).toEqual(['mixed']);
+    expect(resolve('χbox', 'all', enRu).normalized).toBe('xbox');
     const n = { conditionalTwins: ['ŋ~n', 'ɳ~n', 'η~n'] as const };
     expect(
-      resolve('ŋame ɳo ηame', 'all', { conditionalTwins: [...n.conditionalTwins] }).normalized,
-    ).toBe('name no name');
-    expect(resolve('иser', 'all', { conditionalTwins: ['и~u'] }).normalized).toBe('user');
-    expect(resolve('lınk', 'all', { conditionalTwins: ['χ~x'] }).normalized).toBe('lınk');
+      resolve('ŋame ɳo', 'all', { conditionalTwins: [...n.conditionalTwins] }).normalized,
+    ).toBe('name no');
+    // `иser` holds letters of two requested languages: 36e, not the ladder (the italic twin is no border twin by default).
+    expect(resolve('иser', 'all', { conditionalTwins: ['и~u'] }).normalized).toBe('иser');
   });
 });
 
@@ -213,12 +285,32 @@ describe('property: one injected lookalike resolves back', () => {
             // Only unambiguous lookalikes: the twin folds back to this letter (Latin o ← ο or σ).
             if (model.twinIn(twin, own, isUpper(twin)) !== cs[i]) continue;
             const spoof = [...cs.slice(0, i), twin, ...cs.slice(i + 1)].join('');
-            const r = resolve(spoof);
-            expect(r.normalized, `${w} ← ${spoof}`).toBe(w);
-            expect(r.words.map((x) => x.class)).toEqual(['confusable']);
+            // Decision 36e: a one-letter twin piece that is not the last converts back toward
+            // the requested language holding more of the word's letters, a spoof; the last one is reported, not converted.
+            const r = analyze(spoof, { hiddenChars: 'strict', confusionModel: 'language' });
+            if (i < cs.length - 1) {
+              expect(r.normalized, `${w} ← ${spoof}`).toBe(w);
+              expect(r.words.map((x) => x.signals[0])).toEqual(['mixed_spoof']);
+            } else {
+              expect(r.normalized, `${w} ← ${spoof}`).toBe(spoof);
+              expect(r.words.map((x) => x.signals[0])).toEqual(['mixed_non_legitimate']);
+            }
             tried++;
           }
       }
       expect(tried).toBeGreaterThan(20);
     });
+});
+
+describe('resolveTokens reads majorityWindow (context-scales audit)', () => {
+  it('the step-2 window is the option, not a constant', async () => {
+    const { createConfusionModel } = await import('../src/confusion');
+    const text = 'cat dog Кот сор';
+    const toks = [...text.matchAll(/\S+/g)];
+    const spans = toks.map((t) => t.index);
+    const m = createConfusionModel();
+    const wide = resolveTokens(text, spans, m, { majorityWindow: 10 }).resolved.get(3);
+    const none = resolveTokens(text, spans, m, { majorityWindow: 0 }).resolved.get(3);
+    expect(wide?.context.window).not.toBe(none?.context.window ?? 'x');
+  });
 });

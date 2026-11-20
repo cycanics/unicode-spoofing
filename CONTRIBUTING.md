@@ -13,12 +13,21 @@ pnpm test        # run the test suite (Vitest)
 pnpm build       # emit dist/ (ESM + CJS + types) via tsup
 ```
 
+`pnpm test` runs no timing test. The timing tests (`test/performance.test.ts`:
+time budgets, growth ratios, comparisons with the reference bundle; and the
+tests written with `timed` from `test/helpers/growth.ts` in other files) depend
+on the machine and its load; run them with `pnpm test:perf` on an idle machine
+when a change may affect speed. They are an internal check, not part of CI or
+of a release. `node bench/bench.mjs` prints the absolute numbers of
+`docs/performance.md`.
+
 Useful scripts:
 
 | Command                         | What it does                                       |
 | ------------------------------- | -------------------------------------------------- |
 | `pnpm test` / `pnpm test:watch` | Run tests once / in watch mode                     |
 | `pnpm test:coverage`            | Tests with coverage report                         |
+| `pnpm test:perf`                | Timing tests, on an idle machine (see below)       |
 | `pnpm check-types`              | Typecheck with `tsc --noEmit`                      |
 | `pnpm lint`                     | ESLint                                             |
 | `pnpm format`                   | Format with Prettier                               |

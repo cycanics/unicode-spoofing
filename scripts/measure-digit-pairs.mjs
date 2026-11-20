@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * MEASUREMENT — digit vs letter glyph pairs, same method as the corpus study
- * (a private glyph-rendering script): render both glyphs at 64px in 8
+ * MEASUREMENT — digit vs letter glyph pairs, same method as the corpus study:
+ * render both glyphs at 64px in 8
  * fonts, count differing ink pixels. Writes docs/evidence/digit-pairs.{json,png}.
  *
- *   node scripts/measure-digit-pairs.mjs [path/to/playwright] [chrome]
+ *   node scripts/measure-digit-pairs.mjs [path/to/playwright] [chrome]   (or PLAYWRIGHT_PATH)
  */
 /* global document */
 import path from 'node:path';
@@ -14,9 +14,18 @@ import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PW = process.argv[2] ?? '/home/user/.nvm/versions/node/v20.19.5/lib/node_modules/playwright';
+const PW = process.argv[2] ?? process.env.PLAYWRIGHT_PATH ?? 'playwright';
 const CHROME = process.argv[3] ?? '/usr/bin/google-chrome';
-const { chromium } = require(PW);
+const { chromium } = (() => {
+  try {
+    return require(PW);
+  } catch {
+    console.error(
+      `playwright not found (${PW}): pass its path as the first argument or set PLAYWRIGHT_PATH`,
+    );
+    process.exit(1);
+  }
+})();
 const OUT = path.join(__dirname, '..', 'docs', 'evidence');
 
 const P = (a, b) => ({ a, b, label: `${a} vs ${b}` });

@@ -45,6 +45,8 @@ const isAscii = (s: string) => [...s].every((c) => c.codePointAt(0)! < 0x80);
  */
 export function foldChar(ch: string): string {
   if (ch.codePointAt(0)! < 0x80) return ch;
+  // Decision 40f: the long s reads `s` on every path, not UTS #39's `f`.
+  if (ch === 'ſ') return 's';
   const direct = CONFUSABLES.get(ch.codePointAt(0)!);
   if (direct && isAscii(direct)) return direct;
 

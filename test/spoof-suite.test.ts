@@ -353,7 +353,7 @@ describe('clean / safe input is NOT flagged', () => {
     expect(hasScript(r, /GREEK/)).toBe(true);
   });
 
-  it('a single natural non-Latin script is clean (Cyrillic word)', () => {
+  it('a single natural non-Latin script is clean (a Russian word)', () => {
     // мир (Russian "peace/world") — all-Cyrillic, legitimate.
     const r = run('мир');
     expect(sig(r)).toBe(false);
@@ -500,7 +500,7 @@ describe('whole-script confusables', () => {
   // outside them is flagged. Latin-expecting traffic (the moderation use case)
   // gets whole-script confusable detection with no false positives on genuine
   // Cyrillic/Greek from callers that expect those scripts.
-  const LATIN_ONLY = { expectedScripts: ['Latin'] };
+  const LATIN_ONLY = { inputLanguages: ['English'] };
 
   it('flags an all-Cyrillic string that renders as Latin "apple" (аррӏе)', () => {
     // Every glyph Cyrillic: а р р ӏ е — single-script, but a whole-script spoof.

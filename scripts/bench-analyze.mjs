@@ -5,7 +5,7 @@
  *   realistic  ~1 MB of mixed EN/RU Markdown with the cases.json inputs sprinkled in
  *              (scripts/realistic-text.mjs)
  *
- *   node --expose-gc scripts/bench-analyze.mjs [--impl=dist/index.js] [--opts='{"confusionModel":"alphabet"}']
+ *   node --expose-gc scripts/bench-analyze.mjs [--impl=dist/index.js] [--opts='{"confusionModel":"language"}']
  *        [--cases=path/to/cases.json] [--runs=9] [--json]
  *
  * Prints median ms, throughput (MB/s of UTF-8 input), heap growth during one

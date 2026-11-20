@@ -160,7 +160,7 @@ export const CONDITIONAL_TWIN_DATA: Record<
   { kind: 'descender' | 'italic' | 'shape'; pairs: [number, number][]; intraLatin: [number, number][] }
 > = ${JSON.stringify(conditional)};
 
-/** Default conditional set (owner, final). */
+/** Default conditional set. */
 export const DEFAULT_CONDITIONAL_TWIN_IDS: readonly string[] = ${JSON.stringify(overrides.defaultConditionalTwins)};
 `;
 const outPath = join(__dirname, '..', 'src', 'data', 'confusion.generated.ts');

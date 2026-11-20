@@ -677,7 +677,7 @@
   "legit": true,
   "verdict": "must_not_flag",
   "source": "handmade",
-  "note": "COCA-COLA shape in all-Cyrillic, but \u041b has no Latin twin: a Cyrillic proof letter, so the compound reads as Russian (owner, 2026-11-05; was must_flag)",
+  "note": "COCA-COLA shape in all-Cyrillic, but \u041b has no Latin twin: a Cyrillic proof letter, so the compound reads as Russian (was must_flag)",
   "visual": {
    "compared_to": "normalized",
    "renderer": "Chrome 157 headless",

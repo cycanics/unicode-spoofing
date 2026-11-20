@@ -11,7 +11,8 @@ others' private information without permission.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the maintainers at **support@moderationapi.com**. All complaints
+reported to the maintainers privately through the channel in
+[SECURITY.md](./SECURITY.md). All complaints
 will be reviewed and investigated promptly and fairly. Maintainers are
 obligated to respect the privacy and security of the reporter of any incident.
 

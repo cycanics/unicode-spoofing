@@ -6,7 +6,7 @@
  * (ink below the baseline erased). Writes docs/evidence/descender-pairs.json
  * and docs/evidence/descender-pairs.png.
  *
- *   node scripts/measure-descender-pairs.mjs [path/to/playwright] [chrome]
+ *   node scripts/measure-descender-pairs.mjs [path/to/playwright] [chrome]   (or PLAYWRIGHT_PATH)
  */
 /* global document */
 import path from 'node:path';
@@ -16,9 +16,18 @@ import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PW = process.argv[2] ?? '/home/user/.nvm/versions/node/v20.19.5/lib/node_modules/playwright';
+const PW = process.argv[2] ?? process.env.PLAYWRIGHT_PATH ?? 'playwright';
 const CHROME = process.argv[3] ?? '/usr/bin/google-chrome';
-const { chromium } = require(PW);
+const { chromium } = (() => {
+  try {
+    return require(PW);
+  } catch {
+    console.error(
+      `playwright not found (${PW}): pass its path as the first argument or set PLAYWRIGHT_PATH`,
+    );
+    process.exit(1);
+  }
+})();
 const OUT = path.join(__dirname, '..', 'docs', 'evidence');
 
 // [candidate, twin, group]

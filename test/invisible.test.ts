@@ -319,7 +319,7 @@ describe('invisible combining marks', () => {
     ['KAITHI VOWEL SIGN I', 0x110b1],
   ];
 
-  it.each(MARKS)('flags %s inside a Latin word', (_name, cp) => {
+  it.each(MARKS)('flags %s inside a word of Latin letters', (_name, cp) => {
     const r = analyze(wrap(cp));
     expect(r.signals.invisible).toBe(true);
     expect(r.normalized).toBe('beforeafter');

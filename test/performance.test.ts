@@ -1,6 +1,16 @@
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, realpathSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { analyze, cleanHidden, STRICT_HIDDEN_RULES, type AnalyzeOptions } from '../src/index';
+import { pathToFileURL } from 'node:url';
+import {
+  analyze,
+  cleanHidden,
+  STRICT_HIDDEN_RULES,
+  type AnalyzeOptions,
+  type CleanupCallbacks,
+} from '../src/index';
+import { mainOptions } from './helpers/main-options';
 
 /**
  * Throughput guards. These are deliberately loose so they don't flake on a
@@ -119,11 +129,11 @@ describe('analyze performance', () => {
  * The same guards with both opt-in options on, plus a line that exercises the
  * RGI-emoji path (tag payload after an emoji) and hyphen compounds; and a
  * ~1 MB mixed EN/RU Markdown input (scripts/realistic-text.mjs) against
- * budgets derived from upstream v0.4.0 on the development host (perf corpus
- * ~120 ms, realistic ~700 ms): the new mode must stay within 1.5× of that.
+ * fixed budgets for the development host (perf corpus ~120 ms, realistic
+ * ~700 ms): the opt-in mode must stay within 1.5× of them.
  */
-describe('analyze performance — confusionModel alphabet + hiddenChars strict', () => {
-  const NEW: AnalyzeOptions = { confusionModel: 'alphabet', hiddenChars: 'strict' };
+describe('analyze performance — confusionModel language + hiddenChars strict', () => {
+  const NEW: AnalyzeOptions = { confusionModel: 'language', hiddenChars: 'strict' };
   const tags = (s: string) =>
     [...s].map((c) => String.fromCodePoint(0xe0000 + c.codePointAt(0)!)).join('');
   const EXTRA = [
@@ -170,7 +180,7 @@ describe('analyze performance — confusionModel alphabet + hiddenChars strict',
     }
   });
 
-  it('analyzes ~1 MB of mixed EN/RU Markdown within 1.5× of upstream', async () => {
+  it('analyzes ~1 MB of mixed EN/RU Markdown within the 700 ms budget, opt-in within 1.5×', async () => {
     const { buildRealisticMarkdown } = (await import(
       join(__dirname, '..', 'scripts', 'realistic-text.mjs') as string
     )) as { buildRealisticMarkdown: (o: object) => string };
@@ -187,8 +197,8 @@ describe('analyze performance — confusionModel alphabet + hiddenChars strict',
       () => analyze(text, NEW),
       3,
     );
-    expect(base).toBeLessThan(700); // upstream v0.4.0: ~700 ms
-    expect(opted).toBeLessThan(1050); // 1.5 × upstream
+    expect(base).toBeLessThan(700); // the realistic-text budget: ~700 ms
+    expect(opted).toBeLessThan(1050); // 1.5 × the budget
     expect(opted / base).toBeLessThan(1.5); // and within 1.5× of the default mode
   });
 });
@@ -230,5 +240,126 @@ describe('cleanHidden performance — hidden content', () => {
       () => cleanHidden(large, RULES),
     );
     expect(largeMs / (s || 0.01)).toBeLessThan(10);
+  });
+});
+
+/**
+ * The streaming core (docs/confusion-model.md §17.12): the letter phase against
+ * the upstream reference build's `analyze` (test/fixtures/reference/main.mjs) on the ~1 MB
+ * realistic text, and phase 1 on the dense inputs of review 3, where an
+ * array-based design went quadratic. Both sides of the ratio are bundles
+ * (src/ bundled here as the package is): the test runner's module transform
+ * slows calls across src/ modules, not those inside one bundle.
+ */
+describe('finding-callback core', () => {
+  let text = '';
+  type Lib = {
+    analyze: (t: string, o?: object) => unknown;
+    cleanHidden: (t: string, r?: object, c?: object) => string;
+    STRICT_HIDDEN_RULES: object;
+  };
+  let reference: Lib;
+  let current: Lib;
+  beforeAll(async () => {
+    const { buildRealisticMarkdown } = (await import(
+      join(__dirname, '..', 'scripts', 'realistic-text.mjs') as string
+    )) as { buildRealisticMarkdown: (o: object) => string };
+    const cases = (
+      JSON.parse(readFileSync(join(__dirname, 'fixtures', 'cases.json'), 'utf8')) as {
+        input: string;
+      }[]
+    ).map((c) => c.input);
+    text = buildRealisticMarkdown({ targetBytes: 1 << 20, seed: 1, cases });
+    // @ts-expect-error -- a vendored ESM bundle without types
+    reference = (await import('./fixtures/reference/main.mjs')) as Lib;
+    const root = join(__dirname, '..');
+    const esbuild = createRequire(
+      join(realpathSync(join(root, 'node_modules', 'tsup')), 'package.json'),
+    )('esbuild') as { buildSync: (o: object) => void };
+    const out = join(mkdtempSync(join(tmpdir(), 'unicode-spoofing-perf-')), 'current.mjs');
+    esbuild.buildSync({
+      entryPoints: [join(root, 'src', 'index.ts')],
+      bundle: true,
+      format: 'esm',
+      platform: 'neutral',
+      outfile: out,
+      logLevel: 'error',
+    });
+    current = (await import(pathToFileURL(out).href)) as Lib;
+  });
+
+  it.each<[string, AnalyzeOptions]>([
+    ['default', {}],
+    ['strict + language', { hiddenChars: 'strict', confusionModel: 'language' }],
+    [
+      'strict + language, window breadth',
+      { hiddenChars: 'strict', confusionModel: 'language', breadth: 'window' },
+    ],
+  ])('analyze %s: within 1.5× of the upstream reference build on ~1 MB', (_n, opts) => {
+    const { breadth, ...rest } = opts;
+    const refOpts = mainOptions(rest);
+    void breadth;
+    current.analyze(text, opts);
+    reference.analyze(text, refOpts);
+    const [today, now] = medianPairMs(
+      () => reference.analyze(text, refOpts),
+      () => current.analyze(text, opts),
+      5,
+    );
+    expect(now / today).toBeLessThan(1.5);
+  });
+
+  const strict = () => current.STRICT_HIDDEN_RULES;
+  const terminal = () => ({ ...current.STRICT_HIDDEN_RULES, terminal: {} });
+  const dense: [string, (n: number) => string, CleanupCallbacks, () => object][] = [
+    ['VT emissions', (n) => 'ab\u000Bcd ef '.repeat(n), {}, strict],
+    ['blank-filler emissions', (n) => 'ab\u2800cd ef '.repeat(n), {}, strict],
+    [
+      'removals with a text-returning callback',
+      (n) => 'fr\u200Bee co\u00ADop '.repeat(n),
+      { onCleanup: () => '[h]' },
+      strict,
+    ],
+    ['removals only', (n) => 'fr\u200Bee co\u00ADop '.repeat(n), {}, strict],
+    // Decision 6: one forward scan; every walk back skips the line's spans one by one.
+    [
+      'backspaces over sequences, one line',
+      (n) => 'ab\u001b[31mc\b\b\u001b[0m'.repeat(n),
+      {},
+      terminal,
+    ],
+    ['backspaces flooding one line', (n) => 'x\b\b'.repeat(n), {}, terminal],
+    ['unterminated strings', (n) => '\u001b]0;title '.repeat(n), {}, terminal],
+  ];
+  it.each(dense)('phase 1 stays linear: %s (192 KB → 768 KB)', (_n, make, cbs, rules) => {
+    const unit = make(1).length;
+    const small = make(Math.round((192 * 1024) / unit));
+    const large = make(Math.round((768 * 1024) / unit));
+    const run = (t: string) => {
+      current.cleanHidden(t, rules(), { ...cbs, onRecord: () => void 0 });
+    };
+    run(small);
+    run(large);
+    const [s, l] = medianPairMs(
+      () => run(small),
+      () => run(large),
+    );
+    expect(l / (s || 0.01)).toBeLessThan(8);
+  });
+
+  it('analyze strict + language stays linear on dense hidden words (192 KB → 768 KB)', () => {
+    const opts: AnalyzeOptions = {
+      hiddenChars: 'strict',
+      confusionModel: 'language',
+      breadth: 'window',
+    };
+    const small = 'fr\u200Bee co\u00ADop '.repeat(12_000);
+    const large = 'fr\u200Bee co\u00ADop '.repeat(48_000);
+    current.analyze(small, opts);
+    const [s, l] = medianPairMs(
+      () => current.analyze(small, opts),
+      () => current.analyze(large, opts),
+    );
+    expect(l / (s || 0.01)).toBeLessThan(8);
   });
 });

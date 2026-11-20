@@ -11,8 +11,8 @@
  * classify as `Unknown`, which the analyzer treats conservatively (never as
  * spoofing evidence).
  *
- * These are the exact values that appear in `WordFinding.scripts`,
- * `AnalysisResult.dominantScript` and `AnalyzeOptions.expectedScripts`.
+ * These are the exact values that appear in `WordFinding.scripts` and
+ * `AnalysisResult.dominantScript`.
  */
 export const SCRIPT_NAMES = [
   'Latin',

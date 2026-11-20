@@ -1,6 +1,6 @@
 {
   "name": "@cycanics/unspoof",
-  "version": "0.6.1",
+  "version": "1.0.1",
   "description": "Unicode spoofing detection: mixed-script words, UTS #39 confusables, invisible characters, and combining-mark abuse. Zero runtime dependencies.",
   "author": "cycanics (https://cycanics.github.io)",
   "license": "MIT",
@@ -40,7 +40,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "MIGRATING.md"
   ],
   "publishConfig": {
     "access": "public",
@@ -55,6 +56,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:gaps": "vitest run -c vitest.gaps.config.ts",
+    "test:perf": "vitest run -c vitest.perf.config.ts",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "publint": "publint",
@@ -66,20 +68,20 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@changesets/changelog-github": "^0.7.0",
-    "@changesets/cli": "^2.29.7",
+    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.6.6",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
-    "@vitest/coverage-v8": "^4.1.10",
-    "eslint": "^10.7.0",
-    "globals": "^17.7.0",
-    "prettier": "^3.6.2",
-    "publint": "^0.3.14",
-    "tsup": "^8.5.0",
+    "@vitest/coverage-v8": "^5.1.0",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "publint": "^0.3.25",
+    "tsup": "^9.0.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.64.0",
-    "vitest": "^4.1.10"
+    "typescript-eslint": "^8.73.0",
+    "vitest": "^5.1.0"
   },
   "engines": {
     "node": ">=20"

@@ -74,7 +74,7 @@ describe('FORMAT_CHAR_SCRIPTS', () => {
     expect(FORMAT_CHAR_SCRIPTS).toContain('Arabic');
     // A ZWNJ inside a Persian word is orthography, not a hidden character.
     expect(analyze('می\u200Cروم').signals.invisible).toBe(false);
-    // The same ZWNJ inside a Latin word — a script NOT on the list — is not.
+    // The same ZWNJ inside a word of Latin letters — a script NOT on the list — is not.
     expect(FORMAT_CHAR_SCRIPTS).not.toContain('Latin');
     expect(analyze('fr\u200Cee').signals.invisible).toBe(true);
   });
@@ -104,43 +104,39 @@ describe('confusion-model and hidden-character exports', () => {
   it('are importable and consistent with analyze', async () => {
     const m = await import('../src');
     expect(m.CONFUSION_ALPHABETS).toContain('Cyrillic');
-    expect(Object.keys(m.CONDITIONAL_TWINS)).toHaveLength(14);
+    expect(Object.keys(m.CONDITIONAL_TWINS)).toHaveLength(13); // 40g: п~n is an ordinary pair
     expect([...m.DEFAULT_CONDITIONAL_TWINS]).toContain('χ~x');
     expect(m.DEFAULT_TARGET_LANGUAGES).toEqual(['English', 'Russian', 'Ukrainian', 'Greek']);
     expect(Object.keys(m.TARGET_LANGUAGES)).toEqual(expect.arrayContaining(['Russian', 'Greek']));
     expect(m.RU_CASE_ENDINGS.has('ов')).toBe(true);
     expect(m.STRICT_HIDDEN_RULES.softHyphen).toBe('remove-silent');
-    expect(m.PAYLOAD_HEX_CAP).toBe(32);
     expect(m.twinsOf('р').Latin).toEqual(['p']);
     expect(m.resolveWord('Пpивет')?.normalized).toBe('Привет');
     expect(m.resolveWord('dog')).toBeNull();
-    expect(m.analyze('Пpивет', { confusionModel: 'alphabet' }).normalized).toBe('Привет');
+    expect(m.analyze('Пpивет', { confusionModel: 'language' }).normalized).toBe('Привет');
   });
 });
 
 describe('cleanHidden export', () => {
-  it('removes hidden characters, keeps mixed words, and returns edits that map offsets', async () => {
+  it('removes hidden characters, keeps mixed words, and streams what it did', async () => {
     const { cleanHidden, STRICT_HIDDEN_RULES } = await import('../src');
-    // ZWSP inside a Latin word (counted), a tag-character payload, and a mixed word kept as written.
+    // ZWSP inside a word of Latin letters, a tag-character payload (extracted as written, decision 12a),
+    // and a mixed word kept as written.
     const input = 'fr\u200Bee P\u0430ypal \u{E0041}\u{E0042}x';
-    const r = cleanHidden(input, STRICT_HIDDEN_RULES);
-    expect(r.cleaned).toBe('free P\u0430ypal x');
-    expect(r.edits.length).toBe(2);
-    // Applying the edits to the input reproduces `cleaned`.
-    let out = '';
-    let cursor = 0;
-    for (const e of r.edits) {
-      out += input.slice(cursor, e.start) + e.value;
-      cursor = e.end;
-    }
-    expect(out + input.slice(cursor)).toBe(r.cleaned);
-    expect(r.findings.map((f) => f.word)).toEqual(['fr\u200Bee', '\u{E0041}\u{E0042}x']);
-    expect(r.payloads[0]?.decoded).toBe('AB');
+    const kinds: string[] = [];
+    const records: { start: number; length: number; text: string }[] = [];
+    const cleaned = cleanHidden(input, STRICT_HIDDEN_RULES, {
+      onReport: (m) => void kinds.push(`${m.kind}:${m.extracted ?? ''}`),
+      onRecord: (r) => void records.push(r),
+    });
+    expect(cleaned).toBe('free P\u0430ypal x');
+    expect(kinds).toEqual(['zeroWidthInWord:\u200B', 'tags:\u{E0041}\u{E0042}']);
+    expect(records.map((r) => r.text).join('')).toBe(cleaned);
   });
 
   it('default rules are the strict set', async () => {
     const { cleanHidden } = await import('../src');
-    expect(cleanHidden('a\u00ADb').cleaned).toBe('ab');
-    expect(cleanHidden('plain').edits).toEqual([]);
+    expect(cleanHidden('a\u00ADb')).toBe('ab');
+    expect(cleanHidden('plain')).toBe('plain');
   });
 });

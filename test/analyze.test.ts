@@ -1,4 +1,5 @@
 import { analyze } from '../src/index';
+import { growth, LINEAR, timed } from './helpers/growth';
 
 // The message from the customer report that triggered this feature. Words like
 // "busіnеss" mix Latin and Cyrillic; "Неу"/"НОТ" are written entirely in
@@ -41,7 +42,7 @@ describe('analyze — spoofed content', () => {
     expect(r.normalized).toBe('a business opportunity');
   });
 
-  it('flags a lookalike brand word in Latin text (classic paypal case)', () => {
+  it('flags a lookalike brand word in text of mostly Latin letters (classic paypal case)', () => {
     const r = analyze('Verify your раураl account now');
     expect(r.spoofed).toBe(true);
     expect(r.normalized).toBe('Verify your paypal account now');
@@ -56,7 +57,7 @@ describe('analyze — spoofed content', () => {
     }
   });
 
-  it('flags zero-width characters inside Latin words and strips them', () => {
+  it('flags zero-width characters inside words of Latin letters and strips them', () => {
     const r = analyze('fr​ee mo‍ney');
     expect(r.signals.invisible).toBe(true);
     expect(r.normalized).toBe('free money');
@@ -167,7 +168,7 @@ describe('analyze — legitimate content', () => {
   // is a ligature and dissolves to "ae", while "ø" keeps its stroke as a
   // combining mark and never gets there. Identifier_Status replaces that coin
   // flip with the distinction Unicode defines for the purpose.
-  describe('Latin words are judged on Identifier_Status, not skeleton luck', () => {
+  describe('words of Latin letters are judged on Identifier_Status, not skeleton luck', () => {
     it.each([
       ['Nordic ligature and stroke alike', 'Ægir sailed to Ålborg'],
       ['thorn and eth', 'Þór og Ðagur'],
@@ -191,7 +192,7 @@ describe('analyze — legitimate content', () => {
 
     it('does not weaken the cross-script case, where letters are Allowed too', () => {
       // Cyrillic "а"/"о" are Allowed — they are ordinary Russian. The gate must
-      // apply ONLY to Latin words, or "раураl" would walk straight through.
+      // apply ONLY to words of Latin letters, or "раураl" would walk straight through.
       expect(analyze('Verify your раураl account').spoofed).toBe(true);
       expect(analyze('НОТ deal today').spoofed).toBe(true);
     });
@@ -211,16 +212,17 @@ describe('analyze — legitimate content', () => {
     expect(r.signals.confusable_word).toBe(false);
   });
 
-  it('treats expected scripts as legitimate for whole words', () => {
-    // Without expectedScripts this could look suspicious in Latin-dominant
-    // text; with them, whole Cyrillic words are the sender's normal traffic.
+  it('treats whole words of the input languages as genuine', () => {
+    // Without inputLanguages this could look suspicious in text of mostly
+    // Latin letters; with Russian as an input language, whole Russian words are the
+    // sender's normal traffic.
     const text = 'Order confirmed — спасибо за покупку!';
-    expect(analyze(text, { expectedScripts: ['Cyrillic'] }).spoofed).toBe(false);
+    expect(analyze(text, { inputLanguages: ['Russian'] }).spoofed).toBe(false);
   });
 
   it('still flags intra-word mixing when the script is expected', () => {
-    const r = analyze('Неllо приятель', { expectedScripts: ['Cyrillic'] });
-    // "Неllо" mixes Cyrillic Не with Latin llo — expectedScripts must not
+    const r = analyze('Неllо приятель', { inputLanguages: ['Russian'] });
+    // "Неllо" mixes Cyrillic Не with Latin llo — inputLanguages must not
     // excuse blending inside a single word.
     expect(r.signals.mixed_script).toBe(true);
   });
@@ -232,11 +234,16 @@ describe('analyze — result shape', () => {
     expect(r.counts.wordsTotal).toBe(3);
   });
 
-  it('handles long input without pathological slowdown', () => {
-    const text = `${'The quick brown fox jumps over the lazy dog. '.repeat(200)}Неу НОТ рrоduсt`;
-    const start = performance.now();
-    const r = analyze(text);
-    expect(performance.now() - start).toBeLessThan(1000);
-    expect(r.spoofed).toBe(true);
+  const text = (n: number) =>
+    `${'The quick brown fox jumps over the lazy dog. '.repeat(n)}Неу НОТ рrоduсt`;
+  it('handles long input', () => {
+    expect(analyze(text(200)).spoofed).toBe(true);
   });
+  timed(
+    'handles long input without pathological slowdown',
+    () => {
+      expect(growth((n) => analyze(text(n)), 2000)).toBeLessThan(LINEAR);
+    },
+    30_000,
+  );
 });

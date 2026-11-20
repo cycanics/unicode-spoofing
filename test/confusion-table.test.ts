@@ -58,6 +58,7 @@ describe('confusion table sizes (§3.4)', () => {
   });
 
   it('has 643 pairs with the default conditional set, 107 of them Latin/Cyrillic/Greek', () => {
+    // 40g's п/n are pack rows (English, Russian, Ukrainian), not a table pair.
     expect(defaultPairs.length).toBe(643);
     const lcg = new Set(['Latin', 'Cyrillic', 'Greek']);
     expect(

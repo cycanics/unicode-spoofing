@@ -5,3 +5,4 @@ src/data/*.generated.ts
 CHANGELOG.md
 test/fixtures/cases.json
 docs/evidence/*.json
+test/fixtures/reference/

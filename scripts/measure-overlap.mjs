@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * MEASUREMENT — Unicode that renders over other text (docs/confusion-model.md §19).
+ * MEASUREMENT — Unicode that renders over other text (docs/confusion-model.md §16).
  * Browser: each sample in Chrome, 4 fonts, against the same text without the
  * suspect code points. `filled`: share of the blank pixels in each base letter's
  * cell that gain ink, the worst letter (100% = a solid block, no letter left).
@@ -12,7 +12,7 @@
  * do with the sample (imports dist/, so build first). Writes
  * docs/evidence/overlap.json and overlap.png.
  *
- *   node scripts/measure-overlap.mjs [path/to/playwright] [chrome]
+ *   node scripts/measure-overlap.mjs [path/to/playwright] [chrome]   (or PLAYWRIGHT_PATH)
  */
 /* global document, createImageBitmap, OffscreenCanvas */
 /* eslint-disable no-control-regex, no-irregular-whitespace -- it reports on these characters */
@@ -26,9 +26,18 @@ import { analyze, cleanHidden } from '../dist/index.js';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PW = process.argv[2] ?? '/home/user/.nvm/versions/node/v20.19.5/lib/node_modules/playwright';
+const PW = process.argv[2] ?? process.env.PLAYWRIGHT_PATH ?? 'playwright';
 const CHROME = process.argv[3] ?? '/usr/bin/google-chrome';
-const { chromium } = require(PW);
+const { chromium } = (() => {
+  try {
+    return require(PW);
+  } catch {
+    console.error(
+      `playwright not found (${PW}): pass its path as the first argument or set PLAYWRIGHT_PATH`,
+    );
+    process.exit(1);
+  }
+})();
 const OUT = path.join(__dirname, '..', 'docs', 'evidence');
 const FONTS = ['DejaVu Sans', 'Noto Sans', 'Liberation Serif', 'DejaVu Sans Mono'];
 
